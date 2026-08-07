@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ramesh Senthil Kumar — BA & PM</title>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<link rel="shortcut icon" href="favicon.ico"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1183,12 +1185,19 @@
     color: var(--grey-300);
   }
 
-  /* Floating resume download button */
-  .resume-fab {
+  /* Floating action dock (chatbot + resume download, stacked & centered) */
+  .fab-dock {
     position: fixed;
     right: 32px;
     bottom: 32px;
     z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+  }
+
+  .resume-fab {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -1571,9 +1580,269 @@
     .contact-links { flex-direction: column; align-items: center; gap: 32px; }
     footer { padding: 10px 28px; }
     .scroll-indicator { display: none; }
-    .resume-fab { right: 18px; bottom: 18px; padding: 14px; border-radius: 50%; box-shadow: 0 8px 20px rgba(252,102,4,0.4); }
+    .fab-dock { right: 18px; bottom: 18px; gap: 10px; }
+    .resume-fab { padding: 14px; border-radius: 50%; box-shadow: 0 8px 20px rgba(252,102,4,0.4); }
     .resume-fab-label { display: none; }
+    .chatbot-panel { left: 12px; right: 12px; width: auto; bottom: 118px; height: min(520px, 64vh); }
+    .chatbot-nudge { right: 16px; bottom: 120px; max-width: 190px; }
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .hero-cta .btn-primary, .hero-cta .btn-secondary { width: 100%; text-align: center; justify-content: center; }
   }
+
+  /* Chatbot */
+  .chatbot-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+    transition: transform 0.3s ease;
+  }
+
+  .chatbot-fab:hover { transform: translateY(-3px) scale(1.05); }
+
+  .chatbot-fab-avatar {
+    width: 40px; height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .chatbot-fab-avatar img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  .chatbot-panel {
+    position: fixed;
+    right: 32px;
+    bottom: 162px;
+    z-index: 250;
+    width: 380px;
+    max-width: calc(100vw - 48px);
+    height: 540px;
+    max-height: 72vh;
+    background: var(--black);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.97);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  }
+
+  .chatbot-panel.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+  .chatbot-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-shrink: 0;
+  }
+
+  .chatbot-header-avatar {
+    width: 32px; height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .chatbot-header-avatar img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  .chatbot-nudge {
+    position: fixed;
+    right: 32px;
+    bottom: 150px;
+    z-index: 199;
+    max-width: 220px;
+    background: var(--black);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    padding: 12px 28px 12px 14px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--white);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .chatbot-nudge.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+  .chatbot-nudge::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    right: 26px;
+    width: 14px; height: 14px;
+    background: var(--black);
+    border-right: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    transform: rotate(45deg);
+  }
+
+  .chatbot-nudge-close {
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 18px; height: 18px;
+    border: none;
+    background: transparent;
+    color: var(--grey-300);
+    cursor: pointer;
+    font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .chatbot-nudge-close:hover { color: var(--white); }
+
+  .chatbot-header-info { flex: 1; min-width: 0; }
+
+  .chatbot-header-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .chatbot-header-status { font-size: 11px; color: var(--grey-300); margin-top: 2px; }
+
+  .chatbot-close {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: var(--grey-300);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: border-color 0.3s, color 0.3s, transform 0.3s;
+  }
+
+  .chatbot-close:hover { border-color: var(--orange); color: var(--white); transform: rotate(90deg); }
+
+  .chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chat-msg {
+    max-width: 84%;
+    font-size: 13.5px;
+    line-height: 1.65;
+    padding: 10px 14px;
+    border-radius: 14px;
+  }
+
+  .chat-msg.bot { align-self: flex-start; background: rgba(255,255,255,0.06); color: var(--grey-100); border-bottom-left-radius: 4px; }
+  .chat-msg.user { align-self: flex-end; background: linear-gradient(120deg, var(--orange), #d1470a); color: var(--white); border-bottom-left-radius: 14px; border-bottom-right-radius: 4px; }
+  .chat-msg a { color: inherit; text-decoration: underline; }
+
+  .chat-typing {
+    align-self: flex-start;
+    display: flex; gap: 4px;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .chat-typing span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--grey-300);
+    animation: typingBounce 1.2s infinite ease-in-out;
+  }
+
+  .chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+  .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .chatbot-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 18px 14px;
+    flex-shrink: 0;
+  }
+
+  .chat-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    padding: 7px 12px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    color: var(--grey-300);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+  }
+
+  .chat-chip:hover { border-color: var(--orange); color: var(--white); background: rgba(252,102,4,0.1); }
+
+  .chatbot-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    flex-shrink: 0;
+  }
+
+  .chatbot-input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    padding: 10px 16px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    outline: none;
+    min-width: 0;
+    transition: border-color 0.3s;
+  }
+
+  .chatbot-input::placeholder { color: var(--grey-500); }
+  .chatbot-input:focus { border-color: var(--orange); }
+  .chatbot-input:disabled { opacity: 0.6; }
+
+  .chatbot-send {
+    width: 38px; height: 38px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(120deg, var(--orange), #d1470a);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .chatbot-send:hover { transform: scale(1.08); }
+  .chatbot-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .chatbot-send svg { width: 16px; height: 16px; }
 </style>
 </head>
 <body>
@@ -2146,16 +2415,51 @@
   <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
 </footer>
 
-<a href="Ramesh%20-%20Resume.pdf" download="Ramesh - Resume.pdf" class="resume-fab" aria-label="Download Resume">
-  <span class="resume-fab-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M12 3v12"/>
-      <path d="m7 10 5 5 5-5"/>
-      <path d="M5 21h14"/>
-    </svg>
-  </span>
-  <span class="resume-fab-label">Download Resume</span>
-</a>
+<!-- FLOATING ACTIONS -->
+<div class="fab-dock">
+  <!-- CHATBOT -->
+  <button type="button" class="chatbot-fab" id="chatbotFab" aria-label="Chat with Ramesh's assistant">
+    <span class="chatbot-fab-avatar"><img src="Ramesh chat bot.png" alt="Ramesh chatbot" loading="lazy"></span>
+  </button>
+
+  <a href="Ramesh%20-%20Resume.pdf" download="Ramesh - Resume.pdf" class="resume-fab" aria-label="Download Resume">
+    <span class="resume-fab-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v12"/>
+        <path d="m7 10 5 5 5-5"/>
+        <path d="M5 21h14"/>
+      </svg>
+    </span>
+    <span class="resume-fab-label">Download Resume</span>
+  </a>
+</div>
+
+<div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Chat with Ramesh's assistant">
+  <div class="chatbot-header">
+    <span class="chatbot-header-avatar"><img src="Ramesh chat bot.png" alt="Ramesh chatbot" loading="lazy"></span>
+    <div class="chatbot-header-info">
+      <div class="chatbot-header-name">Ramesh's Assistant</div>
+      <div class="chatbot-header-status">Runs locally · Knows the resume</div>
+    </div>
+    <button type="button" class="chatbot-close" id="chatbotClose" aria-label="Close chat">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages"></div>
+  <div class="chatbot-suggestions" id="chatbotSuggestions"></div>
+  <div class="chatbot-input-row">
+    <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask about skills, experience, projects…" autocomplete="off">
+    <button type="button" class="chatbot-send" id="chatbotSend" aria-label="Send message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="chatbot-nudge" id="chatbotNudge">
+  <button type="button" class="chatbot-nudge-close" id="chatbotNudgeClose" aria-label="Dismiss">✕</button>
+  <p>I'm Ramesh's assistant — got any doubt you wanna know? Use me! 😊</p>
+</div>
 
 <!-- PROFILE MODAL -->
 <div class="modal-overlay" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileModalName">
@@ -2678,6 +2982,513 @@
     if (profileModal.classList.contains('open')) closeProfileModal();
     if (otwModal.classList.contains('open')) closeOtwModal();
   });
+</script>
+
+<script>
+  // ---- Ramesh's local chatbot (rule-based, no external calls) ----
+  (function () {
+    const kb = {
+      name: 'Ramesh Senthil Kumar',
+      role: 'Business Analyst & Project Manager',
+      location: 'Madurai, Tamil Nadu, India',
+      email: 'ramesh.shakthi@outlook.com',
+      phone: '+91 90037 10351',
+      phoneHref: 'tel:+919003710351',
+      mailHref: 'mailto:ramesh.shakthi@outlook.com',
+      linkedin: 'https://linkedin.com/in/rameshshakthi9003',
+      whatsapp: 'https://wa.me/919003710351',
+      resumeHref: 'Ramesh%20-%20Resume.pdf',
+      education: 'B.Tech in IT from Sethu Institute of Technology (Anna University).',
+      about: "5 years across business analysis, project management, and client relations — started in business development, moved into BA work, and now leads Agile delivery end-to-end (BRDs/FRDs, sprint planning, UAT) with some UI/UX design along the way. Currently looking for a long-term role to grow into.",
+      hobbiesText: 'portrait sketching, digital art, reading, music, and exploring new places',
+      experience: [
+        { role: 'Business Analyst / Project Manager', company: 'Pyramidion Solutions', period: 'Sep 2022 — present', start: 'Sep 2022', end: 'present', aliases: ['pyramidion'], blurb: 'leading Agile/Scrum delivery as BA & Scrum Master, writing BRDs/FRDs and user stories, running UAT, and managing 4+ concurrent client projects.' },
+        { role: 'Senior Business Development Executive', company: 'Fire Bee Techno Services', period: 'Jan 2022 — Sep 2022', start: 'Jan 2022', end: 'Sep 2022', aliases: ['fire bee', 'firebee'], blurb: 'built the sales function from scratch for a seed-stage startup and led international inbound/outbound sales.' },
+        { role: 'Business Development Executive', company: 'Pixel Web Solutions', period: 'Oct 2020 — Dec 2021', start: 'Oct 2020', end: 'Dec 2021', aliases: ['pixel web', 'pixelweb'], blurb: 'ran inbound/outbound sales and product demos, handling 3+ blockchain projects end-to-end.' }
+      ],
+      skills: {
+        'Core': ['Requirement Gathering', 'BRD/FRD Preparation', 'Agile / Scrum', 'Waterfall', 'Stakeholder Management', 'User Stories & Epics', 'UI/UX Design'],
+        'Tools': ['Jira', 'monday.com', 'HubSpot', 'Figma', 'GitHub', 'Linear'],
+        'Methods': ['Sprint Planning', 'MoSCoW Prioritization', 'Scrum Master', 'Kanban', 'Wireframing'],
+        'AI': ['Claude', 'Codex', 'OpenAI', 'Google Stitch', 'Antigravity']
+      },
+      stats: { years: '5+', projects: '25+', countries: '6' },
+      projects: [
+        { name: 'DSL Connect', aliases: ['dsl', 'dsl connect', 'connect'], category: 'ERP & Ecommerce', period: '2024 — 2026 (Production Support)', blurb: 'Enterprise ERP + ecommerce build for a UK retailer, integrated with Sage CRM/ERP — live, processing ~3,000 orders a day.' },
+        { name: 'Spayci', aliases: ['spayci'], category: '3D Interior Design', period: '2025 — 2026 (Production Support)', blurb: '3D interior design & renovation platform with AI-driven recommendations and MedusaJS ecommerce.' },
+        { name: 'Kepler InvestHub', aliases: ['kepler', 'investhub', 'kepler investhub'], category: 'M&A Platform', period: '2026 (Beta)', blurb: 'Mergers & acquisitions platform connecting investors with business owners for deal discovery.' },
+        { name: 'Y-Ride', aliases: ['yride', 'y-ride', 'y ride'], category: 'Transportation', period: '2024 — 2025', blurb: 'US ride-hailing app with geofencing and driver KYC — peaked at 2,000+ drivers and 4,000+ riders.' },
+        { name: 'Gifts and Fests', aliases: ['gifts', 'fests', 'gifts and fests'], category: 'Event Management', period: '2025 — 2026', blurb: 'Event management and memory-tracking app with reminders, expense and gift tracking.' },
+        { name: 'Graftlink', aliases: ['graftlink'], category: 'Construction Tech', period: '2025 — 2026', blurb: 'LinkedIn-meets-Jira platform for construction site teams, with community and task management.' },
+        { name: 'Squad Sports', aliases: ['squad sports', 'squad'], category: 'Sports Tech', period: '2024 — 2025', blurb: 'Sports management platform for Kabaddi, Cricket & Volleyball — scorecards, bookings, live scores.' },
+        { name: 'Acsys International', aliases: ['acsys'], category: 'Security', period: '2024 — 2025', blurb: 'Corporate website for a global security & access-control solutions company.' },
+        { name: 'MetaPyra', aliases: ['metapyra'], category: 'Virtual Space', period: '2024', blurb: 'Virtual workspace / metaverse platform with avatars for offices and schools.' },
+        { name: 'ScalpBox', aliases: ['scalpbox', 'scalp box', 'scalp'], category: 'Fintech', period: '2024', blurb: 'Crypto trading platform — futures, spot, leverage trading and simulations.' },
+        { name: 'PKG AstroTalk', aliases: ['pkg', 'astrotalk', 'pkg astrotalk', 'astro talk'], category: 'AI / Astrology', period: '2024 (Discovery → Phase 2 Handover)', blurb: 'Real-time astrology consultation platform with chat, voice, and video.' },
+        { name: 'Sura AI', aliases: ['sura', 'sura ai'], category: 'EdTech', period: '2024 (Product Discovery & UX Strategy)', blurb: 'AI-assisted study platform for Tamil Nadu Board students, Grades 10–12.' }
+      ]
+    };
+
+    const SECTIONS = [
+      { id: 'home', names: ['home', 'hero', 'top'] },
+      { id: 'about', names: ['about'] },
+      { id: 'skills', names: ['skill', 'skills'] },
+      { id: 'experience', names: ['experience', 'work history', 'career'] },
+      { id: 'projects', names: ['project', 'projects', 'portfolio'] },
+      { id: 'personal-details', names: ['personal details', 'personal detail', 'personal'] },
+      { id: 'hobbies', names: ['hobby', 'hobbies'] },
+      { id: 'contact', names: ['contact'] }
+    ];
+
+    const TOPICS = [
+      { id: 'about', kws: ['about you', 'who are you', 'yourself', 'background', 'introduce', 'who is ramesh', 'bio', 'summary'] },
+      { id: 'skills', kws: ['skill', 'skills', 'technolog', 'tech stack', 'tool', 'tools', 'expertise', 'proficient', 'good at', 'stack'] },
+      { id: 'experience', kws: ['experience', 'work history', 'job', 'worked at', 'companies', 'company', 'role', 'pyramidion', 'fire bee', 'firebee', 'pixel web', 'career'] },
+      { id: 'projects', kws: ['project', 'projects', 'built', 'portfolio', 'work sample', 'dsl', 'spayci', 'kepler', 'investhub', 'yride', 'y-ride', 'y ride', 'gifts', 'fests', 'graftlink', 'squad', 'acsys', 'metapyra', 'scalpbox', 'scalp box', 'pkg', 'astrotalk', 'sura'] },
+      { id: 'education', kws: ['education', 'degree', 'college', 'university', 'studied', 'qualification', 'b.tech', 'btech', 'graduate'] },
+      { id: 'contact', kws: ['contact', 'reach', 'email', 'e-mail', 'mail', 'phone', 'number', 'linkedin', 'connect', 'get in touch', 'whatsapp'] },
+      { id: 'personal', kws: ['personal', 'age', 'how old', 'born', 'birth year', 'birthday', 'dob', 'date of birth', 'gender', 'blood group', 'family', 'father', 'mother', 'brother', 'married', 'native', 'hometown', 'address', 'where do you live', 'where are you from'] },
+      { id: 'hobbies', kws: ['hobby', 'hobbies', 'free time', 'sketch', 'digital art', 'manga', 'interest'] },
+      { id: 'stats', kws: ['how many years', 'how experienced', 'how many projects', 'how much experience', 'countries served'] },
+      { id: 'availability', kws: ['available', 'open to work', 'notice period', 'when can you join', 'freelance', 'relocate', 'looking for a job', 'hire'] },
+      { id: 'name', kws: ['your name', 'what is your name', "what's your name", 'who is this'] }
+    ];
+
+    const CALL_CMD = /\bcall\s+(ramesh|him|me)\b|^call$|\bring\s+(ramesh|him)\b|\bdial\s+(ramesh|him|the number)\b/;
+    const MAIL_CMD = /\b(mail|email)\s+(ramesh|him|me)\b|^(mail|email)$|\bsend\s+(him\s+)?an?\s+(mail|email)\b|\bdrop\s+(him\s+)?an?\s+(mail|email)\b/;
+    const WHATSAPP_CMD = /\bwhatsapp\s*(him|ramesh|me)?\b|^whatsapp$/;
+    const LINKEDIN_CMD = /\bopen\s+linkedin\b|\bconnect\s+on\s+linkedin\b|\blinkedin\s+(him|ramesh)\b|^linkedin$/;
+    const RESUME_CMD = /\bdownload\s+(the\s+)?(resume|cv)\b|\bsend\s+(me\s+)?(the\s+)?(resume|cv)\b|\bget\s+(the\s+)?(resume|cv)\b|^(resume|cv)$/;
+    const NAV_CMD = /\b(navigate|take me to|go to|show me|scroll to|open)\b/;
+
+    function findSection(msg) {
+      for (const s of SECTIONS) {
+        if (s.names.some(n => msg.includes(n))) return s;
+      }
+      return null;
+    }
+
+    function findProject(msg) {
+      for (const p of kb.projects) {
+        if (p.aliases.some(a => msg.includes(a)) || msg.includes(p.name.toLowerCase())) return p;
+      }
+      return null;
+    }
+
+    function findCompany(msg) {
+      for (const e of kb.experience) {
+        if (e.aliases.some(a => msg.includes(a))) return e;
+      }
+      return null;
+    }
+
+    // Remembers the last company/project/topic talked about, so bare
+    // follow-ups like "which year?" can be resolved without repeating context.
+    let context = null;
+
+    const ORDINAL_WORDS = { first: 1, '1st': 1, second: 2, '2nd': 2, third: 3, '3rd': 3, fourth: 4, '4th': 4, fifth: 5, '5th': 5 };
+    const ORDINAL_NAMES = ['', 'first', 'second', 'third', 'fourth', 'fifth'];
+
+    function findOrdinal(msg) {
+      for (const word in ORDINAL_WORDS) {
+        if (new RegExp('\\b' + word + '\\b').test(msg)) return ORDINAL_WORDS[word];
+      }
+      return null;
+    }
+
+    function replyOrdinalCompany(n) {
+      const idx = kb.experience.length - n;
+      const ord = ORDINAL_NAMES[n] || `${n}th`;
+      if (idx < 0 || idx >= kb.experience.length) {
+        return `He's only had ${kb.experience.length} companies so far — no ${ord} one yet! 😄 Ask me about his first, second, or third.`;
+      }
+      const e = kb.experience[idx];
+      context = { type: 'company', ref: e };
+      const isCurrent = idx === 0;
+      const timing = isCurrent ? `since ${e.start}, and he's still there!` : `from ${e.start} to ${e.end}.`;
+      const kickoff = n === 1 ? " — that's actually where his career kicked off, in sales, before he pivoted into business analysis." : '';
+      return `Ramesh's <strong>${ord} company</strong> was ${e.company}! 🎉 He worked there as ${e.role}, ${timing}${kickoff}`;
+    }
+
+    function replyCurrentCompany() {
+      const e = kb.experience[0];
+      context = { type: 'company', ref: e };
+      return `Right now he's at <strong>${e.company}</strong> 🚀 — ${e.role}, since ${e.start} and still going strong!`;
+    }
+
+    function replyJoin(e) {
+      context = { type: 'company', ref: e };
+      return `He joined <strong>${e.company}</strong> in ${e.start}! 📅`;
+    }
+
+    function replyCompanyEnd(e) {
+      context = { type: 'company', ref: e };
+      if (e.end === 'present') return `He's still there at <strong>${e.company}</strong> — hasn't wrapped that chapter up yet, going strong since ${e.start}! 💪`;
+      return `He wrapped up his time at <strong>${e.company}</strong> around ${e.end}! 📅`;
+    }
+
+    function replyProjectDate(p) {
+      context = { type: 'project', ref: p };
+      return `<strong>${p.name}</strong> ran ${p.period}! ⏳`;
+    }
+
+    function replyEducationDate() {
+      const first = kb.experience[kb.experience.length - 1];
+      return `Ha, the exact graduation date isn't on record here 🎓 — but he was already working by ${first.start}, so his B.Tech in IT wrapped up right around then. Ping him directly for the precise date!`;
+    }
+
+    function replyBirthYear() {
+      context = { type: 'personal' };
+      return `Ramesh was born on <strong>1 February 1999</strong> 🎂!`;
+    }
+
+    function matchSpecial(msg) {
+      if (/\bhow old\b/.test(msg) || /\b(born|birth year)\b/.test(msg)) {
+        return replyBirthYear();
+      }
+      const ordinal = findOrdinal(msg) || (/\bearliest\b/.test(msg) ? 1 : null);
+      if (ordinal && /(job|company|role|career|employer)/.test(msg)) {
+        return replyOrdinalCompany(ordinal);
+      }
+      if (/\bstarted?\s+(his\s+)?career\b/.test(msg) || /\bhow did (he|ramesh) start\b/.test(msg)) {
+        return replyOrdinalCompany(1);
+      }
+      if (/\b(current|latest|present|now)\b/.test(msg) && /(job|company|role|working|work)/.test(msg)) {
+        return replyCurrentCompany();
+      }
+
+      const company = findCompany(msg);
+      const project = findProject(msg);
+      const isEducationQ = /\b(education|degree|college|university|b\.tech|btech|graduat)\b/.test(msg);
+      const askJoin = /\b(when|which year|what year)\b/.test(msg) && /\b(join|joined|start|started|began|begin)\b/.test(msg);
+      const askComplete = /\b(when|which year|what year)\b/.test(msg) && /\b(complete|completed|finish|finished|end|ended|leave|left|graduat)\b/.test(msg);
+
+      if (askJoin) {
+        if (isEducationQ) return replyEducationDate();
+        if (company) return replyJoin(company);
+        if (context && context.type === 'company') return replyJoin(context.ref);
+      }
+      if (askComplete) {
+        if (isEducationQ) return replyEducationDate();
+        if (project) return replyProjectDate(project);
+        if (company) return replyCompanyEnd(company);
+        if (context && context.type === 'project') return replyProjectDate(context.ref);
+        if (context && context.type === 'company') return replyCompanyEnd(context.ref);
+      }
+
+      const bareYearAsk = /^(which year|what year|when)\??$/.test(msg.trim())
+        || (/\b(which year|what year)\b/.test(msg) && !company && !project && !isEducationQ);
+      if (bareYearAsk) {
+        if (context && context.type === 'company') return replyJoin(context.ref);
+        if (context && context.type === 'project') return replyProjectDate(context.ref);
+        if (context && context.type === 'personal') return replyBirthYear();
+        return `Which year for what, exactly? 😄 His birth year, when he joined a company, or a project's timeline — hit me with specifics and I'll nail it!`;
+      }
+
+      return null;
+    }
+
+    function matchCommand(msg) {
+      if (NAV_CMD.test(msg)) {
+        const sec = findSection(msg);
+        if (sec) return { type: 'navigate', section: sec.id };
+      }
+      if (CALL_CMD.test(msg)) return { type: 'call' };
+      if (MAIL_CMD.test(msg)) return { type: 'mail' };
+      if (WHATSAPP_CMD.test(msg)) return { type: 'whatsapp' };
+      if (LINKEDIN_CMD.test(msg)) return { type: 'linkedin' };
+      if (RESUME_CMD.test(msg)) return { type: 'resume' };
+      return null;
+    }
+
+    function scoreTopic(msg) {
+      let best = null, bestScore = 0;
+      for (const t of TOPICS) {
+        let score = 0;
+        for (const k of t.kws) { if (msg.includes(k)) score++; }
+        if (score > bestScore) { bestScore = score; best = t; }
+      }
+      return bestScore > 0 ? best.id : null;
+    }
+
+    const SECTION_LABEL = {
+      home: 'the top', about: 'About', skills: 'Skills', experience: 'Experience',
+      projects: 'Projects', 'personal-details': 'Personal Details', hobbies: 'Hobbies', contact: 'Contact'
+    };
+
+    function handleCommand(cmd) {
+      if (cmd.type === 'navigate') {
+        const el = document.getElementById(cmd.section);
+        if (el) { closeChat(); setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 250); }
+        return `On it — jumping to <strong>${SECTION_LABEL[cmd.section]}</strong>. 🚀`;
+      }
+      if (cmd.type === 'call') {
+        window.location.href = kb.phoneHref;
+        return `Dialing Ramesh now 📞 If nothing happened, here's the number: <a href="${kb.phoneHref}">${kb.phone}</a>`;
+      }
+      if (cmd.type === 'mail') {
+        window.location.href = kb.mailHref;
+        return `Opening your mail app ✉️ Or write directly to <a href="${kb.mailHref}">${kb.email}</a>`;
+      }
+      if (cmd.type === 'whatsapp') {
+        window.open(kb.whatsapp, '_blank');
+        return `Opening WhatsApp 💬 — or use <a href="${kb.whatsapp}" target="_blank">this link</a> anytime.`;
+      }
+      if (cmd.type === 'linkedin') {
+        window.open(kb.linkedin, '_blank');
+        return `Opening Ramesh's LinkedIn 💼 — <a href="${kb.linkedin}" target="_blank">linkedin.com/in/rameshshakthi9003</a>`;
+      }
+      if (cmd.type === 'resume') {
+        const a = document.createElement('a');
+        a.href = kb.resumeHref; a.download = 'Ramesh - Resume.pdf';
+        document.body.appendChild(a); a.click(); a.remove();
+        return `Downloading Ramesh's resume now 📄 Didn't start? <a href="${kb.resumeHref}" download>Grab it here</a>.`;
+      }
+      return null;
+    }
+
+    function handleTopic(id, msg) {
+      switch (id) {
+        case 'about':
+          context = { type: 'personal' };
+          return `Great question! 🙌 ${kb.about}`;
+        case 'skills': {
+          context = null;
+          const lines = Object.entries(kb.skills).map(([k, v]) => `• <strong>${k}:</strong> ${v.join(', ')}`);
+          return `Ramesh's toolkit is stacked! 💪<br>${lines.join('<br>')}<br><br>Say "take me to skills" to see it on the page.`;
+        }
+        case 'experience': {
+          const company = findCompany(msg);
+          if (company) {
+            context = { type: 'company', ref: company };
+            return `<strong>${company.role}</strong> at ${company.company} (${company.period}) — ${company.blurb} 🙌`;
+          }
+          context = null;
+          const lines = kb.experience.map(e => `• <strong>${e.role}</strong> at ${e.company} (${e.period}) — ${e.blurb}`);
+          return `${kb.stats.years} years across three roles — here's the ride! 🚀<br>${lines.join('<br>')}<br><br>Say "take me to experience" for the full timeline.`;
+        }
+        case 'projects': {
+          const p = findProject(msg);
+          if (p) {
+            context = { type: 'project', ref: p };
+            return `<strong>${p.name}</strong> (${p.category}, ${p.period}) — ${p.blurb} 🔥<br><br>Say "take me to projects" to see it on the page.`;
+          }
+          context = null;
+          const names = kb.projects.slice(0, 6).map(x => x.name).join(', ');
+          return `Ramesh has shipped ${kb.projects.length} projects across ecommerce, fintech, sports tech, edtech and more — including ${names}, and others! Ask me about any one by name, or say "take me to projects" to see them all.`;
+        }
+        case 'education':
+          return `🎓 ${kb.education}`;
+        case 'contact':
+          return `You can reach Ramesh directly — he'd love to hear from you! 🙌<br>📞 <a href="${kb.phoneHref}">${kb.phone}</a><br>✉️ <a href="${kb.mailHref}">${kb.email}</a><br>💼 <a href="${kb.linkedin}" target="_blank">linkedin.com/in/rameshshakthi9003</a><br>💬 <a href="${kb.whatsapp}" target="_blank">WhatsApp</a><br><br>Or just say "call ramesh" / "mail ramesh" and I'll do it for you.`;
+        case 'personal':
+          context = { type: 'personal' };
+          return `Ramesh (full name Ramesh S) is based in ${kb.location}, born 1 February 1999. Outside work he's into ${kb.hobbiesText} 🎨. Say "take me to personal details" for the fuller family & address info.`;
+        case 'hobbies': {
+          if (/\bwhy\b/.test(msg)) {
+            return `Ha, I don't know pal 🤷 — maybe he likes it 'cause it impresses his girlfriend 😏 That one's above my pay grade. You'll have to ask him yourself — say "call ramesh" or "mail ramesh" and go find out!`;
+          }
+          context = { type: 'personal' };
+          return `When he's off the clock, Ramesh is usually into ${kb.hobbiesText} 🎨🎧📖. Say "take me to hobbies" to see it on the page.`;
+        }
+        case 'stats':
+          return `${kb.stats.years} years of experience, ${kb.stats.projects} projects delivered, across ${kb.stats.countries} countries served! 📈`;
+        case 'availability':
+          return `Yes — Ramesh is open to work right now and looking for a stable, long-term role! 🙌 Say "mail ramesh" or "call ramesh" to reach out, or "download resume" to grab his CV.`;
+        case 'name':
+          return `You're chatting about <strong>${kb.name}</strong> — ${kb.role}. Ask me anything about his work! 😄`;
+        default:
+          return null;
+      }
+    }
+
+    const OFF_TOPIC_1 = [
+      "Haha, that one's a bit outside my lane ☀️ I'm just here to talk about Ramesh's resume and this site — try asking about his skills, experience, or projects!",
+      "That's outside what I know, but in a sunny way — let's stick to Ramesh's work, skills, or how to reach him 🌞"
+    ];
+    const OFF_TOPIC_2 = [
+      "Bro, ask something relevant 😅 This bot's running locally right here on this page — you're just spending your own time chasing random questions.",
+      "C'mon bro, stay on topic 😄 I'm a tiny local script, not the internet — ask about Ramesh's work instead."
+    ];
+    const PROVERB = "You can lead a horse to water, but you can't make it drink 🐴";
+
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    let offTopicCount = 0;
+
+    function handleOffTopic() {
+      offTopicCount++;
+      if (offTopicCount === 1) return { text: pick(OFF_TOPIC_1), closeAfter: false };
+      if (offTopicCount === 2) return { text: pick(OFF_TOPIC_2), closeAfter: false };
+      const text = `${PROVERB}<br><br>Okay bro, that's a wrap for me 😅 I'm <strong>done here — bye bye!</strong> 👋<br><br>Reach Ramesh directly: <a href="${kb.phoneHref}">Call</a> · <a href="${kb.mailHref}">Mail</a> · <a href="${kb.linkedin}" target="_blank">LinkedIn</a> · <a href="${kb.whatsapp}" target="_blank">WhatsApp</a><br><br>Maybe next year I'll have all his wisdom uploaded here to answer literally everything. See you around! 🙌`;
+      offTopicCount = 0;
+      return { text, closeAfter: true };
+    }
+
+    function respond(raw) {
+      const msg = raw.trim().toLowerCase();
+      const cmd = matchCommand(msg);
+      if (cmd) {
+        const text = handleCommand(cmd);
+        if (text) { offTopicCount = 0; return { text, closeAfter: false }; }
+      }
+      const special = matchSpecial(msg);
+      if (special) { offTopicCount = 0; return { text: special, closeAfter: false }; }
+      const topicId = scoreTopic(msg);
+      if (topicId) {
+        const text = handleTopic(topicId, msg);
+        if (text) { offTopicCount = 0; return { text, closeAfter: false }; }
+      }
+      return handleOffTopic();
+    }
+
+    // ---- UI wiring ----
+    const fab = document.getElementById('chatbotFab');
+    const panel = document.getElementById('chatbotPanel');
+    const closeBtn = document.getElementById('chatbotClose');
+    const messagesEl = document.getElementById('chatbotMessages');
+    const suggestionsEl = document.getElementById('chatbotSuggestions');
+    const inputEl = document.getElementById('chatbotInput');
+    const sendBtn = document.getElementById('chatbotSend');
+
+    const QUICK_PROMPTS = [
+      'What are his skills?',
+      'Tell me about his experience',
+      'Show me his projects',
+      'How can I reach him?',
+      'Where is he located?',
+      'What are his hobbies?',
+      'Is he open to work?',
+      'What was his first company?',
+      'Which year did he join Pyramidion?',
+      'Why does he like sketching?',
+      'Take me to the contact section',
+      'Call Ramesh',
+      'Download resume'
+    ];
+
+    function randomPrompts(n) {
+      const pool = QUICK_PROMPTS.slice();
+      const out = [];
+      while (out.length < n && pool.length) {
+        out.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+      }
+      return out;
+    }
+
+    function appendMessage(sender, html) {
+      const div = document.createElement('div');
+      div.className = 'chat-msg ' + sender;
+      if (sender === 'bot') { div.innerHTML = html; }
+      else { div.textContent = html; }
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      return div;
+    }
+
+    function showTyping() {
+      const div = document.createElement('div');
+      div.className = 'chat-typing';
+      div.id = 'chatTyping';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function hideTyping() {
+      const el = document.getElementById('chatTyping');
+      if (el) el.remove();
+    }
+
+    function renderSuggestions() {
+      suggestionsEl.innerHTML = '';
+      randomPrompts(3).forEach(p => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chat-chip';
+        chip.textContent = p;
+        chip.addEventListener('click', () => sendMessage(p));
+        suggestionsEl.appendChild(chip);
+      });
+    }
+
+    function setInputDisabled(disabled) {
+      inputEl.disabled = disabled;
+      sendBtn.disabled = disabled;
+    }
+
+    function sendMessage(raw) {
+      const text = (raw !== undefined ? raw : inputEl.value).trim();
+      if (!text) return;
+      appendMessage('user', text);
+      inputEl.value = '';
+      setInputDisabled(true);
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        const result = respond(text);
+        appendMessage('bot', result.text);
+        setInputDisabled(false);
+        if (result.closeAfter) {
+          suggestionsEl.innerHTML = '';
+          setTimeout(closeChat, 4200);
+        } else {
+          renderSuggestions();
+          inputEl.focus();
+        }
+      }, 450 + Math.random() * 400);
+    }
+
+    let greeted = false;
+    function openChat() {
+      panel.classList.add('open');
+      if (!greeted) {
+        greeted = true;
+        appendMessage('bot', "Hey hey! 👋⚡ I'm Ramesh's local chatbot — pumped to talk about his resume, skills, experience, projects, or how to reach him. Ask me anything, even the specific stuff like \"which year did he join Pyramidion?\" — I'm quick!");
+        renderSuggestions();
+      }
+      inputEl.focus();
+    }
+
+    function closeChat() {
+      panel.classList.remove('open');
+    }
+
+    fab.addEventListener('click', () => {
+      hideNudge();
+      panel.classList.contains('open') ? closeChat() : openChat();
+    });
+    closeBtn.addEventListener('click', closeChat);
+    sendBtn.addEventListener('click', () => sendMessage());
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel.classList.contains('open')) closeChat();
+    });
+
+    // Proactive nudge bubble if the visitor hasn't opened the chat yet
+    const nudgeEl = document.getElementById('chatbotNudge');
+    const nudgeCloseBtn = document.getElementById('chatbotNudgeClose');
+
+    function hideNudge() {
+      nudgeEl.classList.remove('show');
+    }
+
+    nudgeEl.addEventListener('click', () => {
+      hideNudge();
+      openChat();
+    });
+    nudgeCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hideNudge();
+    });
+
+    setTimeout(() => {
+      if (!greeted) nudgeEl.classList.add('show');
+    }, 5000);
+    setTimeout(hideNudge, 16000);
+  })();
 </script>
 </body>
 </html>
