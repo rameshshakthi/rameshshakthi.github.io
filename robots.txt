@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rameshshakthi.github.io/sitemap.xml
