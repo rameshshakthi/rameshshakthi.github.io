@@ -1,0 +1,11 @@
+/* Keep the resource library at the far end of the shared navigation. */
+nav .nav-links{align-items:center}
+nav .nav-links a.nav-resources{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:42px;padding:10px 17px;border:1px solid #fc6604;border-radius:8px;background:#fc6604;color:#09172a;font-weight:700;white-space:nowrap;animation:resources-glow 4s ease-in-out infinite}
+nav .nav-links a.nav-resources::after{display:none}
+nav .nav-links a.nav-resources::before{content:'';width:6px;height:6px;flex-shrink:0;border-radius:50%;background:currentColor}
+nav .nav-links a.nav-resources:hover{background:#ff9142;color:#09172a;animation:none;box-shadow:0 0 0 4px #fc660426}
+nav .nav-links a.nav-resources:focus-visible{outline:3px solid #f5f4f0;outline-offset:4px}
+@keyframes resources-glow{0%,100%{box-shadow:0 0 0 0 #fc660400}50%{box-shadow:0 0 0 5px #fc660420,0 0 20px #fc660426}}
+@media(min-width:901px){nav .nav-links{gap:clamp(14px,2.5vw,40px)}nav .nav-links a.nav-resources{margin-left:8px}}
+@media(max-width:900px){nav .nav-links{align-items:stretch}nav .nav-links a.nav-resources{width:calc(100% - 48px);margin:12px 24px 20px;min-height:46px}nav.nav-open .nav-links{max-height:650px;overflow-y:auto;max-height:min(650px,calc(100dvh - 80px))}}
+@media(prefers-reduced-motion:reduce){nav .nav-links a.nav-resources{animation:none}}

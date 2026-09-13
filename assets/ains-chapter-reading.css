@@ -1,0 +1,71 @@
+/* Shared reading layout for the ten AINS 21 chapters. */
+body{--reading-size:19px;font-weight:400}
+body.large-reading{--reading-size:22px}
+.page-lede{font-size:20px;line-height:1.85;max-width:760px;color:#d4d1ca}
+.page-subtitle{font-size:22px;line-height:1.5}
+.toc-box{max-width:960px;padding:32px;border-radius:20px;box-shadow:0 8px 32px #09172a05}
+.toc-title{font-size:14px;line-height:1.5}
+.toc-list li{font-size:17px;margin-bottom:6px}
+.toc-list a{display:inline-block;padding:8px 10px;border-radius:8px;line-height:1.5}
+.toc-list a:hover,.toc-list a[aria-current="location"]{background:#fff0e5;color:#a84000}
+.toc-list .toc-n{font-size:14px}
+.chapter-inner{max-width:900px}
+.unit{padding:30px 0 14px;margin-bottom:38px;border-top:1px solid #dedbd3;scroll-margin-top:110px}
+.unit-num{font-size:13px;letter-spacing:.08em;background:#fff0e5;color:#a84000;border-radius:7px;padding:7px 12px;margin-bottom:18px}
+.unit-title{font-size:40px;line-height:1.2;font-weight:600;max-width:800px;margin-bottom:24px}
+.unit p,.unit ul,.unit ol{font-size:var(--reading-size);line-height:1.85;color:#343b44}
+.unit p{margin-bottom:22px}
+.unit li{margin-bottom:10px}
+.unit strong{font-weight:600}
+.unit h4{font-size:15px;line-height:1.6;letter-spacing:.07em;color:#514c45;margin-top:32px}
+.callout{padding:25px 28px;border-radius:0 15px 15px 0;background:#fff0e5;border-left-width:4px;margin:28px 0}
+.callout-label{font-size:13px;letter-spacing:.1em;line-height:1.5;font-weight:500}
+.callout p{font-size:var(--reading-size);line-height:1.8;margin:0}
+.callout--example{background:#eaf0f6;border-left-color:#09172a}
+.callout--example .callout-label{color:#243c58}
+.callout--trap{background:#fff0eb;border-left-color:#b02a02}
+.flow-step{font-size:17px;line-height:1.65;padding:20px;border-radius:12px;box-shadow:0 4px 0 #09172a04;transition:transform .18s ease,box-shadow .18s ease}
+.flow-step strong{font-size:18px;margin-bottom:7px}
+.branch-root{font-size:15px;line-height:1.6;border-radius:10px;background:#09172a;color:#f5f4f0}
+.branch-row .flow-step,.branch-row.wide .flow-step{flex:1 1 190px;max-width:none}
+.flow-vertical{max-width:620px}
+.flow-arrow{font-size:23px}
+.data-table{font-size:17px;line-height:1.7;background:#fff;margin:0}
+.data-table th{font-size:13px;line-height:1.6;background:#09172a;color:#ffad75;letter-spacing:.05em;padding:17px}
+.data-table td{padding:18px 17px}
+.data-table tbody tr:nth-child(even){background:#f1f3f5}
+.reading-table{overflow-x:auto;border:1px solid #dedbd3;border-radius:13px;margin:28px 0;overscroll-behavior-x:contain}
+.reading-table:focus-visible{outline:3px solid #fc6604;outline-offset:4px}
+.pill-list li{font-size:var(--reading-size);padding:18px 20px;border-radius:12px;line-height:1.7}
+.pill-num,.story-badge{width:32px;height:32px;font-size:14px}
+.story-badge{color:#09172a}
+.story-step{padding:22px 0}
+.story-step p,.trap-item .wrong,.trap-item .right,.qa-list li{font-size:var(--reading-size);line-height:1.8}
+.case-card,.trap-item{border-radius:14px;padding:25px}
+.trap-item .tag,.trap-subhead{font-size:13px;line-height:1.6}
+.formula-box{font-size:17px;line-height:1.9;border-radius:12px;overflow-x:auto}
+.summary-card{border-radius:20px;padding:32px}
+.summary-grid h5{font-size:14px;line-height:1.6}
+.summary-grid ul{font-size:17px;line-height:1.85;color:#dedbd5}
+.summary-card p,.summary-card li,.summary-card .flow-step{color:#dedbd5}
+.summary-card strong{color:#f5f4f0}
+.summary-card h4{color:#ff9142}
+details.answers{border-radius:12px;overflow:hidden}
+details.answers summary{padding:18px 20px;min-height:52px;font-size:15px;line-height:1.6;letter-spacing:.04em}
+.chapter-pager{max-width:900px;padding:30px 24px;gap:28px}
+.pager-title{font-size:26px}.pager-dir,.pager-link.back-link{font-size:14px;line-height:1.6}
+.chapter-assessment p{font-size:16px}.chapter-assessment h2{font-size:24px}.chapter-assessment a{font-size:15px;min-height:48px}
+.reading-tools{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-bottom:1px solid #dedbd3;padding-bottom:22px;margin-bottom:24px;font-family:'DM Sans',sans-serif;color:#514c45;font-size:15px;line-height:1.6}
+.reading-tools button,.next-topic{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 16px;border:1px solid #d1ccc1;border-radius:9px;background:#fff;color:#09172a;font-family:'DM Sans',sans-serif;font-size:15px;text-decoration:none;cursor:pointer}
+.reading-tools button[aria-pressed="true"]{background:#09172a;color:#fff;border-color:#09172a}
+.next-topic{margin-top:14px;gap:12px;background:#fff0e5;border-color:#f5d2b8;color:#903b00}
+.next-topic:hover{background:#ffe3cf}
+.reading-progress{position:fixed;left:0;right:0;top:0;height:4px;z-index:120;background:transparent;pointer-events:none}
+.reading-progress span{display:block;height:100%;width:100%;background:#fc6604;transform:scaleX(0);transform-origin:left}
+/* Content stays readable even without script or when a section is taller than the viewport. */
+.reveal,.reveal.visible{opacity:1;transform:none;transition:none}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #fc6604;outline-offset:4px}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.flow-step:hover{transform:translateY(-3px);box-shadow:0 8px 20px #09172a0c}}
+@media(max-width:700px){body{--reading-size:18px}body.large-reading{--reading-size:21px}.page-lede{font-size:18px}.page-subtitle{font-size:20px}.chapter-body{padding:28px 20px 20px}.toc-wrap{padding:30px 20px 0}.toc-box{padding:23px 18px}.toc-list{columns:1}.toc-list li{font-size:16px}.unit{padding-top:25px;margin-bottom:28px}.unit-title{font-size:33px}.unit-num{font-size:12px}.unit h4{font-size:14px}.callout{padding:21px 18px}.flow{gap:8px}.flow-step{padding:17px;font-size:17px}.branch-row{gap:12px}.branch-row .flow-step,.branch-row.wide .flow-step{flex-basis:100%}.data-table{min-width:540px;font-size:16px}.data-table th{font-size:12px}.data-table td{padding:15px}.summary-card{padding:24px 20px}.summary-grid{grid-template-columns:1fr}.case-card,.trap-item{padding:20px}.formula-box{font-size:16px;padding:18px}.pill-list li{padding:16px;gap:12px}.reading-tools{align-items:flex-start}.next-topic{max-width:100%;text-align:left;justify-content:flex-start}.chapter-assessment a{font-size:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flow-step{transition:none}}
+@media print{.reading-tools,.reading-progress,.next-topic{display:none}.reading-table{overflow:visible}.data-table{min-width:0}.unit{break-inside:auto}.reveal{opacity:1;transform:none}}
