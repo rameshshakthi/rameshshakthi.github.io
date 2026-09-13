@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 2 — Who Provides Insurance & How Is It Regulated? | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 2 study notes: stock and mutual insurers, reciprocals, Lloyd's, captives, reinsurance, government programs, and how state regulation, the NAIC and IRIS keep insurers solvent and fair."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch2.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* Nav (shared with main site) */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  /* Page header */
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  /* TOC */
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  /* Body */
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  /* Callouts */
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  /* Flow (linear, horizontal or vertical) */
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 26px 0; row-gap: 10px; }
+  .flow-step {
+    padding: 13px 18px; border: 1px solid var(--line); background: #fff;
+    font-size: 13.5px; text-align: center; color: var(--grey-700); line-height: 1.4;
+  }
+  .flow-step strong { display: block; color: var(--black); font-size: 14px; margin-bottom: 2px; }
+  .flow-arrow { padding: 0 12px; color: var(--orange-deep); font-size: 17px; flex-shrink: 0; }
+  .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 26px 0; max-width: 460px; }
+  .flow-vertical .flow-step { text-align: left; }
+  .flow-vertical .flow-arrow { text-align: center; padding: 0; }
+
+  /* Branch / tree group */
+  .branch-group { margin: 30px 0; }
+  .branch-root {
+    display: inline-block; padding: 12px 22px; border: 1px solid var(--black);
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: var(--black);
+    margin-bottom: 0;
+  }
+  .branch-root-wrap { text-align: center; }
+  .branch-row {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); position: relative;
+  }
+  .branch-row .flow-step { flex: 1 1 150px; max-width: 220px; }
+  .branch-row.wide .flow-step { max-width: 170px; }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  /* Numbered pill list */
+  .pill-list { list-style: none; display: grid; gap: 10px; margin: 22px 0 !important; }
+  .pill-list li {
+    display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px;
+    border: 1px solid var(--line); background: #fff; font-size: 15px; color: var(--grey-700); margin: 0 !important;
+  }
+  .pill-num {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: var(--white);
+    font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Ladder (rate regulation involvement) */
+  .ladder { margin: 26px 0; max-width: 460px; }
+  .ladder-row {
+    display: flex; align-items: center; gap: 14px; padding: 11px 16px; border: 1px solid var(--line);
+    background: #fff; font-size: 14px; color: var(--grey-700); margin-bottom: 6px;
+  }
+  .ladder-cap {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--grey-500); text-align: center; margin: 8px 0;
+  }
+
+  /* Revision / master diagram card */
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-card .flow-step { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .flow-step strong { color: var(--white); }
+  .summary-card .flow-arrow { color: var(--orange-light); }
+  .summary-card .branch-root { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  /* Story chain */
+  .story-chain { display: flex; flex-direction: column; gap: 0; margin: 26px 0; }
+  .story-step {
+    display: flex; gap: 16px; align-items: flex-start; padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .story-step:last-child { border-bottom: none; }
+  .story-badge {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--orange);
+    color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+  .story-step p { margin: 0; font-size: 15px; color: var(--grey-700); }
+  .story-step strong { color: var(--black); }
+
+  /* Trap grid */
+  .trap-grid { display: grid; gap: 14px; margin: 24px 0; }
+  .trap-item { border: 1px solid var(--line); border-left: 3px solid #b02a02; padding: 16px 20px; background: #fff; }
+  .trap-item .wrong { color: #b02a02; font-size: 14.5px; }
+  .trap-item .right { color: var(--grey-700); font-size: 14.5px; margin-top: 6px; }
+  .trap-item .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-500); margin-bottom: 6px; display:block; }
+
+  /* Self-test */
+  .qa-list { list-style: none; counter-reset: qa; margin: 20px 0 !important; }
+  .qa-list li { counter-increment: qa; padding: 12px 0 12px 34px; position: relative; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--grey-700); margin:0 !important; }
+  .qa-list li::before {
+    content: counter(qa); position: absolute; left: 0; top: 12px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--grey-100); color: var(--orange-deep); font-family: 'DM Mono', monospace; font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  details.answers { margin-top: 18px; border: 1px solid var(--line); }
+  details.answers summary {
+    cursor: pointer; padding: 14px 20px; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-deep); background: var(--grey-100);
+  }
+  details.answers .qa-list { padding: 6px 20px 6px; }
+  details.answers .qa-list li::before { background: #fff; }
+
+  /* Chapter footer nav */
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500); }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  /* Footer */
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <span class="current">Chapter 2</span>
+  </p>
+  <span class="chapter-tag">Chapter 02</span>
+  <h1 class="page-title">Who Provides Insurance &amp; How Is It Regulated?</h1>
+  <p class="page-lede">Insurance is sold by several very different kinds of organizations — stock companies, mutuals, reciprocals, Lloyd's, captives, reinsurers — and by government when the private market can't reach an exposure economically. Every one of them answers, in some form, to a state insurance department. This chapter is written around the U.S. system, so terms like NAIC, FAIR plans, and IRIS should be read in that context.</p>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">28</span><a href="#u28">The big picture</a></li>
+      <li><span class="toc-n">29</span><a href="#u29">Private insurance organizations</a></li>
+      <li><span class="toc-n">30</span><a href="#u30">Stock insurer</a></li>
+      <li><span class="toc-n">31</span><a href="#u31">Mutual insurer</a></li>
+      <li><span class="toc-n">32</span><a href="#u32">Stock vs. mutual</a></li>
+      <li><span class="toc-n">33</span><a href="#u33">Reciprocal insurance exchange</a></li>
+      <li><span class="toc-n">34</span><a href="#u34">Lloyd's</a></li>
+      <li><span class="toc-n">35</span><a href="#u35">American Lloyd's</a></li>
+      <li><span class="toc-n">36</span><a href="#u36">Captive insurer</a></li>
+      <li><span class="toc-n">37</span><a href="#u37">Reinsurance company</a></li>
+      <li><span class="toc-n">38</span><a href="#u38">Government insurance programs</a></li>
+      <li><span class="toc-n">39</span><a href="#u39">Federal government programs</a></li>
+      <li><span class="toc-n">40</span><a href="#u40">State government programs</a></li>
+      <li><span class="toc-n">41</span><a href="#u41">FAIR plans</a></li>
+      <li><span class="toc-n">42</span><a href="#u42">Insurance guaranty funds</a></li>
+      <li><span class="toc-n">43</span><a href="#u43">Regulation: the big three</a></li>
+      <li><span class="toc-n">44</span><a href="#u44">NAIC</a></li>
+      <li><span class="toc-n">45</span><a href="#u45">Ratemaking: rate vs. premium</a></li>
+      <li><span class="toc-n">46</span><a href="#u46">Objectives of rate regulation</a></li>
+      <li><span class="toc-n">47</span><a href="#u47">Types of rating laws</a></li>
+      <li><span class="toc-n">48</span><a href="#u48">Solvency surveillance</a></li>
+      <li><span class="toc-n">49</span><a href="#u49">Insurer examination</a></li>
+      <li><span class="toc-n">50</span><a href="#u50">IRIS</a></li>
+      <li><span class="toc-n">51</span><a href="#u51">Consumer protection</a></li>
+      <li><span class="toc-n">52</span><a href="#u52">Domestic, foreign, alien</a></li>
+      <li><span class="toc-n">53</span><a href="#u53">Licensing insurers</a></li>
+      <li><span class="toc-n">54</span><a href="#u54">Licensing representatives</a></li>
+      <li><span class="toc-n">55</span><a href="#u55">Policy form approval</a></li>
+      <li><span class="toc-n">56</span><a href="#u56">Market conduct</a></li>
+      <li><span class="toc-n">57</span><a href="#u57">Consumer complaints</a></li>
+      <li><span class="toc-n">58</span><a href="#u58">Excess & surplus lines (E&amp;S)</a></li>
+      <li><span class="toc-n">59</span><a href="#u59">When E&amp;S is needed</a></li>
+      <li><span class="toc-n">60</span><a href="#u60">E&amp;S example</a></li>
+      <li><span class="toc-n">61</span><a href="#u61">E&amp;S regulation</a></li>
+      <li><span class="toc-n">62</span><a href="#u62">Chapter 2 master diagram</a></li>
+      <li><span class="toc-n">—</span><a href="#story">Chapters 1 + 2: one story</a></li>
+      <li><span class="toc-n">—</span><a href="#traps">High-value exam traps</a></li>
+      <li><span class="toc-n">—</span><a href="#selftest">Self-test & answer key</a></li>
+      <li><span class="toc-n">—</span><a href="#final">Final exam memory sheet</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u28">
+      <span class="unit-num">28 — The Big Picture</span>
+      <h2 class="unit-title">Two questions this chapter answers</h2>
+      <p>Chapter 2 is built around two questions: <strong>who provides insurance?</strong> and <strong>who makes sure insurers behave properly and can pay claims?</strong></p>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">INSURANCE PROVIDERS</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Private</strong>many forms</div>
+          <div class="flow-step"><strong>Government</strong>federal / state</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:14px; color:var(--grey-500);">Both are watched by <strong>regulation</strong> — rates, solvency, and consumer protection.</p>
+    </div>
+
+    <div class="unit reveal" id="u29">
+      <span class="unit-num">29 — Seven Forms</span>
+      <h2 class="unit-title">Private insurance organizations</h2>
+      <p>The chapter discusses seven private forms of insurer.</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Stock insurers</li>
+        <li><span class="pill-num">2</span>Mutual insurers</li>
+        <li><span class="pill-num">3</span>Reciprocal insurance exchanges</li>
+        <li><span class="pill-num">4</span>Lloyd's</li>
+        <li><span class="pill-num">5</span>American Lloyd's</li>
+        <li><span class="pill-num">6</span>Captive insurers</li>
+        <li><span class="pill-num">7</span>Reinsurance companies</li>
+      </ol>
+      <div class="callout"><span class="callout-label">Memory trick — S M R L A C R</span><p>"Stock Mutual Reciprocals Love American Captive Reinsurance." You only need the phrase to trigger the seven categories.</p></div>
+    </div>
+
+    <div class="unit" id="u30">
+      <span class="unit-num">30 — Owned by Investors</span>
+      <h2 class="unit-title">Stock insurer</h2>
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>Stockholders</strong> provide capital</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Board of Directors, elected by stockholders</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">CEO / management runs insurance operations</div>
+      </div>
+      <p>Stockholders expect a return through dividends, stock-value growth, or both.</p>
+      <div class="callout"><span class="callout-label">Exam clue</span><p>Stock insurer = stockholders own it = profit for stockholders.</p></div>
+    </div>
+
+    <div class="unit" id="u31">
+      <span class="unit-num">31 — Owned by Members</span>
+      <h2 class="unit-title">Mutual insurer</h2>
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>Policyholders</strong> own the company</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Board of Directors, may be elected by policyholders</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Management runs the mutual insurer</div>
+      </div>
+      <p>Traditional mutuals don't issue common stock. Policyholders can have voting rights, and the mutual may distribute dividends back to them.</p>
+      <div class="callout"><span class="callout-label">Exam clue</span><p>Mutual = members / policyholders own it.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u32">
+      <span class="unit-num">32 — Head to Head</span>
+      <h2 class="unit-title">Stock vs. mutual</h2>
+      <table class="data-table">
+        <thead><tr><th>Feature</th><th>Stock</th><th>Mutual</th></tr></thead>
+        <tbody>
+          <tr><td>Owner</td><td>Stockholders</td><td>Policyholders</td></tr>
+          <tr><td>Main purpose</td><td>Profit for stockholders</td><td>Provide insurance for policyholder-owners</td></tr>
+          <tr><td>Capital</td><td>Stockholder capital</td><td>Policyholder-based structure</td></tr>
+          <tr><td>Board elected by</td><td>Stockholders</td><td>Policyholders</td></tr>
+          <tr><td>Dividends</td><td>To stockholders</td><td>May be paid to policyholders</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">One-line memory</span><p>Stock = investors own it. Mutual = policyholders own it.</p></div>
+    </div>
+
+    <div class="unit" id="u33">
+      <span class="unit-num">33 — Members Insure Each Other</span>
+      <h2 class="unit-title">Reciprocal insurance exchange</h2>
+      <p>A reciprocal is an <strong>unincorporated association</strong>, owned by policyholders (subscribers), where members agree to insure each other's losses. It's managed by an <strong>attorney-in-fact</strong>.</p>
+      <div class="flow">
+        <div class="flow-step">Subscribers<br>(Ramesh, Jai, Mari, Sabari)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Reciprocal</strong><br>all subscribers insure each other</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step"><strong>Attorney-in-fact</strong><br>runs marketing, underwriting, premiums, investment, claims</div>
+      </div>
+      <div class="callout"><span class="callout-label">Exam clue</span><p>Reciprocal = subscribers insure each other + attorney-in-fact manages it.</p></div>
+    </div>
+
+    <div class="unit" id="u34">
+      <span class="unit-num">34 — Classic Exam Trap</span>
+      <h2 class="unit-title">Lloyd's</h2>
+      <div class="callout callout--trap"><span class="callout-label">Lloyd's is NOT technically an insurer</span><p>The textbook describes Lloyd's as an <strong>association / marketplace</strong> that provides facilities and procedures for its members to write insurance.</p></div>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">LLOYD'S — "the marketplace"</div></div>
+        <div class="branch-row">
+          <div class="flow-step">Syndicate A<br>underwriters</div>
+          <div class="flow-step">Syndicate B<br>underwriters</div>
+        </div>
+      </div>
+      <p>Individual investor-members are called <strong>Names</strong>. Names belong to syndicates, and syndicate underwriters conduct the actual insurance operations and evaluate applications.</p>
+      <div class="callout"><span class="callout-label">Memorize instead</span><p>Lloyd's = insurance marketplace / association, not an insurance company.</p></div>
+    </div>
+
+    <div class="unit" id="u35">
+      <span class="unit-num">35 — The Smaller Cousin</span>
+      <h2 class="unit-title">American Lloyd's</h2>
+      <p>American Lloyd's are much smaller than Lloyd's, and most are domiciled in Texas. Their underwriters have <strong>limited liability</strong> to their investment in the association, and they generally operate as a single syndicate under an attorney-in-fact.</p>
+      <table class="data-table">
+        <thead><tr><th>Lloyd's</th><th>American Lloyd's</th></tr></thead>
+        <tbody>
+          <tr><td>Major insurance marketplace / association</td><td>Smaller associations</td></tr>
+          <tr><td>Members include investors (Names)</td><td>Underwriters have limited liability</td></tr>
+          <tr><td>Syndicate structure</td><td>Usually a single syndicate</td></tr>
+          <tr><td>U.K.-based context</td><td>Mostly associated with U.S. state structures</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit reveal" id="u36">
+      <span class="unit-num">36 — In-House Insurer</span>
+      <h2 class="unit-title">Captive insurer</h2>
+      <p>A captive insurer is a subsidiary created by a company (or affiliated group) to provide insurance for its parent or the group.</p>
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>Parent company</strong> owns the subsidiary</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Captive insurer</strong></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Provides insurance back to the parent / group</div>
+      </div>
+      <p>Three reasons companies create captives:</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Lower insurance cost</li>
+        <li><span class="pill-num">2</span>Insurance availability</li>
+        <li><span class="pill-num">3</span>Improved cash flow</li>
+      </ol>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Sabari's large business has difficult-to-insure risks. Instead of buying all coverage from an unrelated insurer, it creates a captive subsidiary — premiums stay within the corporate structure until a claim needs paying.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u37">
+      <span class="unit-num">37 — Insurance for the Insurer</span>
+      <h2 class="unit-title">Reinsurance company</h2>
+      <p>An insurer can buy insurance for itself — that's reinsurance.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Original customer buys a policy</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Primary insurer</strong> (the "reinsured")</div>
+        <div class="flow-arrow">↓ reinsurance</div>
+        <div class="flow-step"><strong>Reinsurer</strong></div>
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Ramesh's insurance company writes a very large commercial policy. The potential loss is huge, so the primary insurer keeps part of the risk and transfers the rest to a reinsurer.</p></div>
+      <div class="callout"><span class="callout-label">Memory</span><p>Insurance protects the customer. Reinsurance protects the insurer.</p></div>
+    </div>
+
+    <div class="unit" id="u38">
+      <span class="unit-num">38 — Filling the Gaps</span>
+      <h2 class="unit-title">Government insurance programs</h2>
+      <p>Government steps in where exposures are difficult for private insurers to cover economically — because they're highly concentrated, catastrophic, very broad in scope, or otherwise hard to insure privately.</p>
+    </div>
+
+    <div class="unit" id="u39">
+      <span class="unit-num">39 — Federal</span>
+      <h2 class="unit-title">Federal government programs</h2>
+      <table class="data-table">
+        <thead><tr><th>Program</th><th>Addresses</th></tr></thead>
+        <tbody>
+          <tr><td>Social Security</td><td>Retirement, survivorship, disability, Medicare-related medical benefits</td></tr>
+          <tr><td>National Flood Insurance Program</td><td>Flood exposure</td></tr>
+          <tr><td>Federal Crop Insurance Program</td><td>Agricultural losses — drought, insects, hail, and other causes</td></tr>
+        </tbody>
+      </table>
+      <div class="flow">
+        <div class="flow-step">Private market struggles</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Large / concentrated exposure</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Government program</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Coverage becomes available</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u40">
+      <span class="unit-num">40 — State</span>
+      <h2 class="unit-title">State government programs</h2>
+      <ul>
+        <li>Workers' compensation insurance funds — monopolistic state funds, competitive state funds, residual market plans</li>
+        <li>Unemployment insurance</li>
+        <li>Automobile insurance plans</li>
+        <li>FAIR plans</li>
+        <li>Beachfront and windstorm pools</li>
+        <li>Insurance guaranty funds</li>
+      </ul>
+      <div class="callout"><span class="callout-label">Residual market</span><p>Helps provide insurance to applicants who cannot obtain voluntary coverage from private insurers.</p></div>
+    </div>
+
+    <div class="unit" id="u41">
+      <span class="unit-num">41 — Fair Access</span>
+      <h2 class="unit-title">FAIR plans</h2>
+      <p><strong>FAIR = Fair Access to Insurance Requirements.</strong> Purpose: make basic property insurance available where it would otherwise be unavailable.</p>
+      <div class="flow">
+        <div class="flow-step">Property owner</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Private market says "not available"</div><div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>FAIR plan</strong></div><div class="flow-arrow">→</div>
+        <div class="flow-step">Basic property insurance access</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u42">
+      <span class="unit-num">42 — Safety Net</span>
+      <h2 class="unit-title">Insurance guaranty funds</h2>
+      <p>When an insurer becomes insolvent and can't meet covered obligations, a guaranty fund provides a mechanism for paying its covered claims, subject to the applicable state system and limits.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Insurer becomes insolvent</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Cannot meet covered obligations</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">State guaranty fund mechanism</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Covered claims handled</div>
+      </div>
+      <div class="callout"><span class="callout-label">Exam clue</span><p>Guaranty fund = protection when a licensed insurer becomes insolvent.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u43">
+      <span class="unit-num">43 — The Big Three</span>
+      <h2 class="unit-title">Insurance regulation: the big three</h2>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">REGULATION</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Rates</strong>adequate, not excessive, not unfairly discriminatory</div>
+          <div class="flow-step"><strong>Solvency</strong>can the insurer meet its obligations?</div>
+          <div class="flow-step"><strong>Consumer protection</strong>are customers treated fairly?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u44">
+      <span class="unit-num">44 — Coordinator, Not Regulator</span>
+      <h2 class="unit-title">NAIC</h2>
+      <p><strong>NAIC = National Association of Insurance Commissioners.</strong> It encourages coordination, cooperation, and uniformity among state insurance departments.</p>
+      <div class="callout callout--trap"><span class="callout-label">Critical exam point</span><p>NAIC has <strong>no direct regulatory authority</strong>. The states retain regulatory authority; NAIC only coordinates.</p></div>
+      <div class="flow">
+        <div class="flow-step">NAIC</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Model law</div><div class="flow-arrow">→</div>
+        <div class="flow-step">State legislature considers it</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Possible state law</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u45">
+      <span class="unit-num">45 — Don't Confuse Rate & Premium</span>
+      <h2 class="unit-title">Ratemaking</h2>
+      <table class="data-table">
+        <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Rate</td><td>Amount charged per exposure unit</td></tr>
+          <tr><td>Premium</td><td>Price of insurance coverage for the specified period</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <span class="callout-label">Formula</span>
+        <p><strong>Premium = Rate × Number of exposure units</strong><br>Example: rate = ₹1.20 per ₹100 of coverage, coverage = ₹1,000 → 10 exposure units → premium = ₹1.20 × 10 = ₹12.</p>
+      </div>
+    </div>
+
+    <div class="unit" id="u46">
+      <span class="unit-num">46 — Three Objectives</span>
+      <h2 class="unit-title">Objectives of rate regulation</h2>
+      <table class="data-table">
+        <thead><tr><th>Objective</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Adequate</td><td>Enough to cover expected losses and expenses, and allow reasonable profit</td></tr>
+          <tr><td>Not excessive</td><td>Not unreasonably high</td></tr>
+          <tr><td>Not unfairly discriminatory</td><td>Rate differences should reflect real differences in loss exposure, not prohibited or unfair factors</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit" id="u47">
+      <span class="unit-num">47 — Six Systems</span>
+      <h2 class="unit-title">Types of insurance rating laws</h2>
+      <p>These range along a ladder of how much regulator involvement is required before rates go into effect.</p>
+      <div class="ladder">
+        <div class="ladder-cap">More regulator involvement</div>
+        <div class="ladder-row">Prior approval — file, then wait for approval before use</div>
+        <div class="ladder-row">Flex rating — prior approval only if the change exceeds a set range</div>
+        <div class="ladder-row">File-and-use — file first, then use without waiting</div>
+        <div class="ladder-row">Use-and-file — use first, then file within a set period</div>
+        <div class="ladder-row">Open competition — no prior filing requirement</div>
+        <div class="ladder-row">State-mandated rates — the state sets the rate directly</div>
+        <div class="ladder-cap">Less prior regulator involvement</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u48">
+      <span class="unit-num">48 — Watching Financial Strength</span>
+      <h2 class="unit-title">Solvency surveillance</h2>
+      <p><strong>Solvency</strong> means the insurer can meet its financial obligations as they become due and remain financially viable. Two major tools: <strong>insurer examinations</strong> and <strong>IRIS</strong>.</p>
+    </div>
+
+    <div class="unit" id="u49">
+      <span class="unit-num">49 — The Health Check</span>
+      <h2 class="unit-title">Insurer examination</h2>
+      <p>Regulators periodically examine insurers, reviewing claims, underwriting, marketing, accounting, and financial condition.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Insurance Department examines the insurer</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Claims + Underwriting + Marketing + Accounting + Financial condition</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Problems found? → Corrective action. None found? → Continue monitoring</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u50">
+      <span class="unit-num">50 — Early Warning</span>
+      <h2 class="unit-title">IRIS</h2>
+      <p><strong>IRIS = Insurance Regulatory Information System</strong> — an early-warning system operated by the NAIC. It uses financial-statement data to calculate <strong>12 financial ratios</strong> and flags insurers whose results fall outside predetermined norms for regulatory attention.</p>
+      <div class="callout"><span class="callout-label">Memory</span><p>IRIS = financial early-warning system. It is not a claims system.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u51">
+      <span class="unit-num">51 — Protecting the Customer</span>
+      <h2 class="unit-title">Consumer protection</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Licensing insurers</li>
+        <li><span class="pill-num">2</span>Licensing insurer representatives</li>
+        <li><span class="pill-num">3</span>Approving policy forms</li>
+        <li><span class="pill-num">4</span>Examining market conduct</li>
+        <li><span class="pill-num">5</span>Investigating consumer complaints</li>
+      </ol>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Mari buys a policy. If the insurer uses misleading wording or unfair claims practices, regulatory mechanisms can investigate and address it.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u52">
+      <span class="unit-num">52 — A Common Terminology Trap</span>
+      <h2 class="unit-title">Domestic, foreign, and alien insurers</h2>
+      <p>Classification is based on <strong>where the insurer is incorporated</strong>, relative to the state where it operates.</p>
+      <table class="data-table">
+        <thead><tr><th>Term</th><th>Incorporated in</th></tr></thead>
+        <tbody>
+          <tr><td>Domestic</td><td>The same U.S. state where it's operating</td></tr>
+          <tr><td>Foreign</td><td>Another U.S. state</td></tr>
+          <tr><td>Alien</td><td>Another country</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>An insurer incorporated in Massachusetts is <strong>domestic</strong> when operating in Massachusetts, <strong>foreign</strong> when operating in New Hampshire, and <strong>alien</strong> if it were instead incorporated in London.</p></div>
+    </div>
+
+    <div class="unit" id="u53">
+      <span class="unit-num">53 — Admitted to Operate</span>
+      <h2 class="unit-title">Licensing insurers</h2>
+      <p>Most insurers must be licensed by the state insurance department before writing insurance there. A licensed insurer is also called an <strong>admitted insurer</strong>. The state may suspend or revoke a license when requirements aren't met.</p>
+    </div>
+
+    <div class="unit" id="u54">
+      <span class="unit-num">54 — Agents, Brokers, Adjusters</span>
+      <h2 class="unit-title">Licensing insurance representatives</h2>
+      <p>States also license insurance representatives — agents, brokers, and in some states, claim representatives/adjusters — often with continuing education requirements.</p>
+    </div>
+
+    <div class="unit" id="u55">
+      <span class="unit-num">55 — Clearer Contracts</span>
+      <h2 class="unit-title">Policy form approval</h2>
+      <p>Many states require insurers to file policy forms with the insurance department, to reduce unfair or unreasonable provisions and misleading wording.</p>
+      <div class="flow">
+        <div class="flow-step">Insurer writes policy wording</div><div class="flow-arrow">→</div>
+        <div class="flow-step">State review, where required</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Form approved</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Customer gets a clearer contract</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u56">
+      <span class="unit-num">56 — Fair Dealing</span>
+      <h2 class="unit-title">Market conduct</h2>
+      <p>Market conduct regulation focuses on insurer practices in sales, underwriting, claims, and bad-faith actions. If an insurer systematically uses unfair claims practices, regulators can investigate and act.</p>
+    </div>
+
+    <div class="unit" id="u57">
+      <span class="unit-num">57 — A Place to Escalate</span>
+      <h2 class="unit-title">Consumer complaints</h2>
+      <p>Every state insurance department has a mechanism for investigating consumer complaints.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Sabari believes his claim was mishandled</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Complaint to the State Insurance Department</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Investigation → regulatory response if appropriate</div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u58">
+      <span class="unit-num">58 — Outside the Standard Market</span>
+      <h2 class="unit-title">Excess and surplus lines (E&amp;S)</h2>
+      <table class="data-table">
+        <thead><tr><th>Standard market</th><th>E&amp;S market</th></tr></thead>
+        <tbody>
+          <tr><td>Common coverage for average or better-than-average loss exposures</td><td>Coverage that's unavailable in the standard market</td></tr>
+        </tbody>
+      </table>
+      <div class="flow">
+        <div class="flow-step">Customer risk</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Available in standard market?</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Yes: standard market · No: E&amp;S market</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u59">
+      <span class="unit-num">59 — When It's Needed</span>
+      <h2 class="unit-title">When E&amp;S may be needed</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Unusual or unique exposures</li>
+        <li><span class="pill-num">2</span>Nonstandard business</li>
+        <li><span class="pill-num">3</span>Very high limits</li>
+        <li><span class="pill-num">4</span>Unusually broad coverage</li>
+        <li><span class="pill-num">5</span>New types of exposures requiring new forms</li>
+      </ol>
+      <div class="callout callout--example"><span class="callout-label">Example — concert non-appearance</span><p>A singer fails to appear because of a covered illness or injury, and the sponsor suffers ticket-refund losses. The textbook uses this <strong>non-appearance insurance</strong> as a classic E&amp;S example.</p></div>
+    </div>
+
+    <div class="unit" id="u60">
+      <span class="unit-num">60 — Worked Example</span>
+      <h2 class="unit-title">E&amp;S example: high-risk restaurant</h2>
+      <div class="flow-vertical">
+        <div class="flow-step">Mari's restaurant has repeated grease fires</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Poor loss history</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Standard insurer declines to renew</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">E&amp;S market may offer coverage — at a substantially higher premium</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u61">
+      <span class="unit-num">61 — Still Regulated</span>
+      <h2 class="unit-title">E&amp;S regulation</h2>
+      <p>E&amp;S insurers are often <strong>non-admitted</strong>. They have more flexibility on rate and form filing than standard insurers, but the E&amp;S market is still regulated — in many states, E&amp;S business must be placed through an E&amp;S/surplus lines broker.</p>
+      <div class="callout"><span class="callout-label">Memory</span><p>Non-admitted does <strong>not</strong> mean "unregulated."</p></div>
+    </div>
+
+    <div class="unit reveal" id="u62">
+      <span class="unit-num">62 — Putting It All Together</span>
+      <h2 class="unit-title">Chapter 2 master diagram</h2>
+      <div class="summary-card">
+        <div class="branch-root-wrap"><div class="branch-root">INSURANCE MARKET</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Private insurers</strong>Stock · Mutual · Reciprocal · Lloyd's · American Lloyd's · Captives · Reinsurers</div>
+          <div class="flow-step"><strong>Government programs</strong>Federal: Flood, Crop, Social Security · State: WC, Auto, FAIR, etc.</div>
+        </div>
+        <h4 style="margin-top:28px;">Then, regulation watches all of it</h4>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Rates</strong>Ratemaking</div>
+          <div class="flow-step"><strong>Solvency</strong>Exams / IRIS</div>
+          <div class="flow-step"><strong>Consumer protection</strong>Licensing / Forms / Conduct / Complaints</div>
+        </div>
+        <p style="text-align:center; margin-top:18px; font-size:13.5px; color:var(--grey-300);">…coordinated (not directly regulated) by the <strong style="color:var(--orange-light);">NAIC</strong> through model laws.</p>
+      </div>
+    </div>
+
+    <!-- Connected story -->
+    <div class="unit reveal" id="story">
+      <span class="unit-num">Chapters 1 + 2 — Connected</span>
+      <h2 class="unit-title">The one story that ties it together</h2>
+      <p><strong>Ramesh buys a house.</strong> Follow his house through both chapters:</p>
+      <div class="story-chain">
+        <div class="story-step"><span class="story-badge">1</span><p><strong>Loss exposure</strong> — the house can suffer fire damage → a property loss exposure.</p></div>
+        <div class="story-step"><span class="story-badge">2</span><p><strong>Risk management</strong> — Ramesh installs smoke alarms → loss control.</p></div>
+        <div class="story-step"><span class="story-badge">3</span><p><strong>Transfer</strong> — Ramesh buys property insurance → transfers the potential financial consequences.</p></div>
+        <div class="story-step"><span class="story-badge">4</span><p><strong>Sharing</strong> — thousands of other policyholders pay premiums into the same pool.</p></div>
+        <div class="story-step"><span class="story-badge">5</span><p><strong>Law of large numbers</strong> — the insurer uses many similar exposure units to predict losses.</p></div>
+        <div class="story-step"><span class="story-badge">6</span><p><strong>Insurer business</strong> — markets the policy, underwrites Ramesh, calculates the rate, handles claims if needed.</p></div>
+        <div class="story-step"><span class="story-badge">7</span><p><strong>Regulation</strong> — the insurance department checks rates, solvency, and consumer protection.</p></div>
+        <div class="story-step"><span class="story-badge">8</span><p><strong>Reinsurance</strong> — if the insurer's risk concentration gets too large, it transfers part of it to a reinsurer.</p></div>
+      </div>
+    </div>
+
+    <!-- Exam traps -->
+    <div class="unit reveal" id="traps">
+      <span class="unit-num">High-Value Exam Traps</span>
+      <h2 class="unit-title">Ten traps to watch for</h2>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 1</span><p class="wrong">✗ Insurance = risk management.</p><p class="right">✓ Insurance is one risk-management technique; it's also a transfer system, a business, and a contract.</p></div>
+        <div class="trap-item"><span class="tag">Trap 2</span><p class="wrong">✗ A loss exposure means a loss has already happened.</p><p class="right">✓ A loss exposure means there is a possibility of loss.</p></div>
+        <div class="trap-item"><span class="tag">Trap 3</span><p class="wrong">✗ Pure risk allows gain.</p><p class="right">✓ Pure risk = loss or no loss. Speculative risk = possibility of gain and/or loss.</p></div>
+        <div class="trap-item"><span class="tag">Trap 4</span><p class="wrong">✗ Lloyd's is an insurer.</p><p class="right">✓ Lloyd's is not technically an insurer — it's an association/marketplace facilitating insurance written by its members.</p></div>
+        <div class="trap-item"><span class="tag">Trap 5</span><p class="wrong">✗ A mutual insurer is owned by stockholders.</p><p class="right">✓ A mutual insurer is owned by policyholders.</p></div>
+        <div class="trap-item"><span class="tag">Trap 6</span><p class="wrong">✗ A reciprocal is a stock company.</p><p class="right">✓ A reciprocal is an unincorporated association of subscribers, run by an attorney-in-fact.</p></div>
+        <div class="trap-item"><span class="tag">Trap 7</span><p class="wrong">✗ Reinsurance protects the policyholder directly.</p><p class="right">✓ The primary insurer transfers some risk to the reinsurer — reinsurance mainly manages the insurer's own exposure.</p></div>
+        <div class="trap-item"><span class="tag">Trap 8</span><p class="wrong">✗ NAIC directly regulates insurers.</p><p class="right">✓ NAIC coordinates state regulators and develops model laws — it has no direct regulatory authority.</p></div>
+        <div class="trap-item"><span class="tag">Trap 9</span><p class="wrong">✗ A foreign insurer is incorporated in a foreign country.</p><p class="right">✓ Foreign = incorporated in another U.S. state. Alien = incorporated in another country.</p></div>
+        <div class="trap-item"><span class="tag">Trap 10</span><p class="wrong">✗ Non-admitted means unregulated.</p><p class="right">✓ E&amp;S / non-admitted insurance is still subject to applicable regulation.</p></div>
+      </div>
+    </div>
+
+    <!-- Self-test -->
+    <div class="unit reveal" id="selftest">
+      <span class="unit-num">Self-Test</span>
+      <h2 class="unit-title">20 questions, then the answer key</h2>
+      <p>Try answering each one without looking back at the chapter.</p>
+      <ol class="qa-list">
+        <li>What are the four aspects of insurance?</li>
+        <li>What is a loss exposure?</li>
+        <li>What is the difference between transfer and sharing?</li>
+        <li>What is the law of large numbers?</li>
+        <li>What are the three major loss exposure categories?</li>
+        <li>What is the difference between real and personal property?</li>
+        <li>What is a liability loss exposure?</li>
+        <li>What is the difference between personal and personnel loss exposure?</li>
+        <li>What are the six characteristics of an ideally insurable loss exposure?</li>
+        <li>What is pure risk?</li>
+        <li>Why should an insurable loss be accidental?</li>
+        <li>What is the difference between direct and indirect loss?</li>
+        <li>What are the four major insurer operations?</li>
+        <li>Who owns a stock insurer?</li>
+        <li>Who owns a mutual insurer?</li>
+        <li>What is an attorney-in-fact in a reciprocal?</li>
+        <li>Why is Lloyd's not technically an insurer?</li>
+        <li>What is reinsurance?</li>
+        <li>What are the three major objectives of insurance regulation?</li>
+        <li>What is the difference between domestic, foreign, and alien insurers?</li>
+      </ol>
+
+      <details class="answers">
+        <summary>Show the answer key</summary>
+        <ol class="qa-list">
+          <li>Risk management technique, transfer system, business, contract.</li>
+          <li>A condition or situation presenting the possibility of loss.</li>
+          <li>Transfer moves potential financial consequences to the insurer; sharing spreads the cost across the pool of insureds.</li>
+          <li>More similar, independent exposure units improve prediction accuracy.</li>
+          <li>Property, liability, and personal/personnel.</li>
+          <li>Real property includes land/buildings and property attached to land; personal property is property that is not real property.</li>
+          <li>A situation creating the possibility of a claim alleging legal responsibility for injury or damage to another.</li>
+          <li>Personal affects individuals/families; personnel affects businesses because of the loss of key employees.</li>
+          <li>Pure risk, accidental loss, definite/measurable loss, many similar independent exposures, non-catastrophic, economically feasible.</li>
+          <li>A risk involving loss or no loss, rather than gain.</li>
+          <li>Intentional losses create adverse incentives and make loss prediction/pricing difficult.</li>
+          <li>Direct is damage to property; indirect is the resulting financial consequence, such as lost income.</li>
+          <li>Marketing, underwriting, claim handling, ratemaking.</li>
+          <li>Stockholders.</li>
+          <li>Policyholders.</li>
+          <li>The contractually authorized manager of a reciprocal.</li>
+          <li>It's an association/marketplace that provides facilities and procedures for members to write insurance.</li>
+          <li>Transfer of some or all potential insured-loss costs from a primary insurer to a reinsurer.</li>
+          <li>Rate regulation, solvency surveillance, consumer protection.</li>
+          <li>Domestic = same state of incorporation; foreign = another U.S. state; alien = another country.</li>
+        </ol>
+      </details>
+    </div>
+
+    <!-- Final memory sheet -->
+    <div class="unit reveal" id="final">
+      <span class="unit-num">One Page, If You Remember Nothing Else</span>
+      <h2 class="unit-title">Final AINS exam memory sheet</h2>
+      <div class="summary-card">
+        <h4>Chapter 1</h4>
+        <div class="summary-grid">
+          <div><h5>Insurance is</h5><ul><li>Risk management</li><li>Transfer</li><li>Business</li><li>Contract</li></ul></div>
+          <div><h5>Loss exposure</h5><ul><li>= possibility of loss</li><li>Property · Liability · Personal/Personnel</li></ul></div>
+          <div><h5>Transfer + Sharing</h5><ul><li>Insured → Insurer</li><li>Many insureds → Pool → Covered claims</li></ul></div>
+          <div><h5>Law of large numbers</h5><ul><li>More similar independent exposures</li><li>= better prediction</li></ul></div>
+          <div><h5>Ideally insurable</h5><ul><li>Pure</li><li>Accidental</li><li>Definite/measurable</li><li>Many/independent</li><li>Non-catastrophic</li><li>Economically feasible</li></ul></div>
+          <div><h5>Operations</h5><ul><li>Marketing</li><li>Underwriting</li><li>Claims</li><li>Ratemaking</li></ul></div>
+        </div>
+        <h4 style="margin-top:32px;">Chapter 2</h4>
+        <div class="summary-grid">
+          <div><h5>Private providers</h5><ul><li>Stock · Mutual</li><li>Reciprocal</li><li>Lloyd's · American Lloyd's</li><li>Captive · Reinsurance</li></ul></div>
+          <div><h5>Government</h5><ul><li>Federal + State programs</li></ul></div>
+          <div><h5>Regulation</h5><ul><li>Rates</li><li>Solvency</li><li>Consumer protection</li></ul></div>
+          <div><h5>NAIC</h5><ul><li>Coordination / Model laws</li><li>No direct authority</li></ul></div>
+          <div><h5>IRIS</h5><ul><li>Financial early-warning system</li></ul></div>
+          <div><h5>Domestic / Foreign / Alien</h5><ul><li>Same state</li><li>Another U.S. state</li><li>Another country</li></ul></div>
+          <div><h5>E&amp;S</h5><ul><li>Coverage unavailable in the standard market</li></ul></div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:28px;">
+        <span class="callout-label">The one story to keep in your head</span>
+        <p>Ramesh, Jai, Mari, Sabari, and Sivaprakasam all face loss exposures. Some risks get avoided or controlled; some get <strong>transferred through insurance</strong>. The insurer pools premiums from many insureds and uses the <strong>law of large numbers</strong> to estimate losses, then <strong>markets → underwrites → prices → handles claims</strong>. Different organizations provide that insurance — <strong>stock → mutual → reciprocal → Lloyd's → captive → reinsurance</strong> — with government stepping in where the private market can't reach. Regulators watch it all: <strong>rates → solvency → consumer protection</strong>. That's the skeleton of Chapters 1 and 2.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+<div class="chapter-pager">
+  <a class="pager-link" href="ains-21-ch1.html">
+    <span class="pager-dir">← Previous chapter</span>
+    <span class="pager-title">Insurance: What Is It?</span>
+  </a>
+  <a class="pager-link next" href="ains-21-ch3.html">
+    <span class="pager-dir">Next chapter</span>
+    <span class="pager-title">Measuring Insurer Financial Performance →</span>
+  </a>
+</div>
+<p style="text-align:center; margin: -10px 0 30px;"><a class="pager-link back-link" href="ains-21.html" style="display:inline;">← All 10 chapters</a></p>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

@@ -198,60 +198,125 @@
     flex-shrink: 0;
   }
 
-  /* Chapter list */
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 26px;
+    background: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 8px 24px rgba(252,102,4,0.25);
+  }
+  .download-btn:hover { background: var(--orange-light); transform: translateY(-2px); }
+  .download-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  .download-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--grey-500);
+  }
+
+  /* Chapter tile grid */
   #chapters { background: var(--white); padding: 100px 60px 140px; }
 
-  .chapter-list {
-    max-width: 880px;
+  .chapter-grid {
+    max-width: 1120px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .chapter-row {
     display: grid;
-    grid-template-columns: 64px 1fr auto;
-    align-items: start;
-    gap: 28px;
-    padding: 32px 0;
-    border-bottom: 1px solid var(--line);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 26px;
   }
 
-  .chapter-row:first-child { border-top: 1px solid var(--line); }
-
-  .chapter-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
-    font-weight: 300;
-    color: var(--grey-300);
-    line-height: 1;
+  .chapter-tile {
+    position: relative;
+    display: block;
+    min-height: 230px;
+    padding: 32px 30px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .chapter-tile:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(9,23,42,0.12);
+    border-color: rgba(252,102,4,0.4);
   }
 
-  .chapter-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
+  .tile-icon {
+    position: absolute;
+    right: -14px; bottom: -18px;
+    width: 130px; height: 130px;
     color: var(--black);
-    margin-bottom: 8px;
+    opacity: 0.05;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
   }
+  .chapter-tile:hover .tile-icon { opacity: 0.13; transform: scale(1.06) rotate(-3deg); }
 
-  .chapter-desc {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--grey-500);
-    max-width: 520px;
-  }
-
-  .chapter-status {
-    align-self: center;
+  .tile-num {
+    display: block;
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.15em;
-    text-transform: uppercase;
+    color: var(--orange-deep);
+    margin-bottom: 16px;
+    position: relative; z-index: 1;
+  }
+
+  .tile-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--black);
+    margin-bottom: 12px;
+    max-width: 88%;
+    position: relative; z-index: 1;
+  }
+
+  .tile-desc {
+    font-size: 13.5px;
+    line-height: 1.65;
     color: var(--grey-500);
+    max-width: 92%;
+    position: relative; z-index: 1;
+  }
+
+  .tile-arrow {
+    position: absolute;
+    top: 30px; right: 28px;
+    width: 30px; height: 30px;
     border: 1px solid var(--grey-300);
-    padding: 6px 12px;
-    white-space: nowrap;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--grey-500);
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+  .chapter-tile:hover .tile-arrow {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--white);
+    transform: translate(2px, -2px);
   }
 
   /* Footer */
@@ -309,9 +374,9 @@
     .nav-links a::after { display: none; }
     .page-hero { padding: 130px 24px 56px; }
     #chapters { padding: 56px 24px 100px; }
-    .chapter-row { grid-template-columns: 40px 1fr; }
-    .chapter-num { font-size: 30px; }
-    .chapter-status { grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
+    .chapter-grid { grid-template-columns: 1fr; gap: 18px; }
+    .chapter-tile { min-height: 180px; padding: 28px 24px; }
+    .tile-icon { width: 100px; height: 100px; }
     footer { padding: 10px 28px; }
   }
 </style>
@@ -345,93 +410,101 @@
   </p>
   <h1 class="page-title">AINS-21</h1>
   <p class="page-subtitle">Property &amp; Casualty Insurance Principles — 10 Chapters</p>
-  <p class="page-lede">Personal study notes and chapter outlines built while working through AINS-21, covering the core principles of Property &amp; Casualty (P&amp;C) insurance — risk fundamentals, policy structure, underwriting, claims and regulation.</p>
-  <span class="status-note">Full chapter content coming soon</span>
+  <p class="page-lede">Personal study notes from working through AINS-21, in plain English — how insurers are built and regulated, how they price risk and settle claims, how a policy actually works, and how property and liability exposures get managed. Every topic has a short, real example attached.</p>
+  <div class="hero-actions">
+    <a class="download-btn" href="assets/AINS-21-Property-and-Liability-Insurance-Principles.pdf" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download the E-Book (PDF)
+    </a>
+    <span class="download-meta">AINS-21 — Property and Liability Insurance Principles · ~1.6 MB</span>
+  </div>
+  <span class="status-note">Click a chapter to open it</span>
 </section>
 
 <!-- CHAPTERS -->
 <section id="chapters">
-  <div class="chapter-list">
-    <div class="chapter-row reveal">
-      <span class="chapter-num">01</span>
-      <div>
-        <h2 class="chapter-title">Introduction to Risk &amp; Insurance</h2>
-        <p class="chapter-desc">Core concepts of risk, risk management techniques, and how insurance transfers and pools risk across policyholders.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">02</span>
-      <div>
-        <h2 class="chapter-title">Insurance Policy Structure &amp; Contract Basics</h2>
-        <p class="chapter-desc">How an insurance policy is built — declarations, insuring agreements, conditions, exclusions — and the legal principles behind the contract.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">03</span>
-      <div>
-        <h2 class="chapter-title">Personal Auto Insurance</h2>
-        <p class="chapter-desc">Coverage parts of a personal auto policy, liability vs. physical damage coverage, and common endorsements.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">04</span>
-      <div>
-        <h2 class="chapter-title">Homeowners Insurance</h2>
-        <p class="chapter-desc">Dwelling coverage, personal property, liability protection, and how homeowners forms differ in scope.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">05</span>
-      <div>
-        <h2 class="chapter-title">Commercial Property Insurance</h2>
-        <p class="chapter-desc">Building and business personal property coverage, causes-of-loss forms, and valuation methods.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">06</span>
-      <div>
-        <h2 class="chapter-title">Commercial General Liability Insurance</h2>
-        <p class="chapter-desc">Bodily injury and property damage liability exposures faced by businesses, and how CGL policies respond.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">07</span>
-      <div>
-        <h2 class="chapter-title">Business &amp; Commercial Auto Insurance</h2>
-        <p class="chapter-desc">Covered autos, liability and physical damage coverage for business-owned vehicles and fleets.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">08</span>
-      <div>
-        <h2 class="chapter-title">Workers' Compensation Insurance</h2>
-        <p class="chapter-desc">Employer obligations, statutory benefits, and how workers' comp coverage is structured across jurisdictions.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">09</span>
-      <div>
-        <h2 class="chapter-title">Underwriting &amp; Rating Principles</h2>
-        <p class="chapter-desc">How insurers evaluate and select risks, and the rating factors that determine premium.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
-    <div class="chapter-row reveal">
-      <span class="chapter-num">10</span>
-      <div>
-        <h2 class="chapter-title">Claims Handling &amp; Insurance Regulation</h2>
-        <p class="chapter-desc">The claims lifecycle from reporting to settlement, and the regulatory framework insurers operate within.</p>
-      </div>
-      <span class="chapter-status">Coming soon</span>
-    </div>
+  <div class="chapter-grid">
+
+    <a class="chapter-tile reveal" href="ains-21-ch1.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 5.5v6c0 5.2 3.4 9.2 8 10.5 4.6-1.3 8-5.3 8-10.5v-6L12 2z"/></svg>
+      <span class="tile-num">Chapter 01</span>
+      <h2 class="tile-title">Insurance: What Is It?</h2>
+      <p class="tile-desc">Insurance is four things at once: a way to manage risk, a system for sharing losses, a business, and a legally binding contract.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch2.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M4 21V10M20 21V10M6 10l6-5 6 5M8 10v7M12 10v7M16 10v7"/></svg>
+      <span class="tile-num">Chapter 02</span>
+      <h2 class="tile-title">Who Provides Insurance &amp; How Is It Regulated?</h2>
+      <p class="tile-desc">Insurance is sold by several kinds of organizations — and every one of them answers to a state insurance department.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch3.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="21" x2="5" y2="10"/><line x1="12" y1="21" x2="12" y2="5"/><line x1="19" y1="21" x2="19" y2="14"/></svg>
+      <span class="tile-num">Chapter 03</span>
+      <h2 class="tile-title">Measuring the Financial Performance of Insurers</h2>
+      <p class="tile-desc">The numbers regulators, investors, and agents watch closely to know whether an insurer is actually healthy.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch4.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a4 4 0 0 1 0 7"/><path d="M18.5 6a8 8 0 0 1 0 12"/></svg>
+      <span class="tile-num">Chapter 04</span>
+      <h2 class="tile-title">Marketing</h2>
+      <p class="tile-desc">Behind every policy is an agent or broker — and a web of legal duties governing what they can and can't do.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch5.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><polyline points="9 14 11 16 15 12"/></svg>
+      <span class="tile-num">Chapter 05</span>
+      <h2 class="tile-title">Underwriting</h2>
+      <p class="tile-desc">How an insurer decides who to cover, what to charge, and on what terms — then keeps checking the decision holds up.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch6.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span class="tile-num">Chapter 06</span>
+      <h2 class="tile-title">Claims</h2>
+      <p class="tile-desc">The moment an insurer's promise gets tested — the process from first phone call to final payment.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch7.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span class="tile-num">Chapter 07</span>
+      <h2 class="tile-title">Insurance Contracts</h2>
+      <p class="tile-desc">A contract like any other, with a few unusual features that exist because one side is a promise about the future.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch8.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-6h6v6"/></svg>
+      <span class="tile-num">Chapter 08</span>
+      <h2 class="tile-title">Property Loss Exposures &amp; Policy Provisions</h2>
+      <p class="tile-desc">What could be damaged, how, and what that would actually cost — exactly what Mr. Brown had worked out before his fire.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch9.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span class="tile-num">Chapter 09</span>
+      <h2 class="tile-title">Liability Loss Exposures &amp; Policy Provisions</h2>
+      <p class="tile-desc">Being legally responsible for someone else's injury or damage — a very different animal from insuring your own property.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="chapter-tile reveal" href="ains-21-ch10.html">
+      <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5 15.5 8.5"/></svg>
+      <span class="tile-num">Chapter 10</span>
+      <h2 class="tile-title">Managing Loss Exposures: Risk Management</h2>
+      <p class="tile-desc">Insurance is one tool in a bigger toolbox — the formal process of identifying, weighing, and handling the things that could go wrong.</p>
+      <span class="tile-arrow" aria-hidden="true">→</span>
+    </a>
+
   </div>
 </section>
 

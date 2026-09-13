@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 8 — Property Loss Exposures & Policy Provisions | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 8 study notes: types of property, perils, financial consequences of loss, policy limits, valuation, deductibles, coinsurance and insurance-to-value, and other-insurance provisions — with a full supermarket-fire case study and exam traps."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch8.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 26px 0; row-gap: 10px; }
+  .flow-step {
+    padding: 13px 18px; border: 1px solid var(--line); background: #fff;
+    font-size: 13.5px; text-align: center; color: var(--grey-700); line-height: 1.4;
+  }
+  .flow-step strong { display: block; color: var(--black); font-size: 14px; margin-bottom: 2px; }
+  .flow-arrow { padding: 0 12px; color: var(--orange-deep); font-size: 17px; flex-shrink: 0; }
+  .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 26px 0; max-width: 460px; }
+  .flow-vertical .flow-step { text-align: left; }
+  .flow-vertical .flow-arrow { text-align: center; padding: 0; }
+
+  .branch-group { margin: 30px 0; }
+  .branch-root {
+    display: inline-block; padding: 12px 22px; border: 1px solid var(--black);
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: var(--black);
+    margin-bottom: 0;
+  }
+  .branch-root-wrap { text-align: center; }
+  .branch-row {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); position: relative;
+  }
+  .branch-row .flow-step { flex: 1 1 150px; max-width: 220px; }
+  .branch-row.wide .flow-step { max-width: 170px; }
+  .branch-row.tier2 { border-top: none; padding-top: 8px; margin-top: 8px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  .pill-list { list-style: none; display: grid; gap: 10px; margin: 22px 0 !important; }
+  .pill-list li {
+    display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px;
+    border: 1px solid var(--line); background: #fff; font-size: 15px; color: var(--grey-700); margin: 0 !important;
+  }
+  .pill-num {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: var(--white);
+    font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+
+  .formula-box {
+    font-family: 'DM Mono', monospace; background: var(--grey-100); border: 1px solid var(--line);
+    padding: 18px 22px; margin: 20px 0; font-size: 13.5px; line-height: 2; color: var(--black);
+  }
+  .formula-box .res { color: var(--orange-deep); font-weight: 500; }
+  .formula-box .op { color: var(--grey-500); }
+
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-card .flow-step { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .flow-step strong { color: var(--white); }
+  .summary-card .flow-arrow { color: var(--orange-light); }
+  .summary-card .branch-root { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .summary-card .formula-box { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .formula-box .res { color: var(--orange-light); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  .story-chain { display: flex; flex-direction: column; gap: 0; margin: 26px 0; }
+  .story-step { display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .story-step:last-child { border-bottom: none; }
+  .story-badge {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--orange);
+    color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+  .story-step p { margin: 0; font-size: 15px; color: var(--grey-700); }
+  .story-step strong { color: var(--black); }
+
+  .case-card { border: 1px solid var(--line); padding: 22px 26px; margin: 22px 0; background: #fff; }
+  .case-card h4 { margin-top: 0; }
+  .case-card p:last-child { margin-bottom: 0; }
+
+  .trap-grid { display: grid; gap: 14px; margin: 24px 0; }
+  .trap-item { border: 1px solid var(--line); border-left: 3px solid #b02a02; padding: 16px 20px; background: #fff; }
+  .trap-item .wrong { color: #b02a02; font-size: 14.5px; }
+  .trap-item .right { color: var(--grey-700); font-size: 14.5px; margin-top: 6px; }
+  .trap-item .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-500); margin-bottom: 6px; display:block; }
+  .trap-subhead {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-deep); margin: 26px 0 4px;
+  }
+
+  .qa-list { list-style: none; counter-reset: qa; margin: 20px 0 !important; }
+  .qa-list li { counter-increment: qa; padding: 12px 0 12px 34px; position: relative; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--grey-700); margin:0 !important; }
+  .qa-list li::before {
+    content: counter(qa); position: absolute; left: 0; top: 12px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--grey-100); color: var(--orange-deep); font-family: 'DM Mono', monospace; font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  details.answers { margin-top: 18px; border: 1px solid var(--line); }
+  details.answers summary {
+    cursor: pointer; padding: 14px 20px; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-deep); background: var(--grey-100);
+  }
+  details.answers .qa-list { padding: 6px 20px 6px; }
+  details.answers .qa-list li::before { background: #fff; }
+
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500); }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <span class="current">Chapter 8</span>
+  </p>
+  <span class="chapter-tag">Chapter 08</span>
+  <h1 class="page-title">Property Loss Exposures &amp; Policy Provisions</h1>
+  <p class="page-lede">A property loss exposure comes down to three questions: what property, what can damage it, and what financial consequence follows. This chapter covers perils, valuation, policy limits, deductibles, coinsurance and insurance-to-value, and other-insurance provisions — anchored in Mari's supermarket fire.</p>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">01</span><a href="#u1">The three questions</a></li>
+      <li><span class="toc-n">02</span><a href="#u2">Types of property</a></li>
+      <li><span class="toc-n">03</span><a href="#u3">The property loss chain</a></li>
+      <li><span class="toc-n">04</span><a href="#u4">Perils, a quick recap</a></li>
+      <li><span class="toc-n">05</span><a href="#u5">Financial consequences of loss</a></li>
+      <li><span class="toc-n">06</span><a href="#u6">Policy limits</a></li>
+      <li><span class="toc-n">07</span><a href="#u7">Valuation provisions</a></li>
+      <li><span class="toc-n">08</span><a href="#u8">Settlement options</a></li>
+      <li><span class="toc-n">09</span><a href="#u9">Deductibles</a></li>
+      <li><span class="toc-n">10</span><a href="#u10">Insurance-to-value &amp; coinsurance</a></li>
+      <li><span class="toc-n">11</span><a href="#u11">Other insurance</a></li>
+      <li><span class="toc-n">12</span><a href="#u12">Case study — Mari's supermarket</a></li>
+      <li><span class="toc-n">—</span><a href="#summary">Chapter 8 master memory</a></li>
+      <li><span class="toc-n">—</span><a href="#traps">4 exam traps</a></li>
+      <li><span class="toc-n">—</span><a href="#selftest">Self-test</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u1">
+      <span class="unit-num">01 — The Three Questions</span>
+      <h2 class="unit-title">Start with three questions</h2>
+      <p>Every property loss exposure comes down to the same three questions, and Chapter 8 is organized around them. Ask what property is exposed, what can damage it, and what financial consequences follow — and the rest of the chapter's provisions (valuation, limits, deductibles, coinsurance, other insurance) simply describe how a policy answers the third question.</p>
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>What property?</strong>buildings, contents, vehicles, and more</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>What can damage it?</strong>the peril — fire, theft, collision, flood</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>What financial consequences result?</strong>reduced value, lost income, extra expense</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u2">
+      <span class="unit-num">02 — What Counts As Property</span>
+      <h2 class="unit-title">Types of property</h2>
+      <p>Property loss exposures don't stop at "the building." Insurers organize property into several recognized types, because each behaves differently in terms of valuation, risk, and coverage design.</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Buildings</li>
+        <li><span class="pill-num">2</span>Personal property / contents</li>
+        <li><span class="pill-num">3</span>Money and securities</li>
+        <li><span class="pill-num">4</span>Motor vehicles and trailers</li>
+        <li><span class="pill-num">5</span>Property in transit</li>
+        <li><span class="pill-num">6</span>Ships and cargo</li>
+        <li><span class="pill-num">7</span>Boilers and machinery</li>
+      </ol>
+      <h4>Building</h4>
+      <p>A building is more than its walls and roof. It can include plumbing, wiring, heating and air-conditioning systems, permanently attached equipment, elevators, built-in appliances, and certain building-service equipment.</p>
+      <h4>Contents</h4>
+      <p>Contents are the personal property inside — furniture, electronics, machinery, equipment, stock, and inventory are typical examples.</p>
+    </div>
+
+    <div class="unit reveal" id="u3">
+      <span class="unit-num">03 — From Peril To Payment</span>
+      <h2 class="unit-title">The property loss chain</h2>
+      <p>A property loss doesn't start with a check being written — it starts with a peril acting on property, which causes damage, which creates a financial consequence, which the insurance policy then responds to.</p>
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>Property</strong></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Peril</strong></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Damage / destruction / loss</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Financial consequence</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Insurance response</div>
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Mari's store has an electrical problem, which starts a fire. The fire damages the building and the inventory. The store has to shut down, so Mari loses income and incurs extra expenses to keep serving customers — each step in the chain, from peril to financial consequence, is a distinct piece of the exposure.</p></div>
+    </div>
+
+    <div class="unit" id="u4">
+      <span class="unit-num">04 — Cause Of Loss</span>
+      <h2 class="unit-title">Perils, a quick recap</h2>
+      <p>A <strong>peril</strong> is a cause of loss — fire, theft, collision, and flood are all perils. How a policy lists its perils determines how broadly it responds.</p>
+      <table class="data-table">
+        <thead><tr><th>Approach</th><th>How it works</th></tr></thead>
+        <tbody>
+          <tr><td>Named perils</td><td>The policy lists the specific causes of loss it covers — anything not listed is not covered</td></tr>
+          <tr><td>Special form</td><td>The policy generally covers direct loss from any cause, unless an exclusion applies</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit reveal" id="u5">
+      <span class="unit-num">05 — Three Categories</span>
+      <h2 class="unit-title">Financial consequences of property loss</h2>
+      <p>A property loss can create financial consequences in three broad categories.</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Reduced property value</li>
+        <li><span class="pill-num">2</span>Lost income</li>
+        <li><span class="pill-num">3</span>Extra expenses</li>
+      </ol>
+      <div class="flow">
+        <div class="flow-step">Building damage</div>
+        <div class="flow-step">Contents damage</div>
+        <div class="flow-step">Lost income</div>
+        <div class="flow-step">Extra expenses</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>TOTAL FINANCIAL IMPACT</strong></div>
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>A supermarket burns. Building damage, contents damage, lost income while closed, and extra expenses to operate from a temporary location all add up to the total financial impact of the single fire.</p></div>
+    </div>
+
+    <div class="unit" id="u6">
+      <span class="unit-num">06 — The Ceiling, Not The Guarantee</span>
+      <h2 class="unit-title">Policy limits</h2>
+      <p>A <strong>policy limit</strong> is the maximum amount of coverage available for a particular type of loss, subject to the policy's other provisions. A policy limit is a ceiling — it is not a promise that every covered loss produces a payment of that size.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>A policy carries a ₹1 crore limit. A covered loss occurs — but that does not automatically mean a ₹1 crore payment. The actual payment depends on several things.</p></div>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>The actual covered loss</li>
+        <li><span class="pill-num">2</span>Valuation</li>
+        <li><span class="pill-num">3</span>Deductible</li>
+        <li><span class="pill-num">4</span>Exclusions</li>
+        <li><span class="pill-num">5</span>Other policy provisions</li>
+        <li><span class="pill-num">6</span>Applicable limits</li>
+      </ol>
+    </div>
+
+    <div class="unit reveal" id="u7">
+      <span class="unit-num">07 — What Is It Worth</span>
+      <h2 class="unit-title">Valuation provisions</h2>
+      <p>A valuation provision tells you how a covered loss is measured in money. Three approaches are common.</p>
+      <table class="data-table">
+        <thead><tr><th>Approach</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Replacement cost</td><td>The cost to replace the damaged property with new property of like kind and quality, with no deduction for depreciation</td></tr>
+          <tr><td>Actual cash value (ACV)</td><td>Replacement cost minus depreciation</td></tr>
+          <tr><td>Agreed value</td><td>A value the insurer and insured agree to in advance, used to settle a covered total loss</td></tr>
+        </tbody>
+      </table>
+      <div class="formula-box">Replacement Cost <span class="op">−</span> Depreciation <span class="op">=</span> Actual Cash Value</div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>A new machine costs ₹20 lakh to replace. Depreciation is ₹6 lakh. ACV <span class="op">=</span> ₹20 lakh <span class="op">−</span> ₹6 lakh <span class="op">=</span> ₹14 lakh.</p></div>
+    </div>
+
+    <div class="unit" id="u8">
+      <span class="unit-num">08 — How The Insurer Pays</span>
+      <h2 class="unit-title">Settlement options</h2>
+      <p>Once a loss is valued, the policy generally gives the insurer a choice among general settlement options.</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Pay the value determined under the valuation provision</li>
+        <li><span class="pill-num">2</span>Pay the cost to repair or replace the damaged property</li>
+        <li><span class="pill-num">3</span>Repair, rebuild, or replace the property with property of like kind and quality</li>
+      </ol>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">LOSS</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Pay value</strong>under the valuation provision</div>
+          <div class="flow-step"><strong>Repair / replace</strong>insurer may repair, rebuild, or replace with like kind and quality</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u9">
+      <span class="unit-num">09 — Sharing The First Loss</span>
+      <h2 class="unit-title">Deductibles</h2>
+      <p>A deductible is the amount the insured absorbs before the insurer's payment begins.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Covered loss</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">minus deductible</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Insurer's covered payment</div>
+      </div>
+      <p>Deductibles exist for good reasons.</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Discourages careless behavior</li>
+        <li><span class="pill-num">2</span>Reduces small claims</li>
+        <li><span class="pill-num">3</span>Reduces administrative costs</li>
+        <li><span class="pill-num">4</span>Helps control premiums</li>
+      </ol>
+    </div>
+
+    <div class="unit" id="u10">
+      <span class="unit-num">10 — Insuring Close To Value</span>
+      <h2 class="unit-title">Insurance-to-value and coinsurance</h2>
+      <p>Insurers want property insured close to its actual value. If an owner insures only a fraction of a property's worth but can still collect in full for a partial loss, that owner effectively gets full protection for a fraction of the premium — which is unfair to properly insured policyholders and to the insurer's rate structure.</p>
+      <div class="callout callout--example"><span class="callout-label">Example, without coinsurance</span><p>A building is worth ₹4 crore, but the owner only insures it for ₹2 crore. A ₹2 crore loss occurs. Without an insurance-to-value provision, the owner could potentially recover the full ₹2 crore loss despite having insured only half the building's value.</p></div>
+      <p>A <strong>coinsurance</strong> provision addresses this by reducing the payment when property is underinsured relative to a stated percentage requirement.</p>
+      <div class="formula-box">(Insurance Carried <span class="op">÷</span> Insurance Required) <span class="op">×</span> Loss <span class="op">=</span> Payment before deductible/limit</div>
+      <div class="callout callout--example"><span class="callout-label">Worked example</span><p>Building value ₹1 crore, coinsurance requirement 80% → required insurance <span class="op">=</span> ₹80 lakh. Insurance carried <span class="op">=</span> ₹40 lakh. Covered loss <span class="op">=</span> ₹20 lakh.<br>(₹40 lakh <span class="op">÷</span> ₹80 lakh) <span class="op">×</span> ₹20 lakh <span class="op">=</span> <span class="res">₹10 lakh</span> — then the applicable deductible and policy terms are considered.</p></div>
+      <div class="callout callout--trap"><span class="callout-label">Exam warning</span><p>Do not automatically apply a coinsurance formula unless the question gives a coinsurance requirement and the policy context supports it.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u11">
+      <span class="unit-num">11 — When Two Policies Respond</span>
+      <h2 class="unit-title">Other insurance</h2>
+      <p>Sometimes the same property is covered by more than one policy. An insured shouldn't profit simply because two policies both respond to the same loss — <strong>other-insurance</strong> provisions allocate payment between the insurers and help preserve indemnity (restoring the insured, not enriching them).</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Same property</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Policy A + Policy B both respond</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Other-insurance provision</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Allocation between insurers</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u12">
+      <span class="unit-num">12 — Case Study</span>
+      <h2 class="unit-title">Mari's supermarket fire</h2>
+      <div class="case-card">
+        <h4 style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--orange-deep); margin-bottom:14px;">Mari's Supermarket — the whole chapter in one story</h4>
+        <p>Mari owns a supermarket with a building, stock, freezers, cash registers, and a business income exposure. A fire starts in the storage area: an electrical problem ignites a fire, which damages the building and the contents. The store has to close — producing lost income and extra expenses on top of the physical damage — and Mari files claims for each piece of the loss.</p>
+        <p>Because Mari had previously identified these exposures and arranged appropriate coverage — the right property, valued the right way, with limits, deductibles, and other-insurance provisions she understood — she is able to rebuild and reopen. That is the central lesson of the chapter: identifying the exposure and matching it with the right provisions is what turns a fire into a recoverable event instead of a business-ending one.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MASTER MEMORY -->
+<section class="chapter-body" style="padding-top:0;">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="summary">
+      <span class="unit-num">Chapter 8 Master Memory</span>
+      <h2 class="unit-title">One line, one chapter</h2>
+      <div class="summary-card">
+        <h4>PROPERTY = WHAT + PERIL + FINANCIAL CONSEQUENCE + PAYMENT</h4>
+        <div class="flow-vertical">
+          <div class="flow-step">What property?</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">What peril?</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">What financial loss?</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">What policy limit?</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">What valuation?</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">What deductible?</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Insurance-to-value?</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Other insurance?</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Settlement</div>
+        </div>
+        <p style="margin-top:20px; color:var(--grey-300); font-size:14px;">Walk any property exam question down this chain — property, peril, consequence, limit, valuation, deductible, insurance-to-value, other insurance, settlement — and the answer is usually sitting on one of these rungs.</p>
+      </div>
+    </div>
+
+    <!-- Exam traps -->
+    <div class="unit reveal" id="traps">
+      <span class="unit-num">4 Exam Traps</span>
+      <h2 class="unit-title">The most important Chapter 8 traps</h2>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 1</span><p class="wrong">✗ Policy limit = automatic payment.</p><p class="right">✓ The actual payment depends on the covered loss and the policy's provisions.</p></div>
+        <div class="trap-item"><span class="tag">Trap 2</span><p class="wrong">✗ Named perils means everything is covered except exclusions.</p><p class="right">✓ Named perils means only the listed causes of loss are covered.</p></div>
+        <div class="trap-item"><span class="tag">Trap 3</span><p class="wrong">✗ Special form means every loss is covered.</p><p class="right">✓ Exclusions still apply under a special form policy.</p></div>
+        <div class="trap-item"><span class="tag">Trap 4</span><p class="wrong">✗ Coinsurance is just another deductible.</p><p class="right">✓ Coinsurance addresses the relationship between insurance carried and insurance required/value — a deductible is a separate, flat sharing of the first loss.</p></div>
+      </div>
+    </div>
+
+    <!-- Self test -->
+    <div class="unit reveal" id="selftest">
+      <span class="unit-num">Self-Test</span>
+      <h2 class="unit-title">12 rapid-fire questions, then the answer key</h2>
+      <ol class="qa-list">
+        <li>What are the three questions that organize Chapter 8?</li>
+        <li>Name three types of property discussed in the chapter.</li>
+        <li>What can a "building" include besides walls and a roof?</li>
+        <li>What are the steps in the property loss chain?</li>
+        <li>What is the difference between named perils and special form coverage?</li>
+        <li>What are the three categories of financial consequences from a property loss?</li>
+        <li>What is a policy limit?</li>
+        <li>Name the three valuation approaches.</li>
+        <li>What is the formula for actual cash value?</li>
+        <li>What are the three general settlement options?</li>
+        <li>Why do policies include deductibles?</li>
+        <li>What does a coinsurance provision do, and what is the general formula?</li>
+      </ol>
+
+      <details class="answers">
+        <summary>Show the answer key</summary>
+        <ol class="qa-list">
+          <li>What property? What can damage it? What financial consequences result?</li>
+          <li>Any three of: buildings, personal property/contents, money and securities, motor vehicles and trailers, property in transit, ships and cargo, boilers and machinery.</li>
+          <li>Plumbing, wiring, heating/AC systems, permanently attached equipment, elevators, built-in appliances, and certain building-service equipment.</li>
+          <li>Property → peril → damage/destruction/loss → financial consequence → insurance response.</li>
+          <li>Named perils covers only the specifically listed causes of loss; special form generally covers direct loss from any cause unless excluded.</li>
+          <li>Reduced property value, lost income, and extra expenses.</li>
+          <li>The maximum amount of coverage available for a particular type of loss, subject to the policy's provisions.</li>
+          <li>Replacement cost, actual cash value, and agreed value.</li>
+          <li>Replacement cost minus depreciation.</li>
+          <li>Pay the value determined under the valuation provision; pay the cost to repair or replace; or repair, rebuild, or replace with property of like kind and quality.</li>
+          <li>To discourage careless behavior, reduce small claims, reduce administrative costs, and help control premiums.</li>
+          <li>It can reduce payment when property is underinsured relative to a required percentage of value; general formula: (insurance carried ÷ insurance required) × loss, then subject to the deductible and policy limit.</li>
+        </ol>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+<div class="chapter-pager">
+  <a class="pager-link" href="ains-21-ch7.html">
+    <span class="pager-dir">← Previous chapter</span>
+    <span class="pager-title">Insurance Contracts</span>
+  </a>
+  <a class="pager-link next" href="ains-21-ch9.html">
+    <span class="pager-dir">Next chapter</span>
+    <span class="pager-title">Liability Loss Exposures &amp; Policy Provisions →</span>
+  </a>
+</div>
+<p style="text-align:center; margin: -10px 0 8px;"><a href="ains-21-ch8-tests.html" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; background:var(--orange); color:#fff; text-decoration:none; font-family:'DM Mono',monospace; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;">Test yourself — Chapter 8 practice tests →</a></p>
+<p style="text-align:center; margin: 0 0 30px;"><a class="pager-link back-link" href="ains-21.html" style="display:inline;">← All 10 chapters</a></p>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

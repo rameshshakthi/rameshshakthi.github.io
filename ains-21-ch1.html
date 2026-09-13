@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 1 — Insurance: What Is It? | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 1 study notes: the four aspects of insurance, loss exposures, the law of large numbers, ideally insurable risk, and insurer operations — with plain-English examples."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch1.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* Nav (shared with main site) */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  /* Page header */
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  /* TOC */
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  /* Body */
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  /* Callouts */
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  /* Flow (linear, horizontal or vertical) */
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 26px 0; row-gap: 10px; }
+  .flow-step {
+    padding: 13px 18px; border: 1px solid var(--line); background: #fff;
+    font-size: 13.5px; text-align: center; color: var(--grey-700); line-height: 1.4;
+  }
+  .flow-step strong { display: block; color: var(--black); font-size: 14px; margin-bottom: 2px; }
+  .flow-arrow { padding: 0 12px; color: var(--orange-deep); font-size: 17px; flex-shrink: 0; }
+  .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 26px 0; max-width: 420px; }
+  .flow-vertical .flow-step { text-align: left; }
+  .flow-vertical .flow-arrow { text-align: center; padding: 0; }
+
+  /* Branch / tree group */
+  .branch-group { margin: 30px 0; }
+  .branch-root {
+    display: inline-block; padding: 12px 22px; border: 1px solid var(--black);
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: var(--black);
+    margin-bottom: 0;
+  }
+  .branch-root-wrap { text-align: center; }
+  .branch-row {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); position: relative;
+  }
+  .branch-row .flow-step { flex: 1 1 150px; max-width: 220px; }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  /* Numbered pill list (six characteristics, etc.) */
+  .pill-list { list-style: none; display: grid; gap: 10px; margin: 22px 0 !important; }
+  .pill-list li {
+    display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px;
+    border: 1px solid var(--line); background: #fff; font-size: 15px; color: var(--grey-700); margin: 0 !important;
+  }
+  .pill-num {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: var(--white);
+    font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Revision summary card */
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-card .flow-step { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .flow-step strong { color: var(--white); }
+  .summary-card .flow-arrow { color: var(--orange-light); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  /* Chapter footer nav */
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%;
+  }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir {
+    font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500);
+  }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  /* Footer */
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <span class="current">Chapter 1</span>
+  </p>
+  <span class="chapter-tag">Chapter 01</span>
+  <h1 class="page-title">Insurance: What Is It?</h1>
+  <p class="page-lede">Insurance is four things layered on top of each other: a way to manage risk, a system that transfers and shares the cost of loss, a business that has to stay solvent, and a contract with real legal weight. This chapter builds the vocabulary — loss exposure, law of large numbers, ideally insurable risk — that every later chapter assumes you already know.</p>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">01</span><a href="#u1">The one idea to remember</a></li>
+      <li><span class="toc-n">02</span><a href="#u2">Insurance as risk management</a></li>
+      <li><span class="toc-n">03</span><a href="#u3">Insurance as a transfer system</a></li>
+      <li><span class="toc-n">04</span><a href="#u4">Transfer and sharing</a></li>
+      <li><span class="toc-n">05</span><a href="#u5">The law of large numbers</a></li>
+      <li><span class="toc-n">06</span><a href="#u6">Types of loss exposure</a></li>
+      <li><span class="toc-n">07</span><a href="#u7">Direct vs. indirect loss</a></li>
+      <li><span class="toc-n">08</span><a href="#u8">Liability loss exposure</a></li>
+      <li><span class="toc-n">09</span><a href="#u9">Personal vs. personnel loss</a></li>
+      <li><span class="toc-n">10</span><a href="#u10">Ideally insurable loss exposure</a></li>
+      <li><span class="toc-n">11</span><a href="#u11">Accidental loss</a></li>
+      <li><span class="toc-n">12</span><a href="#u12">Definite in time + measurable</a></li>
+      <li><span class="toc-n">13</span><a href="#u13">Large numbers of similar exposures</a></li>
+      <li><span class="toc-n">14</span><a href="#u14">Independence & catastrophic loss</a></li>
+      <li><span class="toc-n">15</span><a href="#u15">Economically feasible to insure</a></li>
+      <li><span class="toc-n">16</span><a href="#u16">Insurance as a business</a></li>
+      <li><span class="toc-n">17</span><a href="#u17">Four insurer operations</a></li>
+      <li><span class="toc-n">18</span><a href="#u18">Insurer financial performance</a></li>
+      <li><span class="toc-n">19</span><a href="#u19">State insurance regulation</a></li>
+      <li><span class="toc-n">20</span><a href="#u20">Benefits of insurance</a></li>
+      <li><span class="toc-n">21</span><a href="#u21">Costs of insurance</a></li>
+      <li><span class="toc-n">22</span><a href="#u22">Insurance as a contract</a></li>
+      <li><span class="toc-n">23</span><a href="#u23">Property vs. liability insurance</a></li>
+      <li><span class="toc-n">24</span><a href="#u24">Why liability is "third-party"</a></li>
+      <li><span class="toc-n">25</span><a href="#u25">Property insurance types</a></li>
+      <li><span class="toc-n">26</span><a href="#u26">Liability insurance types</a></li>
+      <li><span class="toc-n">27</span><a href="#u27">Life & health: the boundary</a></li>
+      <li><span class="toc-n">—</span><a href="#revision">60-second revision</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u1">
+      <span class="unit-num">01 — The Core Definition</span>
+      <h2 class="unit-title">The one idea to remember</h2>
+      <p><strong>Insurance = protection against the financial consequences of uncertain loss.</strong> The textbook describes it in four ways at once — a risk management technique, a transfer system, a business, and a contract. Remember the order with <strong>R‑T‑B‑C</strong>: Risk management → Transfer → Business → Contract.</p>
+
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">INSURANCE</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Risk management</strong>technique</div>
+          <div class="flow-step"><strong>Transfer</strong>system</div>
+          <div class="flow-step"><strong>Business</strong>operation</div>
+          <div class="flow-step"><strong>Contract</strong>legal agreement</div>
+        </div>
+      </div>
+
+      <p>Everything starts from a <strong>loss exposure</strong> — a condition or situation that presents the possibility of a loss.</p>
+      <div class="callout callout--example">
+        <span class="callout-label">Example</span>
+        <p>Ramesh owns a car. Owning it creates the possibility of an accident — the car could be damaged, Ramesh could injure someone, or he could damage someone else's property. Nothing has happened yet. <strong>The possibility itself is the loss exposure.</strong></p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u2">
+      <span class="unit-num">02 — Risk Management</span>
+      <h2 class="unit-title">Insurance as a risk management technique</h2>
+      <p>Every person or business facing a loss exposure has to answer one question: <em>"What can go wrong, and what should I do about it?"</em> Insurance is only one of the possible answers.</p>
+
+      <div class="flow-vertical">
+        <div class="flow-step">Loss exposure identified</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Avoid it</strong> — don't take on the exposure at all</div>
+        <div class="flow-arrow">or</div>
+        <div class="flow-step"><strong>Control it</strong> — prevent or reduce the loss</div>
+        <div class="flow-arrow">or</div>
+        <div class="flow-step"><strong>Retain it</strong> — pay for it yourself if it happens</div>
+        <div class="flow-arrow">or</div>
+        <div class="flow-step"><strong>Transfer it</strong> — insurance, or a non-insurance transfer</div>
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>Technique</th><th>What Ramesh does about his car</th></tr></thead>
+        <tbody>
+          <tr><td>Avoidance</td><td>Doesn't own or use a car</td></tr>
+          <tr><td>Loss prevention</td><td>Drives carefully, follows safety rules</td></tr>
+          <tr><td>Loss reduction</td><td>Uses airbags, seat belts, safety systems</td></tr>
+          <tr><td>Retention</td><td>Pays a small loss himself</td></tr>
+          <tr><td>Transfer</td><td>Buys insurance</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <span class="callout-label">Key point</span>
+        <p>Insurance is <strong>one</strong> risk-management technique among several — not the entire risk-management process.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u3">
+      <span class="unit-num">03 — Transfer System</span>
+      <h2 class="unit-title">Insurance as a transfer system</h2>
+      <p>The insured transfers the potential financial consequences of a covered loss to the insurer, and pays a premium in return.</p>
+
+      <div class="flow">
+        <div class="flow-step"><strong>Possible large loss</strong>faced by the insured</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Premium</strong>paid to insurer</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Insurer</strong>accepts the transferred risk</div>
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th></th><th>Without insurance</th><th>With insurance</th></tr></thead>
+        <tbody>
+          <tr><td>Payment now</td><td>₹0</td><td>Premium (₹X)</td></tr>
+          <tr><td>Potential loss later</td><td>₹5,00,000</td><td>Handled according to the policy</td></tr>
+          <tr><td>Uncertainty</td><td>High</td><td>Lower</td></tr>
+        </tbody>
+      </table>
+
+      <p>The insured exchanges the possibility of a large loss for the certainty of a smaller, periodic payment.</p>
+
+      <div class="callout callout--example">
+        <span class="callout-label">Example</span>
+        <p>Jai owns a house and pays an annual premium for property insurance. A fire causes a covered loss — Jai pays the premium, and the insurer pays the covered claim. Jai didn't buy a guarantee that nothing bad would happen; he bought <strong>financial protection if something did</strong>.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u4">
+      <span class="unit-num">04 — Transfer + Sharing</span>
+      <h2 class="unit-title">Transfer and sharing</h2>
+      <p>Insurance carries two connected ideas. <strong>Transfer</strong> — the insured shifts potential financial consequences to the insurer. <strong>Sharing</strong> — the insurer pools premiums from many insureds, so everyone contributes to the pool even though only some will ever have a claim.</p>
+
+      <div class="flow">
+        <div class="flow-step">Ramesh · premium</div>
+        <div class="flow-arrow">↘</div>
+        <div class="flow-step">Jai · premium</div>
+        <div class="flow-arrow">↘</div>
+        <div class="flow-step"><strong>Insurer's pool</strong></div>
+        <div class="flow-arrow">↘</div>
+        <div class="flow-step">Covered claims paid</div>
+      </div>
+      <p style="margin-top:-8px; font-size:14px; color:var(--grey-500);">Mari, Sabari, and Sivaprakasam also pay into the same pool — not all of them will file a claim, but all of them fund it.</p>
+
+      <div class="callout">
+        <span class="callout-label">Remember</span>
+        <p>Insurance transfers the financial consequence <em>and</em> shares the cost of losses across a pool of insureds.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u5">
+      <span class="unit-num">05 — Prediction</span>
+      <h2 class="unit-title">The law of large numbers</h2>
+      <p>The more <strong>similar and independent exposure units</strong> an insurer has, the more accurately it can predict future losses. The insurer never knows exactly which house will burn — but with enough similar houses, it can estimate how many are likely to have losses.</p>
+
+      <table class="data-table">
+        <thead><tr><th>Portfolio size</th><th>Ability to predict losses</th></tr></thead>
+        <tbody>
+          <tr><td>10 houses</td><td>Difficult — too few data points</td></tr>
+          <tr><td>10,000 similar houses</td><td>Much better estimate of how many will have fire losses</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <span class="callout-label">Memory sentence</span>
+        <p>More similar + independent exposure units = better prediction.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u6">
+      <span class="unit-num">06 — Categories</span>
+      <h2 class="unit-title">Types of loss exposure</h2>
+      <p>The textbook groups every loss exposure into three major categories.</p>
+
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">LOSS EXPOSURES</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Property</strong>damage to real or personal property</div>
+          <div class="flow-step"><strong>Liability</strong>legal responsibility to another party</div>
+          <div class="flow-step"><strong>Personal / Personnel</strong>death, disability, or job loss</div>
+        </div>
+      </div>
+
+      <h4>Property loss exposure — real vs. personal property</h4>
+      <table class="data-table">
+        <thead><tr><th>Real property</th><th>Personal property</th></tr></thead>
+        <tbody>
+          <tr><td>Land</td><td>Furniture, inventory</td></tr>
+          <tr><td>Building</td><td>Machinery, computers</td></tr>
+          <tr><td>Swimming pool</td><td>Money, automobile</td></tr>
+          <tr><td>Factory, underground sewer pipe</td><td>Patents, copyrights</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--example">
+        <span class="callout-label">Example</span>
+        <p>Mari owns a small restaurant. The building is real property; the tables, kitchen equipment, and food inventory are personal property. A fire could damage all of it — that's a <strong>property loss exposure</strong>.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u7">
+      <span class="unit-num">07 — Consequences</span>
+      <h2 class="unit-title">Direct vs. indirect property loss</h2>
+      <p>A property loss can create consequences beyond the physical damage itself.</p>
+
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>Direct loss</strong> — fire damages Mari's kitchen</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Indirect loss</strong> — the restaurant closes for repairs, revenue falls</div>
+      </div>
+
+      <p>The textbook calls a reduction in revenue, an increase in expenses, or both, a <strong>net income loss</strong>.</p>
+      <div class="callout">
+        <span class="callout-label">Easy memory</span>
+        <p>Direct = what got damaged. Indirect = the financial consequence that followed.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u8">
+      <span class="unit-num">08 — Legal Responsibility</span>
+      <h2 class="unit-title">Liability loss exposure</h2>
+      <p>A liability loss exposure exists when a person or business may be legally responsible for injury or damage suffered by another party.</p>
+
+      <div class="callout callout--example">
+        <span class="callout-label">Example</span>
+        <p>A customer slips and is injured in Sabari's appliance store. Possible consequences: medical expenses, a legal claim, defense costs, and damages.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">Customer injured in store</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Potential legal responsibility</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Liability claim</div>
+      </div>
+
+      <div class="callout callout--trap">
+        <span class="callout-label">Important</span>
+        <p>A liability claim can exist even when the lawsuit is ultimately groundless, because the defendant may still incur defense expenses.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u9">
+      <span class="unit-num">09 — Easy to Confuse</span>
+      <h2 class="unit-title">Personal loss vs. personnel loss</h2>
+      <table class="data-table">
+        <thead><tr><th>Personal loss exposure</th><th>Personnel loss exposure</th></tr></thead>
+        <tbody>
+          <tr><td>Affects an <strong>individual or family</strong></td><td>Affects a <strong>business</strong></td></tr>
+          <tr><td>Caused by death, disability, unemployment</td><td>Caused by death, disability, retirement, resignation of a key employee</td></tr>
+          <tr><td><em>Example:</em> Ramesh is the main earner in his household — if he dies or is disabled, the family loses income</td><td><em>Example:</em> Jai's lead developer resigns unexpectedly — the company faces delays, recruiting cost, and lost business</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <span class="callout-label">Memory trick</span>
+        <p>Personal → person or family. Personnel → people working for a business.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u10">
+      <span class="unit-num">10 — The Six Traits</span>
+      <h2 class="unit-title">Ideally insurable loss exposure</h2>
+      <p>Insurers prefer loss exposures with six specific characteristics.</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Pure, not speculative, risk</li>
+        <li><span class="pill-num">2</span>Accidental loss, from the insured's standpoint</li>
+        <li><span class="pill-num">3</span>Definite in time and measurable</li>
+        <li><span class="pill-num">4</span>Large number of similar, independent exposures</li>
+        <li><span class="pill-num">5</span>Not subject to a simultaneous catastrophic loss</li>
+        <li><span class="pill-num">6</span>Economically feasible to insure</li>
+      </ol>
+
+      <h4>Pure vs. speculative risk</h4>
+      <table class="data-table">
+        <thead><tr><th>Pure risk</th><th>Speculative risk</th></tr></thead>
+        <tbody>
+          <tr><td>Loss <em>or</em> no loss — two outcomes</td><td>Gain, loss, <em>or</em> no change — three outcomes</td></tr>
+          <tr><td><em>Example:</em> Ramesh's house may or may not catch fire</td><td><em>Example:</em> investing in a business may produce a profit or a loss</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--trap">
+        <span class="callout-label">Exam trap</span>
+        <p>"Possibility of gain and loss" → speculative risk. "Possibility of loss or no loss" → pure risk. Insurance is built around <strong>pure risk</strong>.</p>
+      </div>
+    </div>
+
+    <div class="unit" id="u11">
+      <span class="unit-num">11 — Trait 2</span>
+      <h2 class="unit-title">Accidental loss</h2>
+      <p>The loss should be accidental from the insured's standpoint. If people could intentionally create losses, insurance would become impossible to price fairly.</p>
+      <div class="callout callout--example">
+        <span class="callout-label">Example</span>
+        <p>Mari accidentally damages her insured property — that may be insurable. But if she intentionally burns the property to collect the payout, that's insurance fraud, not the kind of accidental loss insurers seek to cover.</p>
+      </div>
+      <div class="callout"><span class="callout-label">Memory</span><p>Accidental = unpredictable from the insured's standpoint.</p></div>
+    </div>
+
+    <div class="unit" id="u12">
+      <span class="unit-num">12 — Trait 3</span>
+      <h2 class="unit-title">Definite in time + measurable</h2>
+      <p>An insurable loss should have a definite time and place of occurrence, and a measurable monetary amount.</p>
+      <table class="data-table">
+        <thead><tr><th>Good example</th><th>Difficult example</th></tr></thead>
+        <tbody>
+          <tr><td>A water pipe suddenly bursts at 3&nbsp;PM — time, place, and damage are all known</td><td>A slow leak gradually damages a floor over years — when exactly did the loss occur, and how much damage happened each year?</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--trap"><span class="callout-label">Exam clue</span><p>Sudden pipe burst = definite + measurable. Slow decay over years = not definite in time.</p></div>
+    </div>
+
+    <div class="unit" id="u13">
+      <span class="unit-num">13 — Trait 4</span>
+      <h2 class="unit-title">Large numbers of similar, independent exposures</h2>
+      <p>Insurers need enough similar exposure units to apply the law of large numbers.</p>
+      <div class="flow">
+        <div class="flow-step">10,000 houses, cars, or offices</div>
+        <div class="flow-arrow">vs.</div>
+        <div class="flow-step">Only 3 space stations</div>
+      </div>
+      <p>With very few exposure units, prediction becomes difficult.</p>
+    </div>
+
+    <div class="unit" id="u14">
+      <span class="unit-num">14 — Trait 5</span>
+      <h2 class="unit-title">Independence & catastrophic loss</h2>
+      <p>Independence means one loss doesn't normally cause losses to many other insureds at the same time.</p>
+      <div class="callout callout--trap">
+        <span class="callout-label">Dangerous concentration</span>
+        <p>If an insurer covers many houses in the same city and a major hurricane strikes, it faces a huge concentration of claims all at once.</p>
+      </div>
+      <p>In practice, insurers diversify geographically and otherwise so that no single event can hit too many of their risks together.</p>
+    </div>
+
+    <div class="unit" id="u15">
+      <span class="unit-num">15 — Trait 6</span>
+      <h2 class="unit-title">Economically feasible to insure</h2>
+      <table class="data-table">
+        <thead><tr><th>Too-small loss</th><th>Almost-certain loss</th></tr></thead>
+        <tbody>
+          <tr><td>Administering the insurance costs more than the loss itself</td><td>The premium would have to be extremely high</td></tr>
+        </tbody>
+      </table>
+      <p>Normal automobile wear and tear is expected over time — it isn't the kind of accidental loss insurers generally cover.</p>
+      <div class="callout"><span class="callout-label">Memory</span><p>Too small + too certain = generally a poor insurance candidate.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u16">
+      <span class="unit-num">16 — Business View</span>
+      <h2 class="unit-title">Insurance as a business</h2>
+      <p>An insurer is also a business — it has to collect enough revenue to pay claims and expenses, stay financially viable, and earn a reasonable profit.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Premiums + investment income</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Pay claims + operating expenses</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Remain financially viable, earn reasonable profit</div>
+      </div>
+      <p>Think of it like a restaurant: <strong>Marketing</strong> brings customers in, <strong>Underwriting</strong> decides which customers and risks to accept, <strong>Claims</strong> handles the bill when something goes wrong, and <strong>Ratemaking</strong> decides what to charge.</p>
+    </div>
+
+    <div class="unit reveal" id="u17">
+      <span class="unit-num">17 — The Four Operations</span>
+      <h2 class="unit-title">Four major insurer operations</h2>
+      <table class="data-table">
+        <thead><tr><th>Operation</th><th>What it decides</th></tr></thead>
+        <tbody>
+          <tr><td>Marketing</td><td>Finding customers and selling insurance products</td></tr>
+          <tr><td>Underwriting</td><td>Who to insure, what coverage to offer, on what terms and price</td></tr>
+          <tr><td>Claim handling</td><td>Whether a covered loss occurred, and how much should be paid</td></tr>
+          <tr><td>Ratemaking</td><td>The rate charged for categories of similar exposure units</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">One-line memory</span><p>Marketing sells → Underwriting selects → Claims pays → Ratemaking prices.</p></div>
+    </div>
+
+    <div class="unit" id="u18">
+      <span class="unit-num">18 — Staying Solvent</span>
+      <h2 class="unit-title">Insurer financial performance</h2>
+      <p>An insurer needs revenue — mainly premiums and investment income — to cover claims, claim settlement expenses, acquisition and general expenses, taxes, and other operating costs.</p>
+      <div class="callout">
+        <span class="callout-label">Solvency</span>
+        <p>Long-term financial strength and the ability to meet obligations: can the insurer pay claims today, <em>and</em> keep paying claims in the future?</p>
+      </div>
+    </div>
+
+    <div class="unit" id="u19">
+      <span class="unit-num">19 — Oversight</span>
+      <h2 class="unit-title">State insurance regulation</h2>
+      <p>State insurance departments regulate insurers around three objectives.</p>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">INSURANCE REGULATION</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Rates</strong>adequate, not excessive, not unfairly discriminatory</div>
+          <div class="flow-step"><strong>Solvency</strong>can insurers meet their obligations?</div>
+          <div class="flow-step"><strong>Consumer protection</strong>licensing, forms, market conduct, complaints</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u20">
+      <span class="unit-num">20 — Why It Matters</span>
+      <h2 class="unit-title">Benefits of insurance</h2>
+      <ul>
+        <li>Pays covered losses</li>
+        <li>Reduces uncertainty</li>
+        <li>Encourages loss control</li>
+        <li>Frees resources otherwise held back for potential losses</li>
+        <li>Supports credit</li>
+        <li>Satisfies legal and business requirements</li>
+        <li>Provides investment funds</li>
+        <li>Reduces social burdens</li>
+      </ul>
+      <div class="callout callout--example">
+        <span class="callout-label">Example</span>
+        <p>Ramesh wants to buy a house with a loan. The lender wants the property protected — insurance reduces the lender's uncertainty if the property is damaged, which is how insurance <strong>supports credit</strong>.</p>
+      </div>
+    </div>
+
+    <div class="unit" id="u21">
+      <span class="unit-num">21 — The Flip Side</span>
+      <h2 class="unit-title">Costs of insurance</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Premiums paid by insureds</li>
+        <li><span class="pill-num">2</span>Operating costs of insurers</li>
+        <li><span class="pill-num">3</span>Opportunity costs</li>
+        <li><span class="pill-num">4</span>Increased losses</li>
+        <li><span class="pill-num">5</span>Increased lawsuits</li>
+      </ol>
+      <div class="callout callout--trap">
+        <span class="callout-label">Claim buildup</span>
+        <p>A theft actually took a laptop, phone, and watch — three items. The claim lists a fourth item (a tablet) that was never stolen. That exaggeration is <strong>claim buildup</strong>, and the added cost eventually falls on insurers and policyholders alike.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u22">
+      <span class="unit-num">22 — The Legal Layer</span>
+      <h2 class="unit-title">Insurance as a contract</h2>
+      <p>An insurance policy is a contract between the insured and the insurer: the insured pays the premium, and the insurer promises to pay covered losses according to the policy.</p>
+      <div class="flow">
+        <div class="flow-step"><strong>Insured</strong></div>
+        <div class="flow-arrow">⇄</div>
+        <div class="flow-step">Insurance policy</div>
+        <div class="flow-arrow">⇄</div>
+        <div class="flow-step"><strong>Insurer</strong></div>
+      </div>
+      <p>There are four broad types: <strong>Property, Liability, Life,</strong> and <strong>Health</strong>.</p>
+    </div>
+
+    <div class="unit reveal" id="u23">
+      <span class="unit-num">23 — The Key Distinction</span>
+      <h2 class="unit-title">Property vs. liability insurance</h2>
+      <table class="data-table">
+        <thead><tr><th>Property insurance</th><th>Liability insurance</th></tr></thead>
+        <tbody>
+          <tr><td>Protects the insured's own property and certain resulting financial losses</td><td>Protects the insured against covered legal liability to another party</td></tr>
+          <tr><td><em>Example:</em> Fire damages Jai's shop — the property insurer may pay for the covered damage</td><td><em>Example:</em> Jai's shop's negligence injures a customer — the liability insurer may pay covered damages and defense costs on Jai's behalf</td></tr>
+        </tbody>
+      </table>
+      <div class="flow">
+        <div class="flow-step">Jai</div><div class="flow-arrow">→</div>
+        <div class="flow-step">His own property is damaged</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Insurer pays Jai</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u24">
+      <span class="unit-num">24 — Third-Party Insurance</span>
+      <h2 class="unit-title">Why liability insurance is "third-party" insurance</h2>
+      <p>A property loss is a two-party relationship: insured ↔ insurer. A liability loss brings in a third party — the claimant.</p>
+      <div class="flow">
+        <div class="flow-step"><strong>Insured</strong>causes covered injury or damage</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Claimant / third party</strong></div>
+      </div>
+      <p style="margin-top:-10px; font-size:14px; color:var(--grey-500);">The <strong>insurer</strong> sits behind the insured and pays the claimant on the insured's behalf.</p>
+      <div class="callout callout--example">
+        <span class="callout-label">Example</span>
+        <p>Sabari accidentally damages Mari's property. Sabari is the insured, the liability insurer is the insurer, and Mari is the claimant — the third party.</p>
+      </div>
+    </div>
+
+    <div class="unit" id="u25">
+      <span class="unit-num">25 — Property Types</span>
+      <h2 class="unit-title">Property insurance types to recognize</h2>
+      <ul>
+        <li>Fire and allied lines</li>
+        <li>Business income</li>
+        <li>Crime</li>
+        <li>Ocean marine</li>
+        <li>Inland marine</li>
+        <li>Auto physical damage</li>
+      </ul>
+      <div class="flow-vertical">
+        <div class="flow-step">Fire → property damage</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Business closes</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Lost income + extra expenses = business income loss</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u26">
+      <span class="unit-num">26 — Liability Types</span>
+      <h2 class="unit-title">Liability insurance types to recognize</h2>
+      <ul>
+        <li>Auto liability</li>
+        <li>Commercial general liability (CGL)</li>
+        <li>Personal liability</li>
+        <li>Professional liability</li>
+      </ul>
+      <p>A business can face CGL liability from four sources — memory trick <strong>P‑O‑P‑C</strong>:</p>
+      <table class="data-table">
+        <thead><tr><th>Source</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Premises</td><td>Customer injured in the store</td></tr>
+          <tr><td>Operations</td><td>Employee causes property damage while working</td></tr>
+          <tr><td>Products</td><td>A product causes injury</td></tr>
+          <tr><td>Completed operations</td><td>A completed installation causes later damage</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit" id="u27">
+      <span class="unit-num">27 — Beyond P&C</span>
+      <h2 class="unit-title">Life and health: know the boundary</h2>
+      <table class="data-table">
+        <thead><tr><th>Life</th><th>Health</th></tr></thead>
+        <tbody>
+          <tr><td>Financial consequences of death — whole life, term, universal life</td><td>Financial losses from sickness and accidents — medical insurance, disability income insurance</td></tr>
+        </tbody>
+      </table>
+      <p>For AINS property & casualty study, understand the distinction rather than memorizing life-policy mechanics in depth.</p>
+    </div>
+
+    <!-- 60 second revision -->
+    <div class="unit reveal" id="revision">
+      <span class="unit-num">Chapter 1 Wrap-Up</span>
+      <h2 class="unit-title">The 60-second revision</h2>
+      <div class="summary-card">
+        <h4>If you have only one minute</h4>
+        <div class="flow">
+          <div class="flow-step"><strong>Insurance</strong>Risk + Transfer + Business + Contract</div>
+        </div>
+        <div class="summary-grid">
+          <div>
+            <h5>Loss exposure</h5>
+            <ul><li>Property</li><li>Liability</li><li>Personal / Personnel</li></ul>
+          </div>
+          <div>
+            <h5>How insurance works</h5>
+            <ul><li>Transfer + Sharing</li><li>Premium pool</li><li>Covered claims</li></ul>
+          </div>
+          <div>
+            <h5>Law of large numbers</h5>
+            <ul><li>More similar, independent exposures</li><li>= better prediction</li></ul>
+          </div>
+          <div>
+            <h5>Ideally insurable</h5>
+            <ul><li>Pure</li><li>Accidental</li><li>Definite + measurable</li><li>Many, independent</li><li>Non-catastrophic</li><li>Economically feasible</li></ul>
+          </div>
+          <div>
+            <h5>Insurer operations</h5>
+            <ul><li>Marketing</li><li>Underwriting</li><li>Claims</li><li>Ratemaking</li></ul>
+          </div>
+          <div>
+            <h5>Regulation</h5>
+            <ul><li>Rates</li><li>Solvency</li><li>Consumer protection</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+<div class="chapter-pager">
+  <a class="pager-link back-link" href="ains-21.html">← All 10 chapters</a>
+  <a class="pager-link next" href="ains-21-ch2.html">
+    <span class="pager-dir">Next chapter</span>
+    <span class="pager-title">Who Provides Insurance &amp; How Is It Regulated? →</span>
+  </a>
+</div>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

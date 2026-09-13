@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 3 — Measuring the Financial Performance of Insurers | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 3 study notes: written vs. earned premium, paid vs. incurred losses, policyholders' surplus, and the loss/expense/combined/operating/capacity ratios — with worked examples and formulas."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch3.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 26px 0; row-gap: 10px; }
+  .flow-step {
+    padding: 13px 18px; border: 1px solid var(--line); background: #fff;
+    font-size: 13.5px; text-align: center; color: var(--grey-700); line-height: 1.4;
+  }
+  .flow-step strong { display: block; color: var(--black); font-size: 14px; margin-bottom: 2px; }
+  .flow-arrow { padding: 0 12px; color: var(--orange-deep); font-size: 17px; flex-shrink: 0; }
+  .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 26px 0; max-width: 460px; }
+  .flow-vertical .flow-step { text-align: left; }
+  .flow-vertical .flow-arrow { text-align: center; padding: 0; }
+
+  .branch-group { margin: 30px 0; }
+  .branch-root {
+    display: inline-block; padding: 12px 22px; border: 1px solid var(--black);
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: var(--black);
+    margin-bottom: 0;
+  }
+  .branch-root-wrap { text-align: center; }
+  .branch-row {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); position: relative;
+  }
+  .branch-row .flow-step { flex: 1 1 150px; max-width: 220px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  .pill-list { list-style: none; display: grid; gap: 10px; margin: 22px 0 !important; }
+  .pill-list li {
+    display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px;
+    border: 1px solid var(--line); background: #fff; font-size: 15px; color: var(--grey-700); margin: 0 !important;
+  }
+  .pill-num {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: var(--white);
+    font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+
+  .formula-box {
+    font-family: 'DM Mono', monospace; background: var(--grey-100); border: 1px solid var(--line);
+    padding: 18px 22px; margin: 20px 0; font-size: 13.5px; line-height: 2; color: var(--black);
+  }
+  .formula-box .res { color: var(--orange-deep); font-weight: 500; }
+  .formula-box .op { color: var(--grey-500); }
+
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-card .flow-step { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .flow-step strong { color: var(--white); }
+  .summary-card .flow-arrow { color: var(--orange-light); }
+  .summary-card .branch-root { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .summary-card .formula-box { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .formula-box .res { color: var(--orange-light); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500); }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <span class="current">Chapter 3</span>
+  </p>
+  <span class="chapter-tag">Chapter 03</span>
+  <h1 class="page-title">Measuring the Financial Performance of Insurers</h1>
+  <p class="page-lede">Underneath the accounting language, this chapter asks one question: is the insurer financially healthy enough to keep operating and pay its claims? That splits into two ideas — profitability ("did we earn?") and solvency ("can we meet our obligations?") — and a small set of formulas that measure both.</p>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">01</span><a href="#u1">Two big ideas: profitability & solvency</a></li>
+      <li><span class="toc-n">02</span><a href="#u2">The insurer money machine</a></li>
+      <li><span class="toc-n">03</span><a href="#u3">Profitability vs. solvency</a></li>
+      <li><span class="toc-n">04</span><a href="#u4">Underwriting income & investment income</a></li>
+      <li><span class="toc-n">05</span><a href="#u5">Written, earned & unearned premium</a></li>
+      <li><span class="toc-n">06</span><a href="#u6">Paid vs. incurred losses</a></li>
+      <li><span class="toc-n">07</span><a href="#u7">Loss reserve</a></li>
+      <li><span class="toc-n">08</span><a href="#u8">IBNR</a></li>
+      <li><span class="toc-n">09</span><a href="#u9">The incurred losses formula</a></li>
+      <li><span class="toc-n">10</span><a href="#u10">Loss adjustment expenses</a></li>
+      <li><span class="toc-n">11</span><a href="#u11">Other underwriting expenses</a></li>
+      <li><span class="toc-n">12</span><a href="#u12">Investment expenses</a></li>
+      <li><span class="toc-n">13</span><a href="#u13">Net underwriting gain/loss</a></li>
+      <li><span class="toc-n">14</span><a href="#u14">Overall gain/loss from operations</a></li>
+      <li><span class="toc-n">15</span><a href="#u15">Worked example: follow the money</a></li>
+      <li><span class="toc-n">16</span><a href="#u16">Assets, liabilities, surplus</a></li>
+      <li><span class="toc-n">17</span><a href="#u17">Assets</a></li>
+      <li><span class="toc-n">18</span><a href="#u18">Admitted vs. non-admitted assets</a></li>
+      <li><span class="toc-n">19</span><a href="#u19">Liabilities</a></li>
+      <li><span class="toc-n">20</span><a href="#u20">Policyholders' surplus</a></li>
+      <li><span class="toc-n">21</span><a href="#u21">Balance sheet vs. income statement</a></li>
+      <li><span class="toc-n">22</span><a href="#u22">Why ratios matter</a></li>
+      <li><span class="toc-n">23</span><a href="#u23">Loss ratio</a></li>
+      <li><span class="toc-n">24</span><a href="#u24">Expense ratio</a></li>
+      <li><span class="toc-n">25</span><a href="#u25">Dividend ratio</a></li>
+      <li><span class="toc-n">26</span><a href="#u26">Combined ratio</a></li>
+      <li><span class="toc-n">27</span><a href="#u27">Investment income ratio</a></li>
+      <li><span class="toc-n">28</span><a href="#u28">Overall operating ratio</a></li>
+      <li><span class="toc-n">29</span><a href="#u29">Capacity ratio</a></li>
+      <li><span class="toc-n">—</span><a href="#revision">Chapter 3 wrap-up</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u1">
+      <span class="unit-num">01 — The Real Question</span>
+      <h2 class="unit-title">Two big ideas: profitability & solvency</h2>
+      <p>Don't let the accounting language distract you — Chapter 3 is really asking one thing: <strong>"Is the insurance company financially healthy enough to keep operating and pay its claims?"</strong></p>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">INSURER FINANCIAL HEALTH</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Profitability</strong>"Are we earning?"</div>
+          <div class="flow-step"><strong>Solvency</strong>"Can we pay what we owe?"</div>
+        </div>
+      </div>
+      <p>Insurers use financial statements to monitor and report performance — and regulators, insureds, investors, agents, and brokers all rely on that same information to evaluate an insurer.</p>
+    </div>
+
+    <div class="unit reveal" id="u2">
+      <span class="unit-num">02 — The Cash Flow</span>
+      <h2 class="unit-title">The insurer money machine</h2>
+      <table class="data-table">
+        <thead><tr><th>Money in</th><th>Money out</th></tr></thead>
+        <tbody>
+          <tr><td>Premiums</td><td>Claims / losses</td></tr>
+          <tr><td>Investments</td><td>Loss adjustment expenses</td></tr>
+          <tr><td></td><td>Acquisition expenses</td></tr>
+          <tr><td></td><td>General expenses</td></tr>
+          <tr><td></td><td>Taxes, licenses, fees</td></tr>
+          <tr><td></td><td>Investment expenses & other obligations</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">The central principle</span><p>Revenue must ultimately be sufficient to cover losses and expenses if the insurer is to remain financially viable. Underwriting income and investment income are the two major sources of insurer income.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u3">
+      <span class="unit-num">03 — Related, Not the Same</span>
+      <h2 class="unit-title">Profitability vs. solvency</h2>
+      <table class="data-table">
+        <thead><tr><th>Profitability</th><th>Solvency</th></tr></thead>
+        <tbody>
+          <tr><td>"Did the insurer make money?"</td><td>"Does the insurer have enough financial strength to meet its obligations?"</td></tr>
+          <tr><td>Revenue &gt; expenses = profit; revenue &lt; expenses = loss</td><td>An insurer can have a bad year and still be financially strong</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Jai's insurer has strong assets, a large policyholders' surplus, good liquidity — and one bad underwriting year. It may still be financially healthy. A company can even show a profit in one period while carrying serious underlying problems.</p></div>
+      <div class="callout"><span class="callout-label">Exam distinction</span><p>Profitability = performance over a period. Solvency = financial condition, the ability to meet obligations.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u4">
+      <span class="unit-num">04 — Where Income Comes From</span>
+      <h2 class="unit-title">Underwriting income & investment income</h2>
+      <h4>Underwriting income</h4>
+      <p>The amount remaining after underwriting losses and expenses are subtracted from premiums — premiums are the revenue from underwriting operations.</p>
+      <div class="formula-box">Net Underwriting Gain/Loss <span class="op">=</span> Earned Premiums <span class="op">−</span> Losses <span class="op">−</span> Underwriting Expenses</div>
+
+      <h4>Investment income</h4>
+      <p>Insurers collect premiums before they necessarily need to pay all claims, so those funds can be invested in the meantime.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Customer pays premium</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Insurer receives cash; claim may occur later</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Money is invested meanwhile → investment income</div>
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Ramesh buys a one-year policy and pays ₹20,000. The insurer doesn't necessarily pay a ₹20,000 claim tomorrow — until funds are needed, it can invest them and earn investment income. Investment strategy has to balance <strong>return + safety + availability of funds</strong>, since the insurer needs investments that are relatively secure and readily convertible to cash to meet claim obligations.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u5">
+      <span class="unit-num">05 — The Core Premium Concept</span>
+      <h2 class="unit-title">Written, earned & unearned premium</h2>
+      <table class="data-table">
+        <thead><tr><th>Written premium</th><th>Earned premium</th><th>Unearned premium</th></tr></thead>
+        <tbody>
+          <tr><td>Premium on policies put into effect during a specified period</td><td>The portion of written premium for the part of the policy period already elapsed</td><td>The portion for coverage not yet provided — money received, but future protection still owed</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--example">
+        <span class="callout-label">Example — Jai's ₹600 policy</span>
+        <p>Jai buys a one-year policy effective July 1 for ₹600. On July 1, the full ₹600 is <strong>written</strong> — but the insurer hasn't earned all of it, because six more months of coverage are still owed into next year.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">July 1<br>Policy starts</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Dec 31<br>6 months elapsed</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Next July 1<br>Policy ends</div>
+      </div>
+      <div class="formula-box">Earned <span class="op">=</span> ₹600 × 6/12 <span class="op">=</span> <span class="res">₹300</span>  ·  Unearned <span class="op">=</span> ₹600 × 6/12 <span class="op">=</span> <span class="res">₹300</span></div>
+
+      <div class="callout"><span class="callout-label">The magazine subscription trick</span><p>Sabari pays ₹1,200 for a 12-month magazine subscription and receives 3 issues. Earned = ₹300 (3/12 received); unearned = ₹900 (9/12 still owed). Coverage already provided = earned. Coverage still to be provided = unearned.</p></div>
+
+      <div class="callout callout--trap"><span class="callout-label">Exam trap</span><p><strong>Written</strong> asks "what policies/premiums were written this period?" <strong>Earned</strong> asks "how much premium relates to coverage already provided?" Memory: WRITTEN = policy started. EARNED = coverage provided.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u6">
+      <span class="unit-num">06 — Claims, Two Ways</span>
+      <h2 class="unit-title">Paid vs. incurred losses</h2>
+      <p>A <strong>paid loss</strong> is a claim payment the insurer has actually made — definite, because it's already happened.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Ramesh's covered claim is settled for ₹80,000 → paid loss = ₹80,000.</p></div>
+      <div class="callout callout--trap"><span class="callout-label">Why paid loss isn't enough</span><p>Suppose an insurer has ₹80,000 in paid claims, ₹100,000 in claims still being investigated, and ₹50,000 in IBNR. Looking only at paid losses gives an incomplete picture — the insurer must estimate obligations from losses that occurred but aren't fully settled yet.</p></div>
+    </div>
+
+    <div class="unit" id="u7">
+      <span class="unit-num">07 — Money Set Aside</span>
+      <h2 class="unit-title">Loss reserve</h2>
+      <p>A loss reserve is money estimated and set aside to pay claims for losses that have already occurred but aren't yet settled.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Loss occurred → claim open</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Estimated future payment</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Loss reserve</strong></div>
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Mari has an open liability claim. The insurer estimates the eventual settlement at ₹5,00,000 and establishes a reserve for it.</p></div>
+    </div>
+
+    <div class="unit" id="u8">
+      <span class="unit-num">08 — The Silent Loss</span>
+      <h2 class="unit-title">IBNR</h2>
+      <p><strong>IBNR = Incurred But Not Reported</strong> — losses that have occurred but haven't yet been reported to the insurer.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>A storm damages Sabari's warehouse on December 30, but he doesn't report it until January 3. At December 31: loss occurred = yes, claim reported = no. That loss falls into IBNR.</p></div>
+      <div class="callout"><span class="callout-label">Memory</span><p>IBNR = happened, but the insurer hasn't been told yet.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u9">
+      <span class="unit-num">09 — Putting Losses Together</span>
+      <h2 class="unit-title">The incurred losses formula</h2>
+      <div class="formula-box">
+        Change in Loss Reserves <span class="op">=</span> Ending Reserve <span class="op">−</span> Beginning Reserve<br>
+        Incurred Losses <span class="op">=</span> Paid Losses <span class="op">+</span> Change in Loss Reserves
+      </div>
+      <div class="callout callout--example">
+        <span class="callout-label">Example — Ramesh's insurer</span>
+        <p>Paid losses = ₹400,000 · Beginning reserve = ₹300,000 · Ending reserve = ₹500,000.<br>Change in reserve = ₹500,000 − ₹300,000 = ₹200,000.<br>Incurred losses = ₹400,000 + ₹200,000 = <strong>₹600,000</strong>.</p>
+      </div>
+    </div>
+
+    <div class="unit" id="u10">
+      <span class="unit-num">10 — The Cost of Settling</span>
+      <h2 class="unit-title">Loss adjustment expenses</h2>
+      <p>Insurers incur costs while investigating and settling claims: investigation, legal defense, claim evaluation, adjuster expenses, settlement administration.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Investigate accident</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Hire experts, evaluate legal responsibility</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Defend lawsuit, negotiate settlement</div>
+      </div>
+      <p style="font-size:14px; color:var(--grey-500);">Liability claims especially can produce substantial loss adjustment expenses, since legal responsibility often requires complex investigation and defense — as in Jai's business facing a liability lawsuit.</p>
+    </div>
+
+    <div class="unit" id="u11">
+      <span class="unit-num">11 — Beyond Claims</span>
+      <h2 class="unit-title">Other underwriting expenses</h2>
+      <table class="data-table">
+        <thead><tr><th>Category</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>Acquisition expenses</td><td>Producer commissions, advertising, sales support</td></tr>
+          <tr><td>General expenses</td><td>Salaries, IT, legal, accounting, actuarial, customer service, office costs</td></tr>
+          <tr><td>Taxes, licenses & fees</td><td>Regulatory and licensing costs</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit" id="u12">
+      <span class="unit-num">12 — Investing Isn't Free</span>
+      <h2 class="unit-title">Investment expenses</h2>
+      <p>Investment departments have their own costs too — staff salaries, administration, and other operating costs.</p>
+      <div class="formula-box">Net Investment Income <span class="op">=</span> Investment Income <span class="op">−</span> Investment Expenses</div>
+      <p style="font-size:14px; color:var(--grey-500);">Investment income is never simply the gross return an insurer's investments earned.</p>
+    </div>
+
+    <div class="unit reveal" id="u13">
+      <span class="unit-num">13 — Underwriting's Bottom Line</span>
+      <h2 class="unit-title">Net underwriting gain/loss</h2>
+      <div class="formula-box">Net Underwriting Gain/Loss <span class="op">=</span> Earned Premiums <span class="op">−</span> Losses <span class="op">−</span> Underwriting Expenses</div>
+      <div class="callout callout--example">
+        <span class="callout-label">Example — Sabari's insurer</span>
+        <p>Earned premiums ₹10 crore − incurred losses ₹7 crore − underwriting expenses ₹2 crore = <strong>₹1 crore underwriting gain</strong>.</p>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u14">
+      <span class="unit-num">14 — Two Engines Together</span>
+      <h2 class="unit-title">Overall gain/loss from operations</h2>
+      <div class="flow">
+        <div class="flow-step"><strong>Underwriting</strong></div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-step"><strong>Investments</strong></div>
+        <div class="flow-arrow">=</div>
+        <div class="flow-step"><strong>Overall operating result</strong></div>
+      </div>
+      <div class="formula-box">Overall Gain/Loss from Operations <span class="op">=</span> Net Underwriting Gain/Loss <span class="op">+</span> Net Investment Gain/Loss</div>
+    </div>
+
+    <div class="unit reveal" id="u15">
+      <span class="unit-num">15 — Textbook Case</span>
+      <h2 class="unit-title">Worked example: follow the money (Atwell Insurer)</h2>
+      <table class="data-table">
+        <thead><tr><th>Line item</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Earned premiums</td><td>$1,000,000</td></tr>
+          <tr><td>Incurred losses</td><td>$650,000</td></tr>
+          <tr><td>Loss adjustment expenses</td><td>$100,000</td></tr>
+          <tr><td>Acquisition expenses</td><td>$220,000</td></tr>
+          <tr><td>General expenses</td><td>$90,000</td></tr>
+          <tr><td>Taxes / licenses / fees</td><td>$20,000</td></tr>
+          <tr><td><strong>Total expenses</strong></td><td><strong>$1,080,000</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="formula-box">
+        Underwriting result <span class="op">=</span> $1,000,000 − $1,080,000 <span class="op">=</span> <span class="res">−$80,000</span><br>
+        Investment income <span class="op">=</span> <span class="res">+$100,000</span><br>
+        Overall result <span class="op">=</span> −$80,000 + $100,000 <span class="op">=</span> <span class="res">+$20,000</span>
+      </div>
+      <div class="callout"><span class="callout-label">Lesson</span><p>An insurer can lose money on underwriting but still produce an overall gain because of investment income.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u16">
+      <span class="unit-num">16 — Shifting to Financial Position</span>
+      <h2 class="unit-title">Assets, liabilities, surplus</h2>
+      <p>Now we move from "did the insurer make money?" to "what does the insurer own and owe?"</p>
+      <div class="formula-box">Assets <span class="op">−</span> Liabilities <span class="op">=</span> Policyholders' Surplus</div>
+    </div>
+
+    <div class="unit" id="u17">
+      <span class="unit-num">17 — What the Insurer Owns</span>
+      <h2 class="unit-title">Assets</h2>
+      <p>Property or resources owned by the insurer: cash, stocks, bonds, real estate, equipment, receivables.</p>
+    </div>
+
+    <div class="unit reveal" id="u18">
+      <span class="unit-num">18 — A Regulator's Filter</span>
+      <h2 class="unit-title">Admitted vs. non-admitted assets</h2>
+      <table class="data-table">
+        <thead><tr><th>Admitted assets</th><th>Non-admitted assets</th></tr></thead>
+        <tbody>
+          <tr><td>Regulators allow these on the financial statement — generally readily convertible to cash at or near market value</td><td>Regulators exclude these because they may not be readily convertible to cash at or near market value</td></tr>
+          <tr><td>Cash, stocks, bonds, mortgages, real estate, certain computer equipment, premium balances under 90 days</td><td>Certain office equipment, furniture and supplies, premiums over 90 days overdue</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Memory</span><p>Admitted = regulator lets it count. Non-admitted = regulator doesn't — reflecting a conservative approach to evaluating insurer financial strength.</p></div>
+    </div>
+
+    <div class="unit" id="u19">
+      <span class="unit-num">19 — What the Insurer Owes</span>
+      <h2 class="unit-title">Liabilities</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Loss reserve and loss expense reserve</li>
+        <li><span class="pill-num">2</span>Unearned premium reserve</li>
+        <li><span class="pill-num">3</span>Other liabilities</li>
+      </ol>
+    </div>
+
+    <div class="unit reveal" id="u20">
+      <span class="unit-num">20 — The Financial Cushion</span>
+      <h2 class="unit-title">Policyholders' surplus</h2>
+      <div class="formula-box">Policyholders' Surplus <span class="op">=</span> Admitted Assets <span class="op">−</span> Liabilities</div>
+      <div class="callout callout--example"><span class="callout-label">Example — Ramesh's insurer</span><p>Admitted assets ₹100 crore − liabilities ₹70 crore = <strong>₹30 crore surplus</strong>.</p></div>
+      <div class="flow-vertical">
+        <div class="flow-step">Unexpected losses exceed expectations</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Insurer draws on surplus</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Claims can still be paid</div>
+      </div>
+      <p style="font-size:14px; color:var(--grey-500);">Policyholders' surplus is a cushion against adverse financial experience, and a key measure of financial condition.</p>
+    </div>
+
+    <div class="unit reveal" id="u21">
+      <span class="unit-num">21 — Photo vs. Movie</span>
+      <h2 class="unit-title">Balance sheet vs. income statement</h2>
+      <table class="data-table">
+        <thead><tr><th>Balance sheet</th><th>Income statement</th></tr></thead>
+        <tbody>
+          <tr><td>"What is the insurer's financial position at this point in time?"</td><td>"How did the insurer perform during a period?"</td></tr>
+          <tr><td>Assets, liabilities, policyholders' surplus</td><td>Revenue − expenses = net income/loss</td></tr>
+          <tr><td><strong>Think: photo</strong> — a snapshot on a particular date</td><td><strong>Think: movie</strong> — covers a period of time</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit" id="u22">
+      <span class="unit-num">22 — Why Numbers Need Context</span>
+      <h2 class="unit-title">Why ratios matter</h2>
+      <p>Two insurers both saying "we made ₹10 crore" tells you very little — that could be excellent for a tiny insurer and disappointing for a giant one. Ratios turn raw numbers into a comparison that means something.</p>
+      <div class="flow">
+        <div class="flow-step">Financial data</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Relationship between numbers</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Ratio</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Better comparison</div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u23">
+      <span class="unit-num">23 — Ratio 1</span>
+      <h2 class="unit-title">Loss ratio</h2>
+      <div class="formula-box">Loss Ratio <span class="op">=</span> Incurred Losses (incl. LAE) <span class="op">÷</span> Earned Premiums</div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>₹75,00,000 ÷ ₹1,00,00,000 = <strong>75%</strong> — about 75% of earned premium is being consumed by losses and their settlement.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u24">
+      <span class="unit-num">24 — Ratio 2</span>
+      <h2 class="unit-title">Expense ratio</h2>
+      <div class="formula-box">Expense Ratio <span class="op">=</span> Incurred Underwriting Expenses <span class="op">÷</span> Written Premiums</div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>₹33,00,000 ÷ ₹1,10,00,000 = <strong>30%</strong> of written premiums used for underwriting expenses.</p></div>
+      <div class="callout callout--trap"><span class="callout-label">Exam trap</span><p>Loss ratio → earned premium. Expense ratio → written premium. This denominator difference is a favorite trap.</p></div>
+    </div>
+
+    <div class="unit" id="u25">
+      <span class="unit-num">25 — Ratio 3</span>
+      <h2 class="unit-title">Dividend ratio</h2>
+      <div class="formula-box">Dividend Ratio <span class="op">=</span> Policyholder Dividends <span class="op">÷</span> Earned Premiums</div>
+      <p>Example: ₹10,000 ÷ ₹10,00,000 = <strong>1%</strong>. It isn't a profitability measure on its own, but it can be folded into the combined ratio after dividends.</p>
+    </div>
+
+    <div class="unit reveal" id="u26">
+      <span class="unit-num">26 — The Signature Formula</span>
+      <h2 class="unit-title">Combined ratio</h2>
+      <div class="formula-box">
+        Combined Ratio <span class="op">=</span> Loss Ratio <span class="op">+</span> Expense Ratio<br>
+        Combined Ratio after Dividends <span class="op">=</span> Loss Ratio <span class="op">+</span> Expense Ratio <span class="op">+</span> Dividend Ratio
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Loss ratio 75% + expense ratio 30% = <strong>combined ratio 105%</strong>.</p></div>
+      <table class="data-table">
+        <thead><tr><th>Combined ratio</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; 100%</td><td>Underwriting gain</td></tr>
+          <tr><td>= 100%</td><td>Underwriting break-even</td></tr>
+          <tr><td>&gt; 100%</td><td>Underwriting loss</td></tr>
+        </tbody>
+      </table>
+      <p>Many insurers run combined ratios above 100% and offset the underwriting loss with investment income — so a lower combined ratio is generally better, but remember it does <strong>not</strong> include investment income, so it never tells the whole profitability story on its own.</p>
+    </div>
+
+    <div class="unit" id="u27">
+      <span class="unit-num">27 — Ratio 4</span>
+      <h2 class="unit-title">Investment income ratio</h2>
+      <div class="formula-box">Investment Income Ratio <span class="op">=</span> Net Investment Income <span class="op">÷</span> Earned Premiums</div>
+      <p>Example: ₹10 lakh ÷ ₹1 crore = <strong>10%</strong>. It measures how successful investment activity has been relative to earned premiums.</p>
+    </div>
+
+    <div class="unit reveal" id="u28">
+      <span class="unit-num">28 — The Most Complete Ratio</span>
+      <h2 class="unit-title">Overall operating ratio</h2>
+      <div class="formula-box">Overall Operating Ratio <span class="op">=</span> Combined Ratio <span class="op">−</span> Investment Income Ratio</div>
+      <div class="callout callout--example">
+        <span class="callout-label">Example — Sabari's insurer, the complete story</span>
+        <p>Loss ratio 75% + expense ratio 30% = combined ratio 105%. Investment income ratio 10%. Overall operating ratio = 105% − 10% = <strong>95%</strong>.<br>Underwriting: bad (105%). Investments: helpful (10%). Overall: good (95%) — this is why looking only at underwriting can be misleading.</p>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Overall operating ratio</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; 100%</td><td>Overall operating gain</td></tr>
+          <tr><td>= 100%</td><td>Break-even</td></tr>
+          <tr><td>&gt; 100%</td><td>Overall operating loss</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:14px; color:var(--grey-500);">This is considered the most complete of the commonly used ratios, because it factors in both underwriting and investment results.</p>
+    </div>
+
+    <div class="unit" id="u29">
+      <span class="unit-num">29 — Business vs. Cushion</span>
+      <h2 class="unit-title">Capacity ratio</h2>
+      <div class="formula-box">Capacity Ratio (premium-to-surplus) <span class="op">=</span> Written Premiums <span class="op">÷</span> Policyholders' Surplus</div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>₹11 crore ÷ ₹5 crore = <strong>2.2 : 1</strong> — comparing business being written against the financial cushion available to absorb adverse results. An excessively high ratio may signal that an insurer's cushion is too small for its exposure, though regulators weigh many measures, not this one alone.</p></div>
+    </div>
+
+    <!-- Chapter 3 revision -->
+    <div class="unit reveal" id="revision">
+      <span class="unit-num">Chapter 3 Wrap-Up</span>
+      <h2 class="unit-title">Formula cheat sheet & one-minute revision</h2>
+      <div class="summary-card">
+        <h4>Must know cold</h4>
+        <div class="formula-box">
+          Change in Reserve <span class="op">=</span> Ending − Beginning<br>
+          Incurred Losses <span class="op">=</span> Paid <span class="op">+</span> Change in Reserves<br>
+          Net Investment Income <span class="op">=</span> Investment Income <span class="op">−</span> Investment Expenses<br>
+          Net Underwriting Gain/Loss <span class="op">=</span> Earned Premiums <span class="op">−</span> Losses <span class="op">−</span> Underwriting Expenses<br>
+          Overall Gain/Loss <span class="op">=</span> Net Underwriting <span class="op">+</span> Net Investment Gain/Loss<br>
+          Loss Ratio <span class="op">=</span> Incurred Losses (incl. LAE) <span class="op">÷</span> Earned Premiums<br>
+          Expense Ratio <span class="op">=</span> Underwriting Expenses <span class="op">÷</span> Written Premiums<br>
+          Combined Ratio <span class="op">=</span> Loss Ratio <span class="op">+</span> Expense Ratio<br>
+          Investment Income Ratio <span class="op">=</span> Net Investment Income <span class="op">÷</span> Earned Premiums<br>
+          Overall Operating Ratio <span class="op">=</span> Combined Ratio <span class="op">−</span> Investment Income Ratio<br>
+          Policyholders' Surplus <span class="op">=</span> Admitted Assets <span class="op">−</span> Liabilities<br>
+          Capacity Ratio <span class="op">=</span> Written Premiums <span class="op">÷</span> Policyholders' Surplus
+        </div>
+
+        <h4 style="margin-top:30px;">The "which number?" decision tree</h4>
+        <p style="color:var(--grey-300); font-size:14.5px;">Losses? → Loss Ratio · Expenses? → Expense Ratio · Underwriting overall? → Combined Ratio · Investments? → Investment Income Ratio · Everything together? → Overall Operating Ratio · Business vs. cushion? → Capacity Ratio</p>
+
+        <div class="summary-grid">
+          <div><h5>Profitability</h5><ul><li>Underwriting income</li><li>Investment income</li></ul></div>
+          <div><h5>Premiums</h5><ul><li>Written</li><li>Earned</li><li>Unearned</li></ul></div>
+          <div><h5>Losses</h5><ul><li>Paid</li><li>Reserves</li><li>IBNR</li><li>Incurred</li></ul></div>
+          <div><h5>Financial position</h5><ul><li>Assets</li><li>Liabilities</li><li>Surplus</li></ul></div>
+          <div><h5>Statements</h5><ul><li>Balance sheet = snapshot</li><li>Income statement = period</li></ul></div>
+          <div><h5>Ratios</h5><ul><li>Loss · Expense · Dividend</li><li>Combined · Investment income</li><li>Overall operating · Capacity</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+<div class="chapter-pager">
+  <a class="pager-link" href="ains-21-ch2.html">
+    <span class="pager-dir">← Previous chapter</span>
+    <span class="pager-title">Who Provides Insurance &amp; How Is It Regulated?</span>
+  </a>
+  <a class="pager-link next" href="ains-21-ch4.html">
+    <span class="pager-dir">Next chapter</span>
+    <span class="pager-title">Marketing →</span>
+  </a>
+</div>
+<p style="text-align:center; margin: -10px 0 30px;"><a class="pager-link back-link" href="ains-21.html" style="display:inline;">← All 10 chapters</a></p>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

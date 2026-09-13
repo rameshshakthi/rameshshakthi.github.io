@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 6 — Practice Tests | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 6 practice tests: a Live Scenario Test and an AINS Exam Certification-style test on Claims — 20 hard questions each, one attempt per session, with full answer review."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch6-tests.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+    --green: #1e7a34;
+    --red: #b02a02;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 70px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 68px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  .rules-list { margin: 22px 0 0; padding-left: 20px; color: var(--grey-300); font-size: 14px; line-height: 1.9; max-width: 680px; }
+
+  .test-body { background: var(--white); padding: 60px 60px 100px; }
+  .test-inner { max-width: 780px; margin: 0 auto; }
+
+  .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 20px; }
+  .module-card {
+    border: 1px solid var(--line); background: #fff; padding: 30px 28px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .module-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 25px; color: var(--black); line-height: 1.25; }
+  .module-card p { font-size: 14.5px; line-height: 1.7; color: var(--grey-700); }
+  .module-meta {
+    font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--grey-500);
+  }
+  .module-status {
+    display: inline-block; align-self: flex-start; font-family: 'DM Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--line); color: var(--grey-500);
+  }
+  .module-status.done { color: var(--orange-deep); border-color: rgba(252,102,4,0.4); background: rgba(252,102,4,0.06); }
+  .module-status.progress { color: var(--black); border-color: var(--black); }
+  .module-btn {
+    margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 20px; background: var(--black); color: #fff; text-decoration: none;
+    font-family: 'DM Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: background 0.25s;
+  }
+  .module-btn:hover { background: var(--orange-deep); }
+
+  .session-note { font-size: 12.5px; color: var(--grey-500); margin-top: 10px; line-height: 1.7; }
+
+  .quiz-wrap { max-width: 720px; margin: 0 auto; }
+  .quiz-progress {
+    font-family: 'DM Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 14px;
+  }
+  .quiz-bar { height: 3px; background: var(--grey-100); margin-bottom: 30px; }
+  .quiz-bar-fill { height: 100%; background: var(--orange); transition: width 0.3s; }
+  .quiz-q { font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.45; color: var(--black); margin-bottom: 28px; }
+  .quiz-options { display: grid; gap: 12px; margin-bottom: 32px; }
+  .option-btn {
+    text-align: left; padding: 16px 20px; border: 1px solid var(--line); background: #fff;
+    font-size: 15px; line-height: 1.6; color: var(--grey-700); cursor: pointer;
+    transition: border-color 0.2s, background 0.2s; font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: flex-start; gap: 4px;
+  }
+  .option-btn:hover { border-color: var(--orange); }
+  .option-btn.selected { border-color: var(--black); background: var(--grey-100); color: var(--black); }
+  .option-letter {
+    display: inline-flex; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--grey-300);
+    align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 11px;
+    margin-right: 12px; flex-shrink: 0;
+  }
+  .option-btn.selected .option-letter { background: var(--black); border-color: var(--black); color: #fff; }
+  .quiz-nav { display: flex; justify-content: flex-end; }
+  .next-btn {
+    padding: 14px 30px; background: var(--orange); color: #fff; border: none;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.25s;
+  }
+  .next-btn:disabled { background: var(--grey-300); cursor: not-allowed; }
+  .next-btn:not(:disabled):hover { background: var(--orange-deep); }
+
+  .score-banner { border: 1px solid var(--black); background: var(--black); color: #fff; padding: 32px 34px; margin-bottom: 30px; }
+  .score-banner .score-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-300); }
+  .score-banner .score-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; color: var(--orange-light); margin-top: 6px; }
+
+  .action-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 34px; }
+  .action-btn {
+    padding: 13px 22px; border: 1px solid var(--black); background: #fff; color: var(--black);
+    font-family: 'DM Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: 0.25s;
+  }
+  .action-btn:hover { background: var(--black); color: #fff; }
+
+  .review-item { border: 1px solid var(--line); padding: 22px 24px; margin-bottom: 16px; background: #fff; }
+  .review-q { font-size: 16px; color: var(--black); margin-bottom: 14px; line-height: 1.6; }
+  .review-q strong { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--orange-deep); margin-right: 8px; }
+  .review-opt { padding: 9px 14px; margin-bottom: 6px; font-size: 14px; border: 1px solid var(--line); color: var(--grey-700); }
+  .review-opt.correct { border-color: var(--green); background: rgba(30,122,52,0.07); color: var(--green); }
+  .review-opt.wrong { border-color: var(--red); background: rgba(176,42,2,0.07); color: var(--red); }
+  .review-tag { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; margin-left: 8px; }
+  .review-explanation { margin-top: 12px; padding: 14px 16px; background: var(--grey-100); font-size: 14px; line-height: 1.7; color: var(--grey-700); }
+  .review-explanation strong { color: var(--black); }
+
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media print {
+    nav, footer, .no-print { display: none !important; }
+    body { background: #fff; }
+    .page-hero { background: #fff; color: #000; padding: 20px 0; }
+    .page-lede, .rules-list, .page-eyebrow, .chapter-tag { color: #000; }
+    .test-body { padding: 0; }
+    .score-banner { background: #fff; color: #000; border: 2px solid #000; }
+    .score-banner .score-label, .score-banner .score-num { color: #000; }
+    .review-item { break-inside: avoid; border-color: #999; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .test-body { padding: 44px 24px 60px; }
+    .module-grid { grid-template-columns: 1fr; }
+    .quiz-q { font-size: 21px; }
+    .action-buttons { flex-direction: column; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <a href="ains-21-ch6.html">Chapter 6</a> <span class="sep">/</span>
+    <span class="current">Practice Tests</span>
+  </p>
+  <span class="chapter-tag">Chapter 06 — Practice Tests</span>
+  <h1 class="page-title">Claims — Test Yourself</h1>
+  <p class="page-lede">Two hard, 20-question modules built from the Chapter 6 material: a <strong>Live Scenario Test</strong> that applies claims-handling concepts to real-world situations, and an <strong>AINS Exam Certification</strong> module styled like the real certification exam. No filler, no easy questions.</p>
+  <ul class="rules-list">
+    <li>Each module runs once per browser session — closing this tab resets it, but you cannot retake a module you've already finished in this tab.</li>
+    <li>Questions and answer order are shuffled fresh for your session, so results can't be shared or copied between test-takers.</li>
+    <li>Once you move to the next question, you cannot go back and change a previous answer.</li>
+    <li>After finishing, you'll see a full review with correct/incorrect marks and explanations — with options to print or download it.</li>
+  </ul>
+</section>
+
+<!-- TEST BODY -->
+<section class="test-body">
+  <div class="test-inner">
+    <div id="app"></div>
+  </div>
+</section>
+
+<!-- PAGER -->
+<div class="chapter-pager no-print">
+  <a class="pager-link back-link" href="ains-21-ch6.html">← Back to Chapter 6</a>
+  <a class="pager-link back-link" href="ains-21.html">All 10 chapters →</a>
+</div>
+
+<footer class="no-print">
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  // ---------- Chapter 6 — Claims: question banks ----------
+  const CH_NUM = 6;
+  const CH_TITLE = "Claims";
+  const STORAGE_PREFIX = "ains21-ch" + CH_NUM + "-";
+
+  const LIVE_QUESTIONS = [
+    { q: "A homeowner's detached garage recently caught fire and was repaired. He now applies for higher coverage limits and asks to add flood coverage for a floodplain he never insured before. What underwriting concept best explains why this application draws closer scrutiny?", options: ["Moral hazard", "Adverse selection", "Attitudinal hazard", "Legal hazard"], correct: 1, explanation: "Adverse selection describes people who are more likely to experience a loss being more motivated to buy or expand insurance. There's no evidence here of intentional wrongdoing, just heightened motivation after a loss event." },
+    { q: "An underwriter declines a warehouse submission because of poor sprinkler coverage, but tells the agent the risk can be written if the insured installs an approved fire suppression system within 60 days. This decision is best described as:", options: ["Rejection", "Acceptance with no conditions", "Accept with modification", "Facultative reinsurance"], correct: 2, explanation: "The risk becomes acceptable only if a loss-control condition is met first — the textbook definition of accepting a risk with modification." },
+    { q: "A regional insurer wants to grow its commercial auto book but worries about absorbing a single large loss. It arranges for a reinsurer to automatically participate in a defined percentage of every qualifying commercial auto policy it writes, without submitting each policy individually. This is:", options: ["Facultative reinsurance", "Treaty reinsurance", "Retention", "Adverse selection"], correct: 1, explanation: "An automatic arrangement covering an entire defined class of business, without individual case-by-case submission, is treaty reinsurance." },
+    { q: "An underwriter reviewing a manufacturing risk learns the plant manager has ignored several safety citations and cut maintenance spending since the policy last renewed, telling staff the insurance will cover any resulting loss anyway. This attitude reflects:", options: ["Physical hazard", "Moral hazard", "Attitudinal hazard", "Legal hazard"], correct: 2, explanation: "A careless attitude toward loss prevention because insurance exists is the definition of attitudinal hazard — there's no stated intent to cause a loss, which would instead be moral hazard." },
+    { q: "An applicant deliberately overstates her warehouse inventory's value while privately planning to set the building on fire and collect the claim. This is best classified as:", options: ["Attitudinal hazard", "Moral hazard", "Physical hazard", "Adverse selection"], correct: 1, explanation: "Intentionally causing a loss to collect on a claim is moral hazard, regardless of how the application itself was filled out." },
+    { q: "Decades-old, ungrounded wiring throughout a restaurant kitchen increases both the chance of an electrical fire and how bad that fire would likely be. This condition is a:", options: ["Moral hazard", "Legal hazard", "Physical hazard", "Attitudinal hazard"], correct: 2, explanation: "A tangible physical condition that raises the frequency or severity of loss is a physical hazard." },
+    { q: "A state legislature sharply limits an insurer's ability to non-renew certain policies, while courts in that state increasingly resolve ambiguous policy wording in the policyholder's favor. Together, these trends that complicate the insurer's pricing and control of the exposure represent a:", options: ["Legal hazard", "Moral hazard", "Adverse selection problem", "Capacity constraint"], correct: 0, explanation: "The legal and regulatory environment increasing an insurer's exposure or complicating pricing/control is, by definition, a legal hazard." },
+    { q: "An independent agent can bind commercial property risks up to $2 million in insured value without home-office sign-off. A submission for a $5 million distribution warehouse comes in. Under sound underwriting practice, the agent should:", options: ["Bind it, since he has general binding authority", "Reject the submission outright himself", "Escalate the submission to the insurer's underwriters since it exceeds his authority", "Quietly reduce the requested limit to $2 million and bind it"], correct: 2, explanation: "A front-line underwriter operates within a defined authority; a risk that exceeds it must be escalated rather than bound, rejected, or unilaterally altered." },
+    { q: "An underwriter is troubled that the company's book of coastal, flood-prone properties has grown far faster than its inland book, raising doubt about the insurer's ability to withstand a single major hurricane. This concern relates most directly to:", options: ["Adverse selection", "Capacity", "Moral hazard", "Loss reduction"], correct: 1, explanation: "Concern over how much exposure an insurer can safely absorb — including geographic concentration — is a capacity issue." },
+    { q: "A commercial building insured for $3,400,000 is rated at $0.85 per $100 of insured value. Using Premium = Rate × Exposure Units, the annual premium is:", options: ["$2,890", "$28,900", "$289", "$40,000"], correct: 1, explanation: "3,400,000 ÷ 100 = 34,000 exposure units; 34,000 × $0.85 = $28,900." },
+    { q: "A workers' compensation policy is rated at $4.20 per $100 of payroll. The employer's estimated annual payroll is $650,000. The estimated premium is:", options: ["$2,730", "$27,300", "$273", "$6,500"], correct: 1, explanation: "650,000 ÷ 100 = 6,500 exposure units; 6,500 × $4.20 = $27,300." },
+    { q: "Before deciding on a large commercial submission, an underwriter pulls a loss-history report, a fire-protection inspection report, and a financial rating on the applicant's parent company. Together these represent the insurer's use of:", options: ["Loss reduction techniques", "Underwriting information sources", "Risk financing techniques", "Claims settlement options"], correct: 1, explanation: "Inspection reports, loss/claim history, and financial rating services are all listed underwriting information sources used to evaluate a risk before deciding." },
+    { q: "A trucking company launches a defensive-driving training program for every driver, and its at-fault accident frequency measurably drops over the next year. This is best described as:", options: ["Loss reduction", "Loss prevention", "Risk retention", "Adverse selection"], correct: 1, explanation: "A measure that lowers how often losses happen — frequency — is loss prevention, not loss reduction (which addresses severity)." },
+    { q: "A manufacturing plant installs an automatic sprinkler system that, once a fire starts, confines the damage to a small area instead of the whole facility. This is best described as:", options: ["Loss prevention", "Avoidance", "Loss reduction", "Separation"], correct: 2, explanation: "The sprinkler doesn't stop fires from starting — it limits how bad a fire becomes once it does. Limiting severity after a loss begins is loss reduction." },
+    { q: "An insurer's underwriting guidelines require a satisfactory electrical inspection before binding any habitational risk over 50 years old. An agent binds a 60-year-old rental dwelling without that inspection because the owner “seemed trustworthy.” This is best described as:", options: ["A proper use of implied authority", "Consistent with the underwriting guidelines", "A violation of established underwriting guidelines", "An example of loss reduction"], correct: 2, explanation: "Underwriting guidelines exist to produce consistent decisions; binding a risk that skips a mandatory condition violates those guidelines regardless of the agent's personal judgment about the applicant." },
+    { q: "Because some individuals with costly pre-existing conditions become strongly motivated to buy health coverage right before an expensive procedure, insurers often impose waiting periods or exclusions tied to pre-existing conditions. This practice most directly addresses:", options: ["Moral hazard", "Adverse selection", "Legal hazard", "Capacity"], correct: 1, explanation: "Individuals who already know they are likely to have a loss being unusually motivated to buy coverage is the core adverse selection problem." },
+    { q: "Reviewing five years of results, senior underwriting management notices that habitational risks in one particular state keep producing underwriting losses despite seemingly adequate rates, and directs underwriters to tighten acceptance standards and add loss-control requirements for that class going forward. This activity illustrates which underwriting activity?", options: ["Selecting insureds", "Pricing coverage", "Determining terms and conditions", "Monitoring underwriting decisions"], correct: 3, explanation: "Reviewing how a class of business has actually performed and adjusting future practice accordingly is the ongoing monitoring activity, distinct from the original selection, pricing, or terms decisions." },
+    { q: "A specialty insurer is asked to cover a one-off, unusually large offshore oil rig that doesn't fit any of its standard automatic reinsurance arrangements. To transfer part of the risk, it submits this single risk to a reinsurer for individual evaluation. This is:", options: ["Treaty reinsurance", "Facultative reinsurance", "Retention", "Risk avoidance"], correct: 1, explanation: "Submitting one unusual risk for individual acceptance or rejection by a reinsurer, outside any automatic arrangement, is facultative reinsurance." },
+    { q: "An applicant's business operates legally, its fire protection is acceptable, and its loss history is unremarkable — but the requested limit would push the insurer's total exposure in that ZIP code well past what its reinsurance program and surplus can comfortably support. The most likely outcome is:", options: ["Accept as submitted, since the individual risk looks fine", "Reject or modify despite the individual risk being otherwise acceptable, because of capacity constraints", "Automatically cede the whole risk through facultative reinsurance without further review", "Classify the situation as a moral hazard"], correct: 1, explanation: "Even an individually acceptable risk can be declined or modified when writing it would exceed the insurer's capacity in that geographic concentration." },
+    { q: "A rebuilt structure still has 1940s knob-and-tube wiring, and the owner has a documented pattern of disabling smoke detectors because “they go off too often.” An underwriter should classify these two findings, respectively, as:", options: ["Both physical hazards", "A physical hazard and an attitudinal hazard", "Both attitudinal hazards", "A moral hazard and a legal hazard"], correct: 1, explanation: "The old wiring is a tangible condition (physical hazard); disabling smoke detectors out of carelessness/annoyance reflects an attitude toward safety (attitudinal hazard) rather than intent to cause a loss." }
+  ];
+
+  const EXAM_QUESTIONS = [
+    { q: "Underwriting is best defined as the process of:", options: ["Investigating and settling claims after a loss", "Selecting insureds, pricing coverage, determining policy terms and conditions, and monitoring underwriting decisions", "Marketing insurance products to prospective customers", "Establishing reinsurance treaties"], correct: 1, explanation: "This four-part definition — select, price, set terms, monitor — is the core AINS-21 definition of underwriting." },
+    { q: "Which of the following best describes adverse selection?", options: ["The tendency of insurers to select only profitable risks", "The tendency of persons more likely to have losses to be more likely to seek or continue insurance", "An insurer's ability to spread risk through reinsurance", "A hazard arising from a careless attitude toward loss prevention"], correct: 1, explanation: "Adverse selection is a demand-side phenomenon: higher-risk individuals are more motivated to buy or keep coverage." },
+    { q: "An insurer's capacity to write new business is LEAST likely to be directly affected by which of the following?", options: ["Policyholders' surplus", "Availability of reinsurance", "The insurer's advertising budget", "Geographic concentration of existing risks"], correct: 2, explanation: "Capacity is driven by financial resources, surplus, reinsurance, and risk concentration — not by how much the insurer spends on advertising." },
+    { q: "Under a treaty reinsurance arrangement, which statement is most accurate?", options: ["Each risk is individually submitted to and evaluated by the reinsurer", "The reinsurer automatically accepts a defined class of business that meets the treaty's terms", "The reinsurer may reject any individual risk ceded under the treaty", "Treaty reinsurance is only available for personal lines"], correct: 1, explanation: "The defining feature of a treaty is automatic participation in a class of eligible business, without case-by-case reinsurer review." },
+    { q: "Facultative reinsurance differs from treaty reinsurance in that facultative reinsurance:", options: ["Applies automatically to an entire class of eligible business", "Involves individual negotiation and evaluation of a specific risk", "Is required by law for all commercial risks", "Cannot be declined by the reinsurer"], correct: 1, explanation: "Facultative reinsurance is considered and accepted or declined risk-by-risk, the opposite of a treaty's automatic coverage." },
+    { q: "A hazard arising from an insured's careless or indifferent attitude toward loss prevention because insurance exists is a(n):", options: ["Physical hazard", "Moral hazard", "Attitudinal hazard", "Legal hazard"], correct: 2, explanation: "Attitudinal hazard is specifically about carelessness stemming from having insurance, not about intent (moral hazard) or physical condition." },
+    { q: "Deliberately setting fire to insured property to collect the resulting claim payment is an example of a(n):", options: ["Physical hazard", "Attitudinal hazard", "Moral hazard", "Legal hazard"], correct: 2, explanation: "Intentional wrongdoing to cause a loss is the definition of moral hazard." },
+    { q: "A hazard consisting of a tangible condition of the property itself that increases the frequency or severity of loss is a(n):", options: ["Legal hazard", "Physical hazard", "Moral hazard", "Attitudinal hazard"], correct: 1, explanation: "Physical hazard is defined as a tangible, physical condition — such as faulty wiring or poor construction — not an intent or attitude." },
+    { q: "Court decisions and regulatory requirements that increase an insurer's exposure or complicate its ability to price or control a risk represent a(n):", options: ["Physical hazard", "Attitudinal hazard", "Legal hazard", "Moral hazard"], correct: 2, explanation: "This is the definition of legal hazard — the legal/regulatory environment itself increasing exposure or complicating underwriting." },
+    { q: "When a submitted risk doesn't meet the insurer's guidelines as-is but could become acceptable if the applicant adds loss-control measures, the appropriate underwriting decision is to:", options: ["Reject the application", "Accept the application as submitted", "Accept the application with modification", "Refer the application to claims"], correct: 2, explanation: "Conditioning acceptance on additional loss control is the definition of accepting a risk with modification." },
+    { q: "Which formula correctly expresses how an insurance premium is calculated?", options: ["Premium = Exposure Units ÷ Rate", "Premium = Rate × Exposure Units", "Premium = Rate − Exposure Units", "Premium = Exposure Units − Deductible"], correct: 1, explanation: "Premium equals the rate multiplied by the number of exposure units, per the chapter's pricing formula." },
+    { q: "An exposure unit commonly used to measure workers' compensation loss exposure is:", options: ["Each vehicle insured", "Each $100 of insured property value", "Each $100 of payroll", "Each car-month insured"], correct: 2, explanation: "Workers' compensation is typically rated per $100 of payroll, one of the exposure-unit examples given in the chapter." },
+    { q: "A producer who has authority, granted by the insurer, to accept certain risks and make coverage effective on the company's behalf without prior home-office approval is functioning as a(n):", options: ["Public adjuster", "Front-line underwriter", "Reinsurer", "Independent claim representative"], correct: 1, explanation: "An agent exercising delegated authority to bind coverage within defined limits is described in the chapter as a front-line underwriter." },
+    { q: "Underwriting guidelines serve primarily to:", options: ["Determine how claims should be settled", "Promote consistent underwriting decisions aligned with company strategy", "Establish reinsurance treaty terms", "Calculate policyholders' surplus"], correct: 1, explanation: "Guidelines function as the insurer's rulebook, translating company strategy into consistent underwriter decisions." },
+    { q: "Which of the following is an example of loss prevention rather than loss reduction?", options: ["Installing a sprinkler system that limits fire damage after ignition", "Conducting regular vehicle maintenance to reduce the likelihood of mechanical-failure accidents", "Purchasing a deductible", "Ceding risk through facultative reinsurance"], correct: 1, explanation: "Preventive maintenance that lowers the chance an accident happens at all reduces frequency, which is loss prevention." },
+    { q: "Which of the following is an example of loss reduction rather than loss prevention?", options: ["Employee safety training that reduces the number of workplace injuries", "A sprinkler system that limits the extent of fire damage once a fire has started", "Refusing to insure a hazardous operation", "Requiring background checks before hiring"], correct: 1, explanation: "Reducing how bad a loss becomes after it has already begun addresses severity, which is loss reduction." },
+    { q: "A consumer investigation report, an inspection report, and a claim file are all examples of:", options: ["Loss control techniques", "Underwriting information sources", "Risk financing techniques", "Policy conditions"], correct: 1, explanation: "These are all listed among the sources of information underwriters use to evaluate a risk." },
+    { q: "Monitoring underwriting decisions after a policy is issued is important primarily because it allows the insurer to:", options: ["Deny future claims more easily", "Determine whether the risk performed as expected and adjust future decisions accordingly", "Avoid paying commissions to producers", "Eliminate the need for loss control"], correct: 1, explanation: "Monitoring closes the loop by checking actual performance against expectations and feeding that back into future underwriting." },
+    { q: "Which statement about the four underwriting activities is most accurate?", options: ["They occur only once, at the time the policy is first issued", "They consist solely of pricing and claims settlement", "They include selecting insureds, pricing coverage, determining terms and conditions, and monitoring decisions on an ongoing basis", "They are performed exclusively by reinsurers"], correct: 2, explanation: "The four activities span the full underwriting lifecycle, including ongoing monitoring after issuance — not a one-time event." },
+    { q: "An insurer's underwriting appetite is best described as:", options: ["The types and characteristics of risks the insurer is willing to accept", "The insurer's total policyholders' surplus", "The formula used to calculate premium", "The list of exclusions in a standard policy form"], correct: 0, explanation: "Underwriting appetite refers to what kinds of risks an insurer wants to write, guiding the select/reject/modify decision." }
+  ];
+
+  // ---------- Generic quiz engine (shared across all chapter test pages) ----------
+  const TEST_DATA = {
+    live: { label: "Live Scenario Test", blurb: "Real-world underwriting situations built from the chapter's concepts — apply them, don't just recall them.", questions: LIVE_QUESTIONS },
+    exam: { label: "AINS Exam Certification Questions", blurb: "Styled like the real AINS certification exam — precise definitions and single best-answer selection.", questions: EXAM_QUESTIONS }
+  };
+
+  let currentSelection = null;
+
+  function rngFromSeed(seed) {
+    let t = seed >>> 0;
+    return function () {
+      t += 0x6D2B79F5;
+      let r = Math.imul(t ^ (t >>> 15), 1 | t);
+      r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+      return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function shuffle(arr, rng) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  function loadState(key) {
+    try { const raw = sessionStorage.getItem(STORAGE_PREFIX + key); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
+  }
+  function saveState(key, state) {
+    try { sessionStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(state)); } catch (e) {}
+  }
+  function newState(key) {
+    const qs = TEST_DATA[key].questions;
+    const seed = Math.floor(Math.random() * 2147483647);
+    const rng = rngFromSeed(seed);
+    const order = shuffle(qs.map((_, i) => i), rng);
+    const optionOrder = order.map(() => shuffle([0, 1, 2, 3], rng));
+    const state = { seed: seed, order: order, optionOrder: optionOrder, answers: new Array(qs.length).fill(null), currentIndex: 0, completed: false, score: 0, finishedAt: null };
+    saveState(key, state);
+    return state;
+  }
+
+  function renderModuleSelect() {
+    const app = document.getElementById("app");
+    let html = '<div class="module-grid">';
+    ["live", "exam"].forEach(function (key) {
+      const mod = TEST_DATA[key];
+      const state = loadState(key);
+      let statusHtml, btnHtml;
+      if (state && state.completed) {
+        statusHtml = '<span class="module-status done">Completed — ' + state.score + '/' + mod.questions.length + '</span>';
+        btnHtml = '<button class="module-btn" onclick="viewReview(\'' + key + '\')">View Your Review</button>';
+      } else if (state && !state.completed) {
+        statusHtml = '<span class="module-status progress">In progress — question ' + (state.currentIndex + 1) + ' of ' + mod.questions.length + '</span>';
+        btnHtml = '<button class="module-btn" onclick="resumeModule(\'' + key + '\')">Resume Test</button>';
+      } else {
+        statusHtml = '<span class="module-status">Not started</span>';
+        btnHtml = '<button class="module-btn" onclick="startModule(\'' + key + '\')">Start Test</button>';
+      }
+      html += '<div class="module-card"><div class="module-meta">' + mod.questions.length + ' Questions &middot; Hard &middot; One Attempt Per Session</div><h3>' + mod.label + '</h3><p>' + mod.blurb + '</p>' + statusHtml + btnHtml + '</div>';
+    });
+    html += '</div><p class="session-note">Each test is generated fresh in your browser session, can be attempted once, and cannot be retaken once submitted. Progress resets only if you close this tab.</p>';
+    app.innerHTML = html;
+  }
+
+  function startModule(key) {
+    const existing = loadState(key);
+    if (existing && existing.completed) { renderReview(key); return; }
+    newState(key);
+    renderQuestion(key);
+  }
+  function resumeModule(key) { renderQuestion(key); }
+  function viewReview(key) { renderReview(key); }
+
+  function renderQuestion(key) {
+    currentSelection = null;
+    const state = loadState(key);
+    const mod = TEST_DATA[key];
+    const qIdx = state.order[state.currentIndex];
+    const q = mod.questions[qIdx];
+    const optOrder = state.optionOrder[state.currentIndex];
+    const total = mod.questions.length;
+    const pct = Math.round((state.currentIndex / total) * 100);
+    let optsHtml = "";
+    optOrder.forEach(function (origIdx, pos) {
+      const letter = String.fromCharCode(65 + pos);
+      optsHtml += '<button class="option-btn" onclick="selectOption(this,' + origIdx + ')"><span class="option-letter">' + letter + '</span><span>' + q.options[origIdx] + '</span></button>';
+    });
+    const app = document.getElementById("app");
+    app.innerHTML =
+      '<div class="quiz-wrap">' +
+        '<div class="quiz-progress">' + mod.label + ' — Question ' + (state.currentIndex + 1) + ' of ' + total + '</div>' +
+        '<div class="quiz-bar"><div class="quiz-bar-fill" style="width:' + pct + '%"></div></div>' +
+        '<div class="quiz-q">' + q.q + '</div>' +
+        '<div class="quiz-options">' + optsHtml + '</div>' +
+        '<div class="quiz-nav"><button class="next-btn" id="nextBtn" disabled onclick="nextQuestion(\'' + key + '\')">' + (state.currentIndex + 1 < total ? "Next Question" : "Finish Test") + '</button></div>' +
+        '<p class="session-note no-print">You cannot go back to a previous question once you move on.</p>' +
+      '</div>';
+  }
+
+  function selectOption(el, origIdx) {
+    document.querySelectorAll(".option-btn").forEach(function (b) { b.classList.remove("selected"); });
+    el.classList.add("selected");
+    currentSelection = origIdx;
+    document.getElementById("nextBtn").disabled = false;
+  }
+
+  function nextQuestion(key) {
+    if (currentSelection === null) return;
+    const state = loadState(key);
+    state.answers[state.currentIndex] = currentSelection;
+    if (state.currentIndex + 1 < TEST_DATA[key].questions.length) {
+      state.currentIndex++;
+      saveState(key, state);
+      renderQuestion(key);
+    } else {
+      let score = 0;
+      state.order.forEach(function (qIdx, i) {
+        if (state.answers[i] === TEST_DATA[key].questions[qIdx].correct) score++;
+      });
+      state.completed = true;
+      state.score = score;
+      state.finishedAt = Date.now();
+      saveState(key, state);
+      renderReview(key);
+    }
+  }
+
+  function renderReview(key) {
+    const state = loadState(key);
+    const mod = TEST_DATA[key];
+    const total = mod.questions.length;
+    const pct = Math.round((state.score / total) * 100);
+    let itemsHtml = "";
+    state.order.forEach(function (qIdx, i) {
+      const q = mod.questions[qIdx];
+      const userAns = state.answers[i];
+      let optsHtml = "";
+      q.options.forEach(function (optText, j) {
+        let cls = "review-opt";
+        let tag = "";
+        if (j === q.correct) { cls += " correct"; tag = '<span class="review-tag">Correct answer</span>'; }
+        else if (j === userAns) { cls += " wrong"; tag = '<span class="review-tag">Your answer</span>'; }
+        optsHtml += '<div class="' + cls + '">' + optText + tag + '</div>';
+      });
+      itemsHtml += '<div class="review-item"><div class="review-q"><strong>Q' + (i + 1) + '</strong>' + q.q + '</div>' + optsHtml + '<div class="review-explanation"><strong>Why:</strong> ' + q.explanation + '</div></div>';
+    });
+    const app = document.getElementById("app");
+    app.innerHTML =
+      '<div class="quiz-wrap">' +
+        '<div class="score-banner"><span class="score-label">' + mod.label + ' — Final Score</span><div class="score-num">' + state.score + ' / ' + total + ' (' + pct + '%)</div></div>' +
+        '<div class="action-buttons no-print">' +
+          '<button class="action-btn" onclick="window.print()">Print Results</button>' +
+          '<button class="action-btn" onclick="downloadResults(\'' + key + '\')">Download Results</button>' +
+          '<button class="action-btn" onclick="renderModuleSelect()">← Back to Test Modules</button>' +
+        '</div>' +
+        itemsHtml +
+      '</div>';
+  }
+
+  function downloadResults(key) {
+    const state = loadState(key);
+    const mod = TEST_DATA[key];
+    const total = mod.questions.length;
+    const pct = Math.round((state.score / total) * 100);
+    const dateStr = new Date(state.finishedAt).toLocaleString();
+    let rows = "";
+    state.order.forEach(function (qIdx, i) {
+      const q = mod.questions[qIdx];
+      const userAns = state.answers[i];
+      const userText = userAns !== null ? q.options[userAns] : "(no answer)";
+      const correctText = q.options[q.correct];
+      const isCorrect = userAns === q.correct;
+      rows += '<div style="border:1px solid #ddd;padding:16px 18px;margin-bottom:12px;">' +
+        '<div style="font-weight:600;margin-bottom:8px;">Q' + (i + 1) + '. ' + q.q + '</div>' +
+        '<div style="font-size:14px;margin-bottom:4px;color:' + (isCorrect ? "#1e7a34" : "#b02a02") + ';">Your answer: ' + userText + ' — ' + (isCorrect ? "Correct" : "Incorrect") + '</div>' +
+        (isCorrect ? "" : '<div style="font-size:14px;margin-bottom:4px;color:#1e7a34;">Correct answer: ' + correctText + '</div>') +
+        '<div style="font-size:13.5px;color:#444;margin-top:8px;"><em>Explanation:</em> ' + q.explanation + '</div>' +
+      '</div>';
+    });
+    const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AINS-21 Chapter ' + CH_NUM + ' — ' + mod.label + ' Results</title>' +
+      '<style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 20px;color:#111;} h1{font-family:Georgia,serif;font-size:26px;} .meta{font-family:monospace;font-size:12px;color:#666;margin-bottom:24px;}</style></head><body>' +
+      '<h1>AINS-21 — Chapter ' + CH_NUM + ': ' + CH_TITLE + ' — ' + mod.label + '</h1>' +
+      '<div class="meta">Completed: ' + dateStr + ' &middot; Score: ' + state.score + ' / ' + total + ' (' + pct + '%)</div>' +
+      rows +
+      '</body></html>';
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "AINS21-Chapter" + CH_NUM + "-" + key + "-results.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+
+  document.addEventListener("DOMContentLoaded", renderModuleSelect);
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 9 — Liability Loss Exposures &amp; Policy Provisions | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 9 study notes: negligence, intentional tort, and strict liability; the major liability exposure categories — premises, operations, completed operations, products, advertising, pollution; damages and defense costs; and occurrence vs. claims-made coverage — with real-world examples and exam traps."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch9.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 26px 0; row-gap: 10px; }
+  .flow-step {
+    padding: 13px 18px; border: 1px solid var(--line); background: #fff;
+    font-size: 13.5px; text-align: center; color: var(--grey-700); line-height: 1.4;
+  }
+  .flow-step strong { display: block; color: var(--black); font-size: 14px; margin-bottom: 2px; }
+  .flow-arrow { padding: 0 12px; color: var(--orange-deep); font-size: 17px; flex-shrink: 0; }
+  .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 26px 0; max-width: 460px; }
+  .flow-vertical .flow-step { text-align: left; }
+  .flow-vertical .flow-arrow { text-align: center; padding: 0; }
+
+  .branch-group { margin: 30px 0; }
+  .branch-root {
+    display: inline-block; padding: 12px 22px; border: 1px solid var(--black);
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: var(--black);
+    margin-bottom: 0;
+  }
+  .branch-root-wrap { text-align: center; }
+  .branch-row {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); position: relative;
+  }
+  .branch-row .flow-step { flex: 1 1 150px; max-width: 220px; }
+  .branch-row.wide .flow-step { max-width: 170px; }
+  .branch-row.tier2 { border-top: none; padding-top: 8px; margin-top: 8px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  .pill-list { list-style: none; display: grid; gap: 10px; margin: 22px 0 !important; }
+  .pill-list li {
+    display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px;
+    border: 1px solid var(--line); background: #fff; font-size: 15px; color: var(--grey-700); margin: 0 !important;
+  }
+  .pill-num {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: var(--white);
+    font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+
+  .formula-box {
+    font-family: 'DM Mono', monospace; background: var(--grey-100); border: 1px solid var(--line);
+    padding: 18px 22px; margin: 20px 0; font-size: 13.5px; line-height: 2; color: var(--black);
+  }
+  .formula-box .res { color: var(--orange-deep); font-weight: 500; }
+  .formula-box .op { color: var(--grey-500); }
+
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-card .flow-step { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .flow-step strong { color: var(--white); }
+  .summary-card .flow-arrow { color: var(--orange-light); }
+  .summary-card .branch-root { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .summary-card .formula-box { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .formula-box .res { color: var(--orange-light); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  .story-chain { display: flex; flex-direction: column; gap: 0; margin: 26px 0; }
+  .story-step { display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .story-step:last-child { border-bottom: none; }
+  .story-badge {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--orange);
+    color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+  .story-step p { margin: 0; font-size: 15px; color: var(--grey-700); }
+  .story-step strong { color: var(--black); }
+
+  .case-card { border: 1px solid var(--line); padding: 22px 26px; margin: 22px 0; background: #fff; }
+  .case-card h4 { margin-top: 0; }
+  .case-card p:last-child { margin-bottom: 0; }
+
+  .trap-grid { display: grid; gap: 14px; margin: 24px 0; }
+  .trap-item { border: 1px solid var(--line); border-left: 3px solid #b02a02; padding: 16px 20px; background: #fff; }
+  .trap-item .wrong { color: #b02a02; font-size: 14.5px; }
+  .trap-item .right { color: var(--grey-700); font-size: 14.5px; margin-top: 6px; }
+  .trap-item .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-500); margin-bottom: 6px; display:block; }
+  .trap-subhead {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-deep); margin: 26px 0 4px;
+  }
+
+  .qa-list { list-style: none; counter-reset: qa; margin: 20px 0 !important; }
+  .qa-list li { counter-increment: qa; padding: 12px 0 12px 34px; position: relative; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--grey-700); margin:0 !important; }
+  .qa-list li::before {
+    content: counter(qa); position: absolute; left: 0; top: 12px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--grey-100); color: var(--orange-deep); font-family: 'DM Mono', monospace; font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  details.answers { margin-top: 18px; border: 1px solid var(--line); }
+  details.answers summary {
+    cursor: pointer; padding: 14px 20px; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-deep); background: var(--grey-100);
+  }
+  details.answers .qa-list { padding: 6px 20px 6px; }
+  details.answers .qa-list li::before { background: #fff; }
+
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500); }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <span class="current">Chapter 9</span>
+  </p>
+  <span class="chapter-tag">Chapter 09</span>
+  <h1 class="page-title">Liability Loss Exposures &amp; Policy Provisions</h1>
+  <p class="page-lede">Liability insurance protects against legal responsibility to someone else — a very different animal from insuring your own property. This chapter covers the legal bases for a claim, the major liability exposure categories, and how policies define covered parties, activities, time period, and limits.</p>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">01</span><a href="#u1">What is a liability loss exposure?</a></li>
+      <li><span class="toc-n">02</span><a href="#u2">Property vs. liability</a></li>
+      <li><span class="toc-n">03</span><a href="#u3">Legal foundations</a></li>
+      <li><span class="toc-n">04</span><a href="#u4">Negligence</a></li>
+      <li><span class="toc-n">05</span><a href="#u5">Intentional tort</a></li>
+      <li><span class="toc-n">06</span><a href="#u6">Strict liability</a></li>
+      <li><span class="toc-n">07</span><a href="#u7">Workers' compensation example</a></li>
+      <li><span class="toc-n">08</span><a href="#u8">Liability exposure categories</a></li>
+      <li><span class="toc-n">09</span><a href="#u9">Premises liability</a></li>
+      <li><span class="toc-n">10</span><a href="#u10">Business &amp; completed operations</a></li>
+      <li><span class="toc-n">11</span><a href="#u11">Products liability</a></li>
+      <li><span class="toc-n">12</span><a href="#u12">Advertising liability</a></li>
+      <li><span class="toc-n">13</span><a href="#u13">Pollution liability</a></li>
+      <li><span class="toc-n">14</span><a href="#u14">Financial consequences of liability</a></li>
+      <li><span class="toc-n">15</span><a href="#u15">Defense costs</a></li>
+      <li><span class="toc-n">16</span><a href="#u16">Reputation damage</a></li>
+      <li><span class="toc-n">17</span><a href="#u17">Liability policy provisions</a></li>
+      <li><span class="toc-n">18</span><a href="#u18">Occurrence vs. claims-made</a></li>
+      <li><span class="toc-n">19</span><a href="#u19">Split limits vs. single limit</a></li>
+      <li><span class="toc-n">—</span><a href="#traps">4 exam traps</a></li>
+      <li><span class="toc-n">—</span><a href="#selftest">Self-test</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u1">
+      <span class="unit-num">01 — The Starting Point</span>
+      <h2 class="unit-title">What is a liability loss exposure?</h2>
+      <p>A liability loss exposure exists when an individual or organization could become legally responsible for injury or damage to another party. It involves two things at once: the <strong>legal basis</strong> for a claim against you, and the <strong>potential financial consequences</strong> if that claim succeeds.</p>
+      <div class="flow">
+        <div class="flow-step"><strong>Individual / organization</strong></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">could become legally responsible</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">for injury or damage to another party</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u2">
+      <span class="unit-num">02 — Two Very Different Animals</span>
+      <h2 class="unit-title">Property vs. liability</h2>
+      <p>It's easy to blur these together, but they protect against opposite directions of loss.</p>
+      <h4>Property insurance</h4>
+      <div class="flow">
+        <div class="flow-step"><strong>Mari</strong></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">her own property is damaged</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">insurer</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">pays Mari</div>
+      </div>
+      <h4>Liability insurance</h4>
+      <div class="flow">
+        <div class="flow-step"><strong>Mari</strong></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">causes injury or damage</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">third party</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">insurer may pay on Mari's behalf</div>
+      </div>
+      <div class="callout"><span class="callout-label">Key difference</span><p>Property insurance protects the insured's own property. Liability insurance protects against covered legal responsibility to <strong>others</strong>.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u3">
+      <span class="unit-num">03 — Five Ways to Be Liable</span>
+      <h2 class="unit-title">Legal foundations</h2>
+      <p>A liability claim has to rest on some legal basis. AINS-21 recognizes five:</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Negligence</li>
+        <li><span class="pill-num">2</span>Intentional tort</li>
+        <li><span class="pill-num">3</span>Strict liability</li>
+        <li><span class="pill-num">4</span>Breach of contract</li>
+        <li><span class="pill-num">5</span>Statutory liability</li>
+      </ol>
+    </div>
+
+    <div class="unit reveal" id="u4">
+      <span class="unit-num">04 — Failing to Take Care</span>
+      <h2 class="unit-title">Negligence</h2>
+      <p>Generally, negligence means failing to use the degree of care a reasonable person would use in the circumstances, resulting in harm to someone else.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Jai owns a store. He knows a section of floor is wet but does nothing about it. Mari enters the store, slips, and is injured.</p></div>
+      <div class="flow-vertical">
+        <div class="flow-step">Danger exists (wet floor)</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Jai fails to act reasonably</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Mari is injured</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Possible negligence claim</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u5">
+      <span class="unit-num">05 — On Purpose</span>
+      <h2 class="unit-title">Intentional tort</h2>
+      <p>An intentional tort is an intentional act that causes legally recognized harm to someone else — the harm doesn't have to be intended, but the underlying act does.</p>
+      <div class="callout"><span class="callout-label">Key distinction</span><p><strong>Negligence</strong> = lack of the required degree of care. <strong>Intentional tort</strong> = intentional conduct.</p></div>
+    </div>
+
+    <div class="unit" id="u6">
+      <span class="unit-num">06 — Liability Without Proving Fault the Usual Way</span>
+      <h2 class="unit-title">Strict liability</h2>
+      <p>Strict liability can impose responsibility without requiring the claimant to prove negligence in the usual way. It's connected to inherently dangerous activities and to statutory situations — such as workers' compensation.</p>
+    </div>
+
+    <div class="unit reveal" id="u7">
+      <span class="unit-num">07 — A Statutory Example</span>
+      <h2 class="unit-title">Workers' compensation example</h2>
+      <p>Workers' compensation creates a statutory system for work-related injuries. Employees receive specified benefits for covered work-related injuries regardless of fault, under the statutory system — no need to prove the employer was negligent.</p>
+    </div>
+
+    <div class="unit" id="u8">
+      <span class="unit-num">08 — Nine Categories</span>
+      <h2 class="unit-title">Liability exposure categories, overview</h2>
+      <p>Liability exposures can arise from many different sources of activity:</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Automobiles / other conveyances</li>
+        <li><span class="pill-num">2</span>Premises</li>
+        <li><span class="pill-num">3</span>Business operations</li>
+        <li><span class="pill-num">4</span>Completed operations</li>
+        <li><span class="pill-num">5</span>Products</li>
+        <li><span class="pill-num">6</span>Advertising</li>
+        <li><span class="pill-num">7</span>Pollution</li>
+        <li><span class="pill-num">8</span>Liquor</li>
+        <li><span class="pill-num">9</span>Professional activities</li>
+      </ol>
+    </div>
+
+    <div class="unit reveal" id="u9">
+      <span class="unit-num">09 — Danger on the Property</span>
+      <h2 class="unit-title">Premises liability</h2>
+      <p>If someone is injured because of a dangerous condition on a property, the owner or occupier may face liability.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>A visitor slips on an unsafe surface in Mari's store.</p></div>
+      <div class="flow">
+        <div class="flow-step">Premises condition</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">visitor injury</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">possible liability</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u10">
+      <span class="unit-num">10 — During the Job, and After It</span>
+      <h2 class="unit-title">Business operations &amp; completed operations</h2>
+      <h4>Business operations</h4>
+      <p>A business can create liability through what it does — even away from its own premises.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>A plumber accidentally starts a fire while working at a customer's house. The exposure arises from the operation itself, not from the plumber's own premises.</p></div>
+      <h4>Completed operations</h4>
+      <p>The job may be finished, but the liability exposure can continue.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>An electrician completes wiring work. Months later, faulty wiring causes a fire.</p></div>
+      <div class="flow-vertical">
+        <div class="flow-step">Work completed</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Defect remains</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Later injury or damage</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Completed operations exposure</div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u11">
+      <span class="unit-num">11 — Liability After the Sale</span>
+      <h2 class="unit-title">Products liability</h2>
+      <p>Products can create liability after they're sold — arising from design, manufacture, distribution, or sale/use. Product liability exposure can begin as early as the product's design stage and continue until proper disposal by the ultimate consumer.</p>
+    </div>
+
+    <div class="unit" id="u12">
+      <span class="unit-num">12 — Liability Through Promotion</span>
+      <h2 class="unit-title">Advertising liability</h2>
+      <p>Businesses can create liability through their advertising activities. Examples include:</p>
+      <ul>
+        <li>Invasion of privacy</li>
+        <li>Improper use of another company's trademark or advertising material</li>
+      </ul>
+    </div>
+
+    <div class="unit reveal" id="u13">
+      <span class="unit-num">13 — Contamination and Cost</span>
+      <h2 class="unit-title">Pollution liability</h2>
+      <p>Pollution can create cleanup costs, injury, property damage, relocation expenses, and legal defense costs. Industrial contamination is an example of a potentially enormous liability exposure.</p>
+    </div>
+
+    <div class="unit" id="u14">
+      <span class="unit-num">14 — What a Liability Loss Costs</span>
+      <h2 class="unit-title">Financial consequences of liability</h2>
+      <p>A liability loss can create financial consequences in three major categories:</p>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">LIABILITY LOSS</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Damages</strong>owed to the claimant</div>
+          <div class="flow-step"><strong>Defense costs</strong>to fight the claim</div>
+          <div class="flow-step"><strong>Reputation</strong>harder to measure</div>
+        </div>
+      </div>
+      <h4>Damages, broken down</h4>
+      <table class="data-table">
+        <thead><tr><th>Type</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Compensatory damages</td><td>Compensate for actual harm suffered</td></tr>
+          <tr><td>Special damages</td><td>Medical expenses, lost income, rehabilitation expenses</td></tr>
+          <tr><td>General damages</td><td>Pain and suffering</td></tr>
+          <tr><td>Punitive damages</td><td>May sometimes be awarded to punish particularly wrongful conduct</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit reveal" id="u15">
+      <span class="unit-num">15 — Funding the Fight</span>
+      <h2 class="unit-title">Defense costs</h2>
+      <p>Even a groundless claim can cost money to defend. Defense costs can include:</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Attorney fees</li>
+        <li><span class="pill-num">2</span>Investigation expenses</li>
+        <li><span class="pill-num">3</span>Expert witnesses</li>
+        <li><span class="pill-num">4</span>Bonds</li>
+        <li><span class="pill-num">5</span>Trial preparation expenses</li>
+      </ol>
+      <div class="callout"><span class="callout-label">Memory</span><p>Liability insurance may need to fund the fight, not just the final payment.</p></div>
+    </div>
+
+    <div class="unit" id="u16">
+      <span class="unit-num">16 — The Cost You Can't Easily Measure</span>
+      <h2 class="unit-title">Reputation damage</h2>
+      <p>A liability event can damage a company's reputation and sales even when the direct financial loss is hard to measure.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Liability event</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Public attention</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Reputation damage</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Customer loss</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Revenue impact</div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u17">
+      <span class="unit-num">17 — What a Liability Policy Must Establish</span>
+      <h2 class="unit-title">Liability policy provisions</h2>
+      <p>A liability policy needs to establish six things:</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Covered parties</li>
+        <li><span class="pill-num">2</span>Covered activities</li>
+        <li><span class="pill-num">3</span>Covered injury or damage</li>
+        <li><span class="pill-num">4</span>Covered costs</li>
+        <li><span class="pill-num">5</span>Covered time period</li>
+        <li><span class="pill-num">6</span>Factors affecting claim payment</li>
+      </ol>
+      <h4>Covered parties</h4>
+      <p>The named insured, and potentially other insured persons, depending on their relationship to the named insured and the circumstances of the claim.</p>
+      <h4>Covered activities</h4>
+      <p>Auto liability, for example, may focus on covered auto accidents. General liability can cover many business activities, subject to exclusions.</p>
+      <h4>Covered injury or damage</h4>
+      <p>Bodily injury, property damage, personal injury, advertising injury.</p>
+    </div>
+
+    <div class="unit" id="u18">
+      <span class="unit-num">18 — When Does Coverage Trigger?</span>
+      <h2 class="unit-title">Covered time period: occurrence vs. claims-made</h2>
+      <table class="data-table">
+        <thead><tr><th>Basis</th><th>Coverage is generally triggered by</th></tr></thead>
+        <tbody>
+          <tr><td>Occurrence basis</td><td>When the event causing injury or damage occurs during the policy period</td></tr>
+          <tr><td>Claims-made basis</td><td>When the claim is made during the policy period, subject to the policy's requirements</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Memory</span><p><strong>Occurrence</strong> → when the event occurs. <strong>Claims-made</strong> → when the claim is made.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u19">
+      <span class="unit-num">19 — One Bucket or Two?</span>
+      <h2 class="unit-title">Split limits vs. single limit</h2>
+      <table class="data-table">
+        <thead><tr><th>Structure</th><th>How it works</th></tr></thead>
+        <tbody>
+          <tr><td>Split limits</td><td>Separate limits for different categories — e.g. Bodily injury: ₹X per person / ₹Y per occurrence; Property damage: ₹Z per occurrence</td></tr>
+          <tr><td>Single limit</td><td>One limit applies to a combination of bodily injury and property damage from the same occurrence</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Memory</span><p><strong>Split</strong> = separate buckets. <strong>Single</strong> = one bucket.</p></div>
+      <p style="font-size:14px; color:var(--grey-500);">Many liability policies provide defense costs in addition to damages — but policy wording controls. Some policies place defense costs within the overall limit, so always read the provision.</p>
+      <div class="callout callout--trap"><span class="callout-label">Also worth knowing</span><p>Two or more liability policies may respond to the same claim. Other-insurance provisions help determine how the policies share responsibility.</p></div>
+    </div>
+
+    <div class="unit reveal" id="mastermemory">
+      <span class="unit-num">Chapter 9 Master Memory</span>
+      <h2 class="unit-title">Chapter 9 master memory</h2>
+      <div class="summary-card">
+        <h4 style="font-family:'DM Mono',monospace; font-size:13px; letter-spacing:.1em; text-transform:uppercase;">LIABILITY = LEGAL RESPONSIBILITY + FINANCIAL CONSEQUENCES</h4>
+        <div class="flow-vertical">
+          <div class="flow-step">Exposure</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Injury / property damage</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Legal basis</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Claim</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Defense</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Damages</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Settlement / judgment</div>
+        </div>
+        <div class="summary-grid">
+          <div>
+            <h5>Legal bases</h5>
+            <ul>
+              <li>Negligence</li>
+              <li>Intentional tort</li>
+              <li>Strict liability</li>
+              <li>Contract</li>
+              <li>Statute</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Exposure categories</h5>
+            <ul>
+              <li>Auto</li>
+              <li>Premises</li>
+              <li>Operations</li>
+              <li>Completed operations</li>
+              <li>Products</li>
+              <li>Advertising</li>
+              <li>Pollution</li>
+              <li>Liquor</li>
+              <li>Professional</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam traps -->
+    <div class="unit reveal" id="traps">
+      <span class="unit-num">4 Exam Traps</span>
+      <h2 class="unit-title">The most important Chapter 9 traps</h2>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 1</span><p class="wrong">✗ Liability only means bodily injury.</p><p class="right">✓ It can involve property damage and other covered injury categories, depending on policy.</p></div>
+        <div class="trap-item"><span class="tag">Trap 2</span><p class="wrong">✗ A liability claim always requires negligence.</p><p class="right">✓ Other legal bases include intentional tort, strict liability, contract, and statute.</p></div>
+        <div class="trap-item"><span class="tag">Trap 3</span><p class="wrong">✗ Occurrence and claims-made mean the same thing.</p><p class="right">✓ Occurrence → event occurs during the policy period. Claims-made → claim made during the policy period.</p></div>
+        <div class="trap-item"><span class="tag">Trap 4</span><p class="wrong">✗ Defense costs are always inside the policy limit.</p><p class="right">✓ Not necessarily — policy wording controls.</p></div>
+      </div>
+    </div>
+
+    <!-- Self test -->
+    <div class="unit reveal" id="selftest">
+      <span class="unit-num">Self-Test</span>
+      <h2 class="unit-title">14 rapid-fire questions, then the answer key</h2>
+      <ol class="qa-list">
+        <li>What is a liability loss exposure?</li>
+        <li>What's the key difference between property insurance and liability insurance?</li>
+        <li>What are the five legal bases for a liability claim?</li>
+        <li>What's the difference between negligence and intentional tort?</li>
+        <li>What does strict liability not require the claimant to prove, in the usual way?</li>
+        <li>Give a statutory example connected to strict liability.</li>
+        <li>Name at least five liability exposure categories.</li>
+        <li>What are the three major categories of financial consequences from a liability loss?</li>
+        <li>What are the four types of damages?</li>
+        <li>Name three examples of defense costs.</li>
+        <li>What are the six things a liability policy needs to establish?</li>
+        <li>What's the difference between occurrence and claims-made coverage triggers?</li>
+        <li>What's the difference between split limits and a single limit?</li>
+        <li>What kind of provision helps determine how two liability policies sharing a claim divide responsibility?</li>
+      </ol>
+
+      <details class="answers">
+        <summary>Show the answer key</summary>
+        <ol class="qa-list">
+          <li>When an individual or organization could become legally responsible for injury or damage to another party.</li>
+          <li>Property insurance protects the insured's own property; liability insurance protects against covered legal responsibility to others.</li>
+          <li>Negligence, intentional tort, strict liability, breach of contract, statutory liability.</li>
+          <li>Negligence is a lack of the required degree of care; intentional tort is intentional conduct.</li>
+          <li>Negligence, in the same way as an ordinary negligence claim.</li>
+          <li>Workers' compensation — employees receive specified benefits regardless of fault.</li>
+          <li>Automobiles/other conveyances, premises, business operations, completed operations, products, advertising, pollution, liquor, professional activities (any five).</li>
+          <li>Damages, defense costs, reputation.</li>
+          <li>Compensatory, special, general, punitive.</li>
+          <li>Attorney fees, investigation expenses, expert witnesses (or bonds, trial preparation expenses).</li>
+          <li>Covered parties, covered activities, covered injury or damage, covered costs, covered time period, factors affecting claim payment.</li>
+          <li>Occurrence is triggered by when the event causing injury/damage occurs during the policy period; claims-made is triggered by when the claim is made during the policy period.</li>
+          <li>Split limits set separate limits for different categories (e.g. bodily injury vs. property damage); a single limit applies one combined limit to both from the same occurrence.</li>
+          <li>An other-insurance provision.</li>
+        </ol>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+<div class="chapter-pager">
+  <a class="pager-link" href="ains-21-ch8.html">
+    <span class="pager-dir">← Previous chapter</span>
+    <span class="pager-title">Property Loss Exposures &amp; Policy Provisions</span>
+  </a>
+  <a class="pager-link next" href="ains-21-ch10.html">
+    <span class="pager-dir">Next chapter</span>
+    <span class="pager-title">Managing Loss Exposures: Risk Management →</span>
+  </a>
+</div>
+<p style="text-align:center; margin: -10px 0 30px;"><a class="pager-link back-link" href="ains-21.html" style="display:inline;">← All 10 chapters</a></p>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

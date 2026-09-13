@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 10 — Managing Loss Exposures: Risk Management | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 10 study notes: the six-step risk management process, risk control vs. risk financing, frequency vs. severity — plus a combined wrap-up connecting all of Chapters 5 through 10 into one insurance cycle, with 24 exam traps and a full course recap."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch10.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 26px 0; row-gap: 10px; }
+  .flow-step {
+    padding: 13px 18px; border: 1px solid var(--line); background: #fff;
+    font-size: 13.5px; text-align: center; color: var(--grey-700); line-height: 1.4;
+  }
+  .flow-step strong { display: block; color: var(--black); font-size: 14px; margin-bottom: 2px; }
+  .flow-arrow { padding: 0 12px; color: var(--orange-deep); font-size: 17px; flex-shrink: 0; }
+  .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 26px 0; max-width: 460px; }
+  .flow-vertical .flow-step { text-align: left; }
+  .flow-vertical .flow-arrow { text-align: center; padding: 0; }
+
+  .branch-group { margin: 30px 0; }
+  .branch-root {
+    display: inline-block; padding: 12px 22px; border: 1px solid var(--black);
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: var(--black);
+    margin-bottom: 0;
+  }
+  .branch-root-wrap { text-align: center; }
+  .branch-row {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); position: relative;
+  }
+  .branch-row .flow-step { flex: 1 1 150px; max-width: 220px; }
+  .branch-row.wide .flow-step { max-width: 170px; }
+  .branch-row.tier2 { border-top: none; padding-top: 8px; margin-top: 8px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  .pill-list { list-style: none; display: grid; gap: 10px; margin: 22px 0 !important; }
+  .pill-list li {
+    display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px;
+    border: 1px solid var(--line); background: #fff; font-size: 15px; color: var(--grey-700); margin: 0 !important;
+  }
+  .pill-num {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: var(--white);
+    font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+
+  .formula-box {
+    font-family: 'DM Mono', monospace; background: var(--grey-100); border: 1px solid var(--line);
+    padding: 18px 22px; margin: 20px 0; font-size: 13.5px; line-height: 2; color: var(--black);
+  }
+  .formula-box .res { color: var(--orange-deep); font-weight: 500; }
+  .formula-box .op { color: var(--grey-500); }
+
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-card .flow-step { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .flow-step strong { color: var(--white); }
+  .summary-card .flow-arrow { color: var(--orange-light); }
+  .summary-card .branch-root { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .summary-card .formula-box { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .formula-box .res { color: var(--orange-light); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  .story-chain { display: flex; flex-direction: column; gap: 0; margin: 26px 0; }
+  .story-step { display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .story-step:last-child { border-bottom: none; }
+  .story-badge {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--orange);
+    color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+  .story-step p { margin: 0; font-size: 15px; color: var(--grey-700); }
+  .story-step strong { color: var(--black); }
+
+  .case-card { border: 1px solid var(--line); padding: 22px 26px; margin: 22px 0; background: #fff; }
+  .case-card h4 { margin-top: 0; }
+  .case-card p:last-child { margin-bottom: 0; }
+
+  .trap-grid { display: grid; gap: 14px; margin: 24px 0; }
+  .trap-item { border: 1px solid var(--line); border-left: 3px solid #b02a02; padding: 16px 20px; background: #fff; }
+  .trap-item .wrong { color: #b02a02; font-size: 14.5px; }
+  .trap-item .right { color: var(--grey-700); font-size: 14.5px; margin-top: 6px; }
+  .trap-item .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-500); margin-bottom: 6px; display:block; }
+  .trap-subhead {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-deep); margin: 26px 0 4px;
+  }
+
+  .qa-list { list-style: none; counter-reset: qa; margin: 20px 0 !important; }
+  .qa-list li { counter-increment: qa; padding: 12px 0 12px 34px; position: relative; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--grey-700); margin:0 !important; }
+  .qa-list li::before {
+    content: counter(qa); position: absolute; left: 0; top: 12px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--grey-100); color: var(--orange-deep); font-family: 'DM Mono', monospace; font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  details.answers { margin-top: 18px; border: 1px solid var(--line); }
+  details.answers summary {
+    cursor: pointer; padding: 14px 20px; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-deep); background: var(--grey-100);
+  }
+  details.answers .qa-list { padding: 6px 20px 6px; }
+  details.answers .qa-list li::before { background: #fff; }
+
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500); }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <span class="current">Chapter 10</span>
+  </p>
+  <span class="chapter-tag">Chapter 10</span>
+  <h1 class="page-title">Managing Loss Exposures: Risk Management</h1>
+  <p class="page-lede">Risk management is bigger than buying insurance — it's the six-step process of identifying, analyzing, and treating loss exposures through both risk control and risk financing. This closing chapter ties Chapters 5 through 10 together into one continuous insurance cycle, and Chapters 1 through 10 into one complete picture.</p>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">01</span><a href="#u1">What is risk management?</a></li>
+      <li><span class="toc-n">02</span><a href="#u2">Not just buying insurance</a></li>
+      <li><span class="toc-n">03</span><a href="#u3">The six-step process</a></li>
+      <li><span class="toc-n">04</span><a href="#u4">Step 1: Identify loss exposures</a></li>
+      <li><span class="toc-n">05</span><a href="#u5">Inspections & exposure surveys</a></li>
+      <li><span class="toc-n">06</span><a href="#u6">Step 2: Analyze loss exposures</a></li>
+      <li><span class="toc-n">07</span><a href="#u7">Step 3: Examine feasibility</a></li>
+      <li><span class="toc-n">08</span><a href="#u8">Risk control techniques</a></li>
+      <li><span class="toc-n">09</span><a href="#u9">Risk financing techniques</a></li>
+      <li><span class="toc-n">10</span><a href="#u10">Step 4: Select techniques</a></li>
+      <li><span class="toc-n">11</span><a href="#u11">Step 5: Implement</a></li>
+      <li><span class="toc-n">12</span><a href="#u12">Step 6: Monitor and revise</a></li>
+      <li><span class="toc-n">13</span><a href="#u13">Mega-example: Ramesh's tech company</a></li>
+      <li><span class="toc-n">—</span><a href="#traps">Chapter 10's own exam traps</a></li>
+      <li><span class="toc-n">—</span><a href="#selftest">Self-test</a></li>
+      <li><span class="toc-n">—</span><a href="#connection">The six-chapter connection</a></li>
+      <li><span class="toc-n">—</span><a href="#alltraps">24 exam traps, Chapters 5–10</a></li>
+      <li><span class="toc-n">—</span><a href="#memorysheet">Ultra-simple memory sheet</a></li>
+      <li><span class="toc-n">—</span><a href="#finalrevision">30-second final revision</a></li>
+      <li><span class="toc-n">—</span><a href="#bigpicture">The complete picture, Ch. 1–10</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u1">
+      <span class="unit-num">01 — Bigger Than Insurance</span>
+      <h2 class="unit-title">What is risk management?</h2>
+      <p>Risk management is the process of identifying and dealing with the loss exposures a person or organization faces. The goal isn't to eliminate every possible loss — that's rarely realistic — but to minimize the adverse effects of losses by reducing their frequency and severity, and by choosing appropriate ways to finance whatever exposure remains.</p>
+      <div class="callout"><span class="callout-label">Memory</span><p>Insurance is only one part of risk management — not the whole subject.</p></div>
+    </div>
+
+    <div class="unit" id="u2">
+      <span class="unit-num">02 — The Exam's Favorite Trap</span>
+      <h2 class="unit-title">Risk management is NOT just buying insurance</h2>
+      <p>Ramesh owns a warehouse. He doesn't have to just insure it — he can avoid the activity that creates the exposure, prevent losses before they happen, reduce how severe a loss would be, separate his exposures so one event can't wipe him out, duplicate important resources, retain some losses himself, transfer risk through a contract, or buy insurance. Insurance is only one tool in a much larger toolbox.</p>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">RISK MANAGEMENT</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Risk control</strong>Avoidance · Prevention · Reduction · Separation · Duplication</div>
+          <div class="flow-step"><strong>Risk financing</strong>Retention · Noninsurance transfer · Insurance</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u3">
+      <span class="unit-num">03 — The Single Most Important Idea</span>
+      <h2 class="unit-title">The six-step risk management process</h2>
+      <p>Every risk management decision, big or small, follows the same loop. This is the backbone of the entire chapter.</p>
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>1.</strong> Identify loss exposures</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>2.</strong> Analyze loss exposures</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>3.</strong> Examine feasibility of techniques</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>4.</strong> Select the best technique(s)</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>5.</strong> Implement the selected technique(s)</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>6.</strong> Monitor results and revise</div>
+        <div class="flow-arrow">↓ back to</div>
+        <div class="flow-step"><strong>1.</strong> Identify loss exposures</div>
+      </div>
+      <div class="callout"><span class="callout-label">Memory</span><p>IDENTIFY → ANALYZE → EXAMINE → SELECT → IMPLEMENT → MONITOR. It's a loop, not a line — step 6 always sends you back to step 1.</p></div>
+    </div>
+
+    <div class="unit" id="u4">
+      <span class="unit-num">04 — What Can Go Wrong?</span>
+      <h2 class="unit-title">Step 1: Identify loss exposures</h2>
+      <p>The risk manager's first question is simple: what can go wrong? Several methods help answer it.</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Physical inspection</li>
+        <li><span class="pill-num">2</span>Loss exposure surveys</li>
+        <li><span class="pill-num">3</span>Financial statement analysis</li>
+        <li><span class="pill-num">4</span>Loss history analysis</li>
+        <li><span class="pill-num">5</span>Flowcharts</li>
+        <li><span class="pill-num">6</span>Interviews</li>
+      </ol>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Sivaprakasam visits a manufacturing facility and records unguarded machinery, high stacks of inventory, and poor emergency exits as loss exposures — none of that shows up from behind a desk.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u5">
+      <span class="unit-num">05 — Two Common Tools</span>
+      <h2 class="unit-title">Physical inspection & loss exposure surveys</h2>
+      <p><strong>Physical inspection</strong> means walking the location itself — observing premises, operations, maintenance, safety procedures, equipment, and work processes. You can't fully understand every risk from a desk.</p>
+      <p><strong>Loss exposure surveys</strong> use a checklist to help identify possible exposures, but a checklist isn't perfect.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Survey completed</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Possible exposures identified</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Discuss with employees and managers</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Build a complete exposure picture</div>
+      </div>
+      <div class="callout callout--trap"><span class="callout-label">Watch out</span><p>A survey can miss exposures that are unique to a particular operation — it's a starting point, not the final word.</p></div>
+    </div>
+
+    <div class="unit" id="u6">
+      <span class="unit-num">06 — Frequency & Severity</span>
+      <h2 class="unit-title">Step 2: Analyze loss exposures</h2>
+      <p>Once an exposure is identified, the risk manager asks two questions: how often could it happen (<strong>frequency</strong>), and how large could the loss be (<strong>severity</strong>)?</p>
+      <table class="data-table">
+        <thead><tr><th>Combination</th><th>Example</th><th>Typical response</th></tr></thead>
+        <tbody>
+          <tr><td>High frequency / low severity</td><td>Small employee cuts</td><td>Strong loss prevention</td></tr>
+          <tr><td>Low frequency / high severity</td><td>Major earthquake</td><td>Strong financing/insurance + loss reduction</td></tr>
+          <tr><td>High frequency / high severity</td><td>Extremely serious</td><td>Needs aggressive treatment</td></tr>
+          <tr><td>Low frequency / low severity</td><td>Minor, rare events</td><td>May be reasonable to retain, depending on cost and circumstances</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit" id="u7">
+      <span class="unit-num">07 — Two Broad Categories</span>
+      <h2 class="unit-title">Step 3: Examine feasibility</h2>
+      <p>With exposures identified and analyzed, the risk manager examines which techniques are feasible, falling into two broad categories.</p>
+      <div class="flow">
+        <div class="flow-step"><strong>Risk control</strong>reduce frequency/severity</div>
+        <div class="flow-step"><strong>Risk financing</strong>pay for or transfer financial consequences</div>
+      </div>
+    </div>
+
+    <div class="unit reveal" id="u8">
+      <span class="unit-num">08 — Reduce the Loss Itself</span>
+      <h2 class="unit-title">Risk control techniques</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span><div><strong>Avoidance</strong> — eliminates the exposure entirely. Ramesh decides not to buy a house in a location with unacceptable flood exposure. Avoidance can reduce the probability of loss to zero, but can be impractical.</div></li>
+        <li><span class="pill-num">2</span><div><strong>Loss prevention</strong> — reduces frequency. Training leads to fewer employee accidents; vehicle maintenance leads to fewer mechanical-failure accidents.</div></li>
+        <li><span class="pill-num">3</span><div><strong>Loss reduction</strong> — reduces severity. A fire starts, a sprinkler activates, the fire is controlled quickly, and the damage is smaller.</div></li>
+        <li><span class="pill-num">4</span><div><strong>Separation</strong> — spreads exposure units so one event can't damage everything, instead of keeping all important inventory in one warehouse where a single fire could cause a huge loss.</div></li>
+        <li><span class="pill-num">5</span><div><strong>Duplication</strong> — maintaining duplicate resources so operations can continue if one is lost. A primary server plus a backup server means the failure of the primary doesn't stop the business — the backup supports continuity.</div></li>
+      </ol>
+    </div>
+
+    <div class="unit" id="u9">
+      <span class="unit-num">09 — Pay For or Transfer It</span>
+      <h2 class="unit-title">Risk financing techniques</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span><div><strong>Retention</strong> — keeping the financial consequences of a loss. Mari decides small losses under ₹25,000 aren't worth insuring and pays them herself. A deductible is also a form of retention of part of a covered loss.</div></li>
+        <li><span class="pill-num">2</span><div><strong>Noninsurance transfer</strong> — transferring financial consequences through a contract or other noninsurance arrangement.</div></li>
+        <li><span class="pill-num">3</span><div><strong>Insurance</strong> — transfers covered financial consequences to an insurer in exchange for premium.</div></li>
+      </ol>
+      <div class="flow">
+        <div class="flow-step"><strong>Insured</strong></div>
+        <div class="flow-arrow">→ premium →</div>
+        <div class="flow-step"><strong>Insurer</strong></div>
+        <div class="flow-arrow">→ promise →</div>
+        <div class="flow-step">Pay covered loss</div>
+      </div>
+      <div class="callout callout--trap"><span class="callout-label">Important</span><p>A contract does not automatically eliminate every liability exposure — the actual wording and the applicable law both matter for a noninsurance transfer to work as intended.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u10">
+      <span class="unit-num">10 — The Best Combination</span>
+      <h2 class="unit-title">Step 4: Select techniques</h2>
+      <p>The risk manager chooses the best combination of techniques — never assume "insurance is always the answer."</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Mari avoids an unacceptable exposure, installs smoke detectors, retains small losses, buys property insurance, and buys umbrella liability insurance. That blend — avoidance, prevention, retention, and insurance working together — is balanced risk management.</p></div>
+    </div>
+
+    <div class="unit" id="u11">
+      <span class="unit-num">11 — A Plan Nobody Follows Is Useless</span>
+      <h2 class="unit-title">Step 5: Implement</h2>
+      <p>Selecting the right technique means nothing if nobody actually carries it out. Implementation has to answer:</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>What must be done?</li>
+        <li><span class="pill-num">2</span>Who is responsible?</li>
+        <li><span class="pill-num">3</span>How will people be informed?</li>
+        <li><span class="pill-num">4</span>What will it cost?</li>
+        <li><span class="pill-num">5</span>When will it happen?</li>
+      </ol>
+    </div>
+
+    <div class="unit reveal" id="u12">
+      <span class="unit-num">12 — Never Really Finished</span>
+      <h2 class="unit-title">Step 6: Monitor and revise</h2>
+      <p>Risk management isn't a one-time exercise — circumstances change, so the plan has to change with them.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Implement</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Monitor results</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">New information emerges</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Revise the plan</div>
+        <div class="flow-arrow">↓ back to</div>
+        <div class="flow-step">Identify loss exposures (step 1)</div>
+      </div>
+      <p>When should Mari review her risk management plan?</p>
+      <ul>
+        <li>Buys a new property</li>
+        <li>Changes job</li>
+        <li>Receives a major income increase</li>
+        <li>Buys expensive equipment</li>
+        <li>Changes business operations</li>
+        <li>Experiences a major claim</li>
+      </ul>
+    </div>
+
+    <div class="unit" id="u13">
+      <span class="unit-num">13 — All Six Steps, One Company</span>
+      <h2 class="unit-title">Chapter 10 mega-example: Ramesh's technology company</h2>
+      <div class="case-card">
+        <h4>Applying the six-step process to a software company</h4>
+        <p><strong>Step 1 — Identify:</strong> cyber incident, fire, employee injury, professional error, business interruption, theft, equipment failure.</p>
+        <table class="data-table">
+          <thead><tr><th>Exposure</th><th>Frequency</th><th>Severity</th></tr></thead>
+          <tbody>
+            <tr><td>Cyber incident</td><td>Moderate</td><td>High potential severity</td></tr>
+            <tr><td>Office injury</td><td>Higher</td><td>Lower severity</td></tr>
+            <tr><td>Major fire</td><td>Low</td><td>High severity</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Step 3 — Examine techniques:</strong> cyber → controls, backup, and insurance; fire → prevention, suppression, and insurance; minor equipment loss → retention; critical server → duplication.</p>
+        <p><strong>Step 4 — Select:</strong> backups, access controls, employee training, fire protection, insurance, deductibles, and retention for small losses.</p>
+        <p><strong>Step 5 — Implement:</strong> assign responsibilities for each technique across the organization.</p>
+        <p><strong>Step 6 — Monitor:</strong> review after incidents and whenever the business changes.</p>
+      </div>
+    </div>
+
+    <div class="summary-card reveal">
+      <h4>Chapter 10 master memory</h4>
+      <div class="formula-box">RISK MANAGEMENT <span class="op">=</span> IDENTIFY <span class="op">→</span> ANALYZE <span class="op">→</span> EXAMINE <span class="op">→</span> SELECT <span class="op">→</span> IMPLEMENT <span class="op">→</span> <span class="res">MONITOR</span></div>
+      <div class="summary-grid">
+        <div>
+          <h5>Risk control</h5>
+          <ul>
+            <li>Avoidance</li>
+            <li>Loss prevention</li>
+            <li>Loss reduction</li>
+            <li>Separation</li>
+            <li>Duplication</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Risk financing</h5>
+          <ul>
+            <li>Retention</li>
+            <li>Noninsurance transfer</li>
+            <li>Insurance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 10's own exam traps -->
+    <div class="unit reveal" id="traps">
+      <span class="unit-num">Chapter 10 Exam Traps</span>
+      <h2 class="unit-title">Four traps worth memorizing</h2>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 1</span><p class="wrong">✗ Risk management = buying insurance.</p><p class="right">✓ Insurance is one risk management technique among several.</p></div>
+        <div class="trap-item"><span class="tag">Trap 2</span><p class="wrong">✗ Avoidance = loss prevention.</p><p class="right">✓ Avoidance eliminates the exposure; loss prevention reduces frequency; loss reduction reduces severity — three different things.</p></div>
+        <div class="trap-item"><span class="tag">Trap 3</span><p class="wrong">✗ Retention means no risk exists.</p><p class="right">✓ The risk exists — the organization simply retains the financial consequences.</p></div>
+        <div class="trap-item"><span class="tag">Trap 4</span><p class="wrong">✗ Risk management ends after implementation.</p><p class="right">✓ It ends with monitoring and revision, which sends you back to identification.</p></div>
+      </div>
+    </div>
+
+    <!-- Self test -->
+    <div class="unit reveal" id="selftest">
+      <span class="unit-num">Self-Test</span>
+      <h2 class="unit-title">12 rapid-fire questions, then the answer key</h2>
+      <ol class="qa-list">
+        <li>What is risk management?</li>
+        <li>Why is risk management more than just buying insurance?</li>
+        <li>List the six steps of the risk management process, in order.</li>
+        <li>What does step 6 lead back into?</li>
+        <li>What is frequency, and what is severity?</li>
+        <li>What are the five risk control techniques?</li>
+        <li>What is the difference between loss prevention and loss reduction?</li>
+        <li>What are the three risk financing techniques?</li>
+        <li>Is a deductible a form of retention?</li>
+        <li>Does a noninsurance transfer contract automatically eliminate a liability exposure?</li>
+        <li>In the mega-example, what technique addressed the critical server exposure?</li>
+        <li>In the mega-example, what technique addressed small equipment losses?</li>
+      </ol>
+      <details class="answers">
+        <summary>Show the answer key</summary>
+        <ol class="qa-list">
+          <li>The process of identifying and dealing with loss exposures to minimize the adverse effects of losses.</li>
+          <li>Because insurance is only one of several risk control and risk financing techniques available.</li>
+          <li>Identify, analyze, examine feasibility, select, implement, monitor and revise.</li>
+          <li>Back to step 1, identifying loss exposures.</li>
+          <li>Frequency = how often a loss could happen; severity = how large a loss could be.</li>
+          <li>Avoidance, loss prevention, loss reduction, separation, duplication.</li>
+          <li>Loss prevention reduces how often losses happen; loss reduction reduces how severe a loss is when it occurs.</li>
+          <li>Retention, noninsurance transfer, insurance.</li>
+          <li>Yes — a deductible is a form of retaining part of a covered loss.</li>
+          <li>No — the actual wording and applicable law determine how much liability is actually transferred.</li>
+          <li>Duplication (a backup server).</li>
+          <li>Retention.</li>
+        </ol>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- SHARED WRAP-UP (Chapters 5 through 10, and the full course) -->
+<section class="chapter-body" style="padding-top:0;">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="connection">
+      <span class="unit-num">One Complete Story</span>
+      <h2 class="unit-title">The six-chapter connection</h2>
+      <p>Chapters 5 through 10 aren't six separate topics — they're one continuous cycle. Follow it through Mari's warehouse fire, start to finish.</p>
+      <div class="story-chain">
+        <div class="story-step"><span class="story-badge">1</span><p><strong>Mari wants insurance.</strong> Jai is her agent; she submits an application.</p></div>
+        <div class="story-step"><span class="story-badge">2</span><p><strong>Ramesh underwrites.</strong> He checks information, hazards, and adverse selection, weighs capacity, decides accept/reject/modify, and sets price and terms. (Chapter 5)</p></div>
+        <div class="story-step"><span class="story-badge">3</span><p><strong>The contract is created.</strong> Agreement, competent parties, legal purpose, and consideration form the contract; the policy itself defines declarations, definitions, insuring agreement, exclusions, and conditions. (Chapter 7)</p></div>
+        <div class="story-step"><span class="story-badge">4</span><p><strong>Property and liability exposures exist.</strong> Property: peril → damage → financial consequence (Chapter 8). Liability: activity → injury or damage to another → legal responsibility → liability claim (Chapter 9).</p></div>
+        <div class="story-step"><span class="story-badge">5</span><p><strong>A loss occurs.</strong> Mari's warehouse catches fire.</p></div>
+        <div class="story-step"><span class="story-badge">6</span><p><strong>Sabari handles the claim.</strong> Is there coverage? What was the cause? What is the amount? What is the settlement? (Chapter 6)</p></div>
+        <div class="story-step"><span class="story-badge">7</span><p><strong>Recovery follows.</strong> If a third party is responsible, subrogation; if damaged property still has value, salvage.</p></div>
+        <div class="story-step"><span class="story-badge">8</span><p><strong>Risk management closes the loop.</strong> Why did the loss happen, could frequency or severity have been reduced, and should coverage, retention, or underwriting change? That feeds straight back into Chapter 5. (Chapter 10)</p></div>
+      </div>
+      <div class="callout"><span class="callout-label">The loop closes</span><p>This completes the loop — the insurer's decisions in Chapter 5 are informed by what Chapter 10 learns from every loss.</p></div>
+    </div>
+
+    <!-- Combined exam traps, chapters 5-10 -->
+    <div class="unit reveal" id="alltraps">
+      <span class="unit-num">The Complete List</span>
+      <h2 class="unit-title">24 exam traps across Chapters 5–10</h2>
+
+      <div class="trap-subhead">Chapter 5</div>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 1</span><p class="wrong">✗ Adverse selection = fraud.</p><p class="right">✓ It's about high-risk individuals being more motivated to seek insurance.</p></div>
+        <div class="trap-item"><span class="tag">Trap 2</span><p class="wrong">✗ Treaty = individual negotiation.</p><p class="right">✓ Treaty generally covers a defined class of eligible business automatically.</p></div>
+        <div class="trap-item"><span class="tag">Trap 3</span><p class="wrong">✗ Facultative = automatic.</p><p class="right">✓ Facultative is individually considered.</p></div>
+        <div class="trap-item"><span class="tag">Trap 4</span><p class="wrong">✗ Physical hazard = intentional behavior.</p><p class="right">✓ Physical hazard is a tangible condition.</p></div>
+      </div>
+
+      <div class="trap-subhead">Chapter 6</div>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 5</span><p class="wrong">✗ Peril = hazard.</p><p class="right">✓ Peril = cause of loss; hazard = increases loss frequency/severity.</p></div>
+        <div class="trap-item"><span class="tag">Trap 6</span><p class="wrong">✗ ACV = replacement cost.</p><p class="right">✓ ACV = Replacement Cost − Depreciation.</p></div>
+        <div class="trap-item"><span class="tag">Trap 7</span><p class="wrong">✗ Subrogation = salvage.</p><p class="right">✓ Subrogation → responsible third party; salvage → damaged property.</p></div>
+        <div class="trap-item"><span class="tag">Trap 8</span><p class="wrong">✗ Public adjuster represents insurer.</p><p class="right">✓ Public adjuster represents the insured.</p></div>
+      </div>
+
+      <div class="trap-subhead">Chapter 7</div>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 9</span><p class="wrong">✗ Insurance contract is only an ordinary contract.</p><p class="right">✓ It has the four ordinary contract elements plus special insurance characteristics.</p></div>
+        <div class="trap-item"><span class="tag">Trap 10</span><p class="wrong">✗ Adhesion means the policy is illegal.</p><p class="right">✓ It means the wording is generally drafted by one party and accepted by the other.</p></div>
+        <div class="trap-item"><span class="tag">Trap 11</span><p class="wrong">✗ Indemnity means insurer always pays market value.</p><p class="right">✓ Payment depends on the policy's valuation provisions.</p></div>
+        <div class="trap-item"><span class="tag">Trap 12</span><p class="wrong">✗ Policy can freely be transferred.</p><p class="right">✓ Insurance is personal to the insured; transfer generally requires insurer consent.</p></div>
+      </div>
+
+      <div class="trap-subhead">Chapter 8</div>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 13</span><p class="wrong">✗ Policy limit = automatic payment.</p><p class="right">✓ Actual payment depends on the covered loss and policy provisions.</p></div>
+        <div class="trap-item"><span class="tag">Trap 14</span><p class="wrong">✗ Named perils means everything is covered except exclusions.</p><p class="right">✓ Named perils means only the listed causes are covered.</p></div>
+        <div class="trap-item"><span class="tag">Trap 15</span><p class="wrong">✗ Special form means every loss is covered.</p><p class="right">✓ Exclusions still apply.</p></div>
+        <div class="trap-item"><span class="tag">Trap 16</span><p class="wrong">✗ Coinsurance is just another deductible.</p><p class="right">✓ Coinsurance addresses the relationship between insurance carried and insurance required/value.</p></div>
+      </div>
+
+      <div class="trap-subhead">Chapter 9</div>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 17</span><p class="wrong">✗ Liability only means bodily injury.</p><p class="right">✓ Can involve property damage and other covered injury categories.</p></div>
+        <div class="trap-item"><span class="tag">Trap 18</span><p class="wrong">✗ Liability claim always requires negligence.</p><p class="right">✓ Other legal bases include intentional tort, strict liability, contract, statute.</p></div>
+        <div class="trap-item"><span class="tag">Trap 19</span><p class="wrong">✗ Occurrence and claims-made mean the same thing.</p><p class="right">✓ Occurrence → event occurs during policy period; claims-made → claim made during policy period.</p></div>
+        <div class="trap-item"><span class="tag">Trap 20</span><p class="wrong">✗ Defense costs are always inside the policy limit.</p><p class="right">✓ Policy wording controls.</p></div>
+      </div>
+
+      <div class="trap-subhead">Chapter 10</div>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 21</span><p class="wrong">✗ Risk management = buying insurance.</p><p class="right">✓ Insurance is one risk management technique.</p></div>
+        <div class="trap-item"><span class="tag">Trap 22</span><p class="wrong">✗ Avoidance = loss prevention.</p><p class="right">✓ Avoidance eliminates exposure; loss prevention reduces frequency; loss reduction reduces severity.</p></div>
+        <div class="trap-item"><span class="tag">Trap 23</span><p class="wrong">✗ Retention means no risk exists.</p><p class="right">✓ The risk exists; the organization simply retains the financial consequences.</p></div>
+        <div class="trap-item"><span class="tag">Trap 24</span><p class="wrong">✗ Risk management ends after implementation.</p><p class="right">✓ It ends with monitoring and revision, which returns to identification.</p></div>
+      </div>
+    </div>
+
+    <!-- Memory sheet -->
+    <div class="unit reveal" id="memorysheet">
+      <span class="unit-num">Six Chapters, One Page</span>
+      <h2 class="unit-title">The ultra-simple memory sheet</h2>
+      <div class="summary-card">
+        <div class="summary-grid">
+          <div>
+            <h5>Ch. 5 — Underwriting</h5>
+            <ul>
+              <li>SELECT + PRICE + TERMS + MONITOR</li>
+              <li>Adverse selection = high-risk people seek insurance</li>
+              <li>Capacity = how much insurer can write</li>
+              <li>Treaty = group/automatic, Facultative = individual</li>
+              <li>Moral = intent, Attitudinal = carelessness, Physical = condition, Legal = law</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ch. 6 — Claims</h5>
+            <ul>
+              <li>COVERAGE + CAUSE + AMOUNT + SETTLEMENT</li>
+              <li>ACV = Replacement Cost − Depreciation</li>
+              <li>Subrogation = responsible third party</li>
+              <li>Salvage = damaged property</li>
+              <li>Reserve = expected payment for an open claim</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ch. 7 — Contracts</h5>
+            <ul>
+              <li>VALID CONTRACT = A + C + L + C</li>
+              <li>Agreement, Competent parties, Legal purpose, Consideration</li>
+              <li>SPECIAL CHARACTERISTICS = C-F-U-A-I-N</li>
+              <li>POLICY = D-D-I-E-C-M</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ch. 8 — Property</h5>
+            <ul>
+              <li>WHAT + PERIL + FINANCIAL CONSEQUENCE</li>
+              <li>Property → Peril → Loss → Valuation</li>
+              <li>Limit → Deductible → Insurance-to-value → Settlement</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ch. 9 — Liability</h5>
+            <ul>
+              <li>LEGAL RESPONSIBILITY + FINANCIAL CONSEQUENCES</li>
+              <li>Activity → Injury/damage → Legal basis → Claim</li>
+              <li>Defense → Damages</li>
+              <li>Bases: Negligence, Intentional tort, Strict liability, Contract, Statute</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Ch. 10 — Risk Management</h5>
+            <ul>
+              <li>IDENTIFY → ANALYZE → EXAMINE → SELECT → IMPLEMENT → MONITOR</li>
+              <li>Risk control: Avoidance, Prevention, Reduction, Separation, Duplication</li>
+              <li>Risk financing: Retention, Noninsurance transfer, Insurance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final revision -->
+    <div class="unit reveal" id="finalrevision">
+      <span class="unit-num">If The Exam Starts In 30 Seconds</span>
+      <h2 class="unit-title">The golden chain</h2>
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>Ch. 5</strong> — Should we accept the risk?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Ch. 7</strong> — What exactly did we promise?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Ch. 8/9</strong> — What kind of loss exposure exists?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Ch. 6</strong> — How do we handle the claim?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Ch. 10</strong> — How can we manage the exposure better next time?</div>
+        <div class="flow-arrow">↓ back to</div>
+        <div class="flow-step"><strong>Ch. 5</strong></div>
+      </div>
+      <div class="callout"><span class="callout-label">Last thought before you walk in</span><p>If you understand this chain, Chapters 5–10 stop looking like six textbooks and start looking like one insurance company doing its job.</p></div>
+    </div>
+
+    <!-- Big picture -->
+    <div class="unit reveal" id="bigpicture">
+      <span class="unit-num">One Building, Ten Floors</span>
+      <h2 class="unit-title">The big picture: Chapters 1 through 10</h2>
+      <div class="summary-card">
+        <div class="story-chain">
+          <div class="story-step"><span class="story-badge">1</span><p><strong>What is insurance?</strong> Risk management + Transfer + Business + Contract.</p></div>
+          <div class="story-step"><span class="story-badge">2</span><p><strong>Who provides it, and who regulates it?</strong> Insurers + Government + Regulation.</p></div>
+          <div class="story-step"><span class="story-badge">3</span><p><strong>Is the insurer financially healthy?</strong> Profitability + Solvency + Ratios.</p></div>
+          <div class="story-step"><span class="story-badge">4</span><p><strong>How does it reach customers?</strong> Marketing + Agents + Brokers + Distribution.</p></div>
+          <div class="story-step"><span class="story-badge">5</span><p><strong>How does it decide which risks to accept?</strong> Underwriting — Select + Price + Terms + Monitor.</p></div>
+          <div class="story-step"><span class="story-badge">6</span><p><strong>What happens when something goes wrong?</strong> Claims — Coverage + Cause + Amount + Settlement.</p></div>
+          <div class="story-step"><span class="story-badge">7</span><p><strong>What exactly did the insurer promise?</strong> Insurance Contracts — Agreement + Characteristics + Policy structure.</p></div>
+          <div class="story-step"><span class="story-badge">8</span><p><strong>What property loss could happen?</strong> Property Loss Exposures — What + Peril + Financial consequence.</p></div>
+          <div class="story-step"><span class="story-badge">9</span><p><strong>Could the insured owe someone else?</strong> Liability Loss Exposures — Legal responsibility + Financial consequences.</p></div>
+          <div class="story-step"><span class="story-badge">10</span><p><strong>How do we manage the exposure better next time?</strong> Risk Management — Identify → Analyze → Examine → Select → Implement → Monitor.</p></div>
+        </div>
+        <p style="margin-top:20px; color:var(--grey-300); font-size:14px;">Once this chain is clear, AINS-21 stops looking like ten separate chapters and starts behaving like one insurance company doing its job — marketing brings the business in, underwriting decides what to accept, the contract records the promise, property and liability exposures define what could go wrong, claims pays when something does, and risk management makes sure the whole cycle gets smarter every time.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+<div class="chapter-pager">
+  <a class="pager-link" href="ains-21-ch9.html">
+    <span class="pager-dir">← Previous chapter</span>
+    <span class="pager-title">Liability Loss Exposures &amp; Policy Provisions</span>
+  </a>
+</div>
+<p style="text-align:center; margin: -10px 0 30px;"><a class="pager-link back-link" href="ains-21.html" style="display:inline;">← All 10 chapters</a></p>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

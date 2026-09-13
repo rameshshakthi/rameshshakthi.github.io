@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 5 — Underwriting | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 5 study notes: underwriting's four activities, adverse selection, capacity, treaty vs. facultative reinsurance, the four hazards, underwriting decisions, and pricing — with real-world examples and exam traps."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch5.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 26px 0; row-gap: 10px; }
+  .flow-step {
+    padding: 13px 18px; border: 1px solid var(--line); background: #fff;
+    font-size: 13.5px; text-align: center; color: var(--grey-700); line-height: 1.4;
+  }
+  .flow-step strong { display: block; color: var(--black); font-size: 14px; margin-bottom: 2px; }
+  .flow-arrow { padding: 0 12px; color: var(--orange-deep); font-size: 17px; flex-shrink: 0; }
+  .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 26px 0; max-width: 460px; }
+  .flow-vertical .flow-step { text-align: left; }
+  .flow-vertical .flow-arrow { text-align: center; padding: 0; }
+
+  .branch-group { margin: 30px 0; }
+  .branch-root {
+    display: inline-block; padding: 12px 22px; border: 1px solid var(--black);
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: var(--black);
+    margin-bottom: 0;
+  }
+  .branch-root-wrap { text-align: center; }
+  .branch-row {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); position: relative;
+  }
+  .branch-row .flow-step { flex: 1 1 150px; max-width: 220px; }
+  .branch-row.wide .flow-step { max-width: 170px; }
+  .branch-row.tier2 { border-top: none; padding-top: 8px; margin-top: 8px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  .pill-list { list-style: none; display: grid; gap: 10px; margin: 22px 0 !important; }
+  .pill-list li {
+    display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px;
+    border: 1px solid var(--line); background: #fff; font-size: 15px; color: var(--grey-700); margin: 0 !important;
+  }
+  .pill-num {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: var(--white);
+    font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+
+  .formula-box {
+    font-family: 'DM Mono', monospace; background: var(--grey-100); border: 1px solid var(--line);
+    padding: 18px 22px; margin: 20px 0; font-size: 13.5px; line-height: 2; color: var(--black);
+  }
+  .formula-box .res { color: var(--orange-deep); font-weight: 500; }
+  .formula-box .op { color: var(--grey-500); }
+
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-card .flow-step { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .flow-step strong { color: var(--white); }
+  .summary-card .flow-arrow { color: var(--orange-light); }
+  .summary-card .branch-root { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .summary-card .formula-box { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .formula-box .res { color: var(--orange-light); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  .story-chain { display: flex; flex-direction: column; gap: 0; margin: 26px 0; }
+  .story-step { display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .story-step:last-child { border-bottom: none; }
+  .story-badge {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--orange);
+    color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+  .story-step p { margin: 0; font-size: 15px; color: var(--grey-700); }
+  .story-step strong { color: var(--black); }
+
+  .case-card { border: 1px solid var(--line); padding: 22px 26px; margin: 22px 0; background: #fff; }
+  .case-card h4 { margin-top: 0; }
+  .case-card p:last-child { margin-bottom: 0; }
+
+  .trap-grid { display: grid; gap: 14px; margin: 24px 0; }
+  .trap-item { border: 1px solid var(--line); border-left: 3px solid #b02a02; padding: 16px 20px; background: #fff; }
+  .trap-item .wrong { color: #b02a02; font-size: 14.5px; }
+  .trap-item .right { color: var(--grey-700); font-size: 14.5px; margin-top: 6px; }
+  .trap-item .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-500); margin-bottom: 6px; display:block; }
+  .trap-subhead {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-deep); margin: 26px 0 4px;
+  }
+
+  .qa-list { list-style: none; counter-reset: qa; margin: 20px 0 !important; }
+  .qa-list li { counter-increment: qa; padding: 12px 0 12px 34px; position: relative; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--grey-700); margin:0 !important; }
+  .qa-list li::before {
+    content: counter(qa); position: absolute; left: 0; top: 12px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--grey-100); color: var(--orange-deep); font-family: 'DM Mono', monospace; font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  details.answers { margin-top: 18px; border: 1px solid var(--line); }
+  details.answers summary {
+    cursor: pointer; padding: 14px 20px; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-deep); background: var(--grey-100);
+  }
+  details.answers .qa-list { padding: 6px 20px 6px; }
+  details.answers .qa-list li::before { background: #fff; }
+
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500); }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <span class="current">Chapter 5</span>
+  </p>
+  <span class="chapter-tag">Chapter 05</span>
+  <h1 class="page-title">Underwriting</h1>
+  <p class="page-lede">Underwriting is the insurer's risk-selection and risk-pricing job — deciding who to cover, what to charge, and on what terms, then watching whether the decision holds up over time. This chapter covers adverse selection, capacity, reinsurance, the four hazards, and how an application becomes an accepted, priced, and monitored policy.</p>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">01</span><a href="#u1">What is underwriting?</a></li>
+      <li><span class="toc-n">02</span><a href="#u2">Why underwriting matters</a></li>
+      <li><span class="toc-n">03</span><a href="#u3">The four underwriting activities</a></li>
+      <li><span class="toc-n">04</span><a href="#u4">Adverse selection</a></li>
+      <li><span class="toc-n">05</span><a href="#u5">Capacity</a></li>
+      <li><span class="toc-n">06</span><a href="#u6">Reinsurance</a></li>
+      <li><span class="toc-n">07</span><a href="#u7">Underwriting information</a></li>
+      <li><span class="toc-n">08</span><a href="#u8">Loss prevention vs. loss reduction</a></li>
+      <li><span class="toc-n">09</span><a href="#u9">Four hazards</a></li>
+      <li><span class="toc-n">10</span><a href="#u10">The underwriting decision</a></li>
+      <li><span class="toc-n">11</span><a href="#u11">Pricing</a></li>
+      <li><span class="toc-n">12</span><a href="#u12">Front-line underwriters</a></li>
+      <li><span class="toc-n">13</span><a href="#u13">Underwriting guidelines</a></li>
+      <li><span class="toc-n">14</span><a href="#u14">Chapter 5 master memory</a></li>
+      <li><span class="toc-n">—</span><a href="#traps">4 exam traps</a></li>
+      <li><span class="toc-n">—</span><a href="#selftest">Self-test</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u1">
+      <span class="unit-num">01 — The Insurer's Filter</span>
+      <h2 class="unit-title">What is underwriting?</h2>
+      <p>Underwriting is the process of selecting insureds, pricing coverage, determining policy terms and conditions, and then monitoring how those decisions actually perform. For every applicant, the insurer works through the same chain of questions.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Who is the applicant?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">What can go wrong?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">How likely is it?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">How severe could it be?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Can we accept it — and at what price?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">What conditions apply?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Monitor the result</div>
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Mari owns a small warehouse. Jai, her agent, sends her application to Ramesh, the underwriter. Ramesh finds combustible materials stored on site, weak fire protection, old wiring, and a history of frequent past claims. He doesn't reject the account outright — he says "we can insure this if the electrical system and fire protection are improved." That's underwriting in action: not a simple yes or no, but a reasoned judgment about risk, price, and conditions.</p></div>
+    </div>
+
+    <div class="unit" id="u2">
+      <span class="unit-num">02 — Why It Matters</span>
+      <h2 class="unit-title">Why underwriting matters</h2>
+      <p>Insurance works by pooling many risks together. If an insurer accepts too many poor risks at inadequate prices, the pool itself becomes unstable.</p>
+      <div class="flow">
+        <div class="flow-step">Poor selection</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Higher-than-expected losses</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Bad underwriting results</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Financial pressure</div>
+      </div>
+      <p>Good underwriting is not about avoiding claims — claims are expected, and paying them is the insurer's core promise. It's about selecting and pricing risks so the insurer can reasonably meet expected losses, expenses, and profit objectives.</p>
+    </div>
+
+    <div class="unit reveal" id="u3">
+      <span class="unit-num">03 — Four Jobs, One Discipline</span>
+      <h2 class="unit-title">The four underwriting activities</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span><strong>Selecting insureds</strong> — deciding which risks fit the insurer's appetite</li>
+        <li><span class="pill-num">2</span><strong>Pricing coverage</strong> — determining a premium appropriate to the exposure</li>
+        <li><span class="pill-num">3</span><strong>Determining terms and conditions</strong> — limits, deductibles, exclusions, coverage terms, and required loss-control measures</li>
+        <li><span class="pill-num">4</span><strong>Monitoring underwriting decisions</strong> — underwriting continues after the policy is issued; the insurer keeps asking "did the risk perform as expected?"</li>
+      </ol>
+    </div>
+
+    <div class="unit reveal" id="u4">
+      <span class="unit-num">04 — Who Wants In</span>
+      <h2 class="unit-title">Adverse selection</h2>
+      <p>Adverse selection occurs when people who are more likely to experience losses are more motivated to obtain insurance. Left unmanaged, this skews the insurer's book toward exactly the risks it can least afford.</p>
+      <table class="data-table">
+        <thead><tr><th>Applicant</th><th>Flood exposure</th><th>Motivation to buy</th></tr></thead>
+        <tbody>
+          <tr><td>House A — on a hilltop</td><td>Low</td><td>Low urgency</td></tr>
+          <tr><td>House B — next to a river</td><td>High</td><td>Strong urgency</td></tr>
+        </tbody>
+      </table>
+      <p>If the insurer accepts too many high-risk applicants like House B without properly pricing them, the result is a high-risk book, more claims, and premiums that turn out to be inadequate.</p>
+      <div class="callout callout--trap"><span class="callout-label">Memory — the burning building</span><p>A building is already on fire and the owner suddenly wants to buy fire insurance. The insurer refuses, because the probability of loss is now extremely high. Memory: adverse selection means high-risk people have the strongest motivation to buy insurance — which is exactly why underwriting has to screen for it.</p></div>
+    </div>
+
+    <div class="unit" id="u5">
+      <span class="unit-num">05 — The Fuel Tank</span>
+      <h2 class="unit-title">Capacity</h2>
+      <p>Capacity is the amount of business an insurer is able to write — its risk-writing "fuel tank."</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Financial resources + policyholders' surplus + reinsurance + expertise/resources</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Capacity</strong></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">How much business can safely be written</div>
+      </div>
+      <p>Capacity can be affected by:</p>
+      <ul>
+        <li>Financial resources</li>
+        <li>Underwriting resources</li>
+        <li>Claim-handling resources</li>
+        <li>Geographic concentration</li>
+        <li>Reinsurance availability</li>
+        <li>Expertise</li>
+      </ul>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Sivaprakasam tells Ramesh, "we already have a large concentration of coastal property risk — we should not keep adding unlimited exposure in the same area." That's a capacity decision: it isn't about any single risk being bad, it's about how much of one kind of risk the insurer can safely hold.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u6">
+      <span class="unit-num">06 — Insurance for Insurers</span>
+      <h2 class="unit-title">Reinsurance</h2>
+      <p>Reinsurance is insurance for insurers — it lets a primary insurer transfer part of its risk to another company.</p>
+      <div class="flow">
+        <div class="flow-step">Policyholder</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Primary insurer</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Transfers part of the risk</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Reinsurer</div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Type</th><th>How it works</th></tr></thead>
+        <tbody>
+          <tr><td>Treaty reinsurance</td><td>A group/automatic arrangement — many eligible policies fall under a treaty, and the reinsurer automatically participates in all of them</td></tr>
+          <tr><td>Facultative reinsurance</td><td>An individual risk considered separately — a large or unusual risk is submitted on its own, and the reinsurer accepts or rejects it case by case</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Memory</span><p>Treaty = automatic group arrangement. Facultative = individual negotiation.</p></div>
+    </div>
+
+    <div class="unit" id="u7">
+      <span class="unit-num">07 — Evidence Before Decisions</span>
+      <h2 class="unit-title">Underwriting information</h2>
+      <p>Ramesh needs evidence before he can decide. That evidence comes from many sources:</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Producer information</li>
+        <li><span class="pill-num">2</span>Consumer investigation reports</li>
+        <li><span class="pill-num">3</span>Government records</li>
+        <li><span class="pill-num">4</span>Financial rating services</li>
+        <li><span class="pill-num">5</span>Inspection reports</li>
+        <li><span class="pill-num">6</span>Field marketing information</li>
+        <li><span class="pill-num">7</span>Claim files</li>
+        <li><span class="pill-num">8</span>Production records</li>
+        <li><span class="pill-num">9</span>Premium audits</li>
+        <li><span class="pill-num">10</span>Applicant/insured records</li>
+      </ol>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Jai visits Mari's factory and notices the fire extinguishers are maintained, the emergency exits are clear, and employees are trained on safety procedures. His field observations help Ramesh understand the account beyond what the application form alone can show.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u8">
+      <span class="unit-num">08 — Frequency vs. Severity</span>
+      <h2 class="unit-title">Loss prevention vs. loss reduction</h2>
+      <table class="data-table">
+        <thead><tr><th>Concept</th><th>Effect</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Loss prevention</td><td>Reduces frequency</td><td>Regular vehicle maintenance → fewer accidents caused by mechanical failure</td></tr>
+          <tr><td>Loss reduction</td><td>Reduces severity</td><td>A fire starts → a sprinkler activates → fire damage is limited</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Memory</span><p>Prevention = stop the loss from happening. Reduction = reduce the damage once it does.</p></div>
+    </div>
+
+    <div class="unit" id="u9">
+      <span class="unit-num">09 — Four Ways Loss Gets Worse</span>
+      <h2 class="unit-title">Four hazards</h2>
+      <p>A hazard is a condition that increases the frequency or severity of loss. AINS-21 groups hazards into four types.</p>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">HAZARDS</div></div>
+        <div class="branch-row wide">
+          <div class="flow-step"><strong>Moral</strong>Intentional wrongdoing</div>
+          <div class="flow-step"><strong>Attitudinal</strong>Careless attitude</div>
+          <div class="flow-step"><strong>Physical</strong>Tangible condition</div>
+          <div class="flow-step"><strong>Legal</strong>Legal/regulatory environment</div>
+        </div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Hazard</th><th>Example</th><th>Memory</th></tr></thead>
+        <tbody>
+          <tr><td>Moral</td><td>Ramesh intentionally burns a warehouse to collect the insurance money</td><td>"I will cause it"</td></tr>
+          <tr><td>Attitudinal</td><td>Sabari thinks "I have insurance, so I don't need to worry about safety" and stops maintaining equipment</td><td>"I don't care enough"</td></tr>
+          <tr><td>Physical</td><td>Faulty wiring, combustible storage, poor construction, inadequate fire protection</td><td>A condition</td></tr>
+          <tr><td>Legal</td><td>Court interpretations, regulatory restrictions, or legal requirements that increase exposure or complicate coverage, cancellation, or premiums</td><td>The law</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit reveal" id="u10">
+      <span class="unit-num">10 — Three Ways Forward</span>
+      <h2 class="unit-title">The underwriting decision</h2>
+      <p>Once Ramesh has the information and understands the hazards, he has three broad choices.</p>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">APPLICATION</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Accept</strong>Risk fits guidelines</div>
+          <div class="flow-step"><strong>Reject</strong>Risk falls outside acceptable standards</div>
+          <div class="flow-step"><strong>Accept with modification</strong>Acceptable if conditions change</div>
+        </div>
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Mari's bookstore has poor fire protection. Ramesh says, "we can cover it if you install an appropriate fire alarm system" — the risk becomes acceptable once the condition is met.</p></div>
+    </div>
+
+    <div class="unit" id="u11">
+      <span class="unit-num">11 — What It Costs</span>
+      <h2 class="unit-title">Pricing</h2>
+      <div class="formula-box">Premium <span class="op">=</span> Rate <span class="op">×</span> <span class="res">Exposure Units</span></div>
+      <p>An exposure unit measures the loss exposure being insured:</p>
+      <ul>
+        <li>Workers' compensation — each ₹100 (or $100) of payroll</li>
+        <li>Property insurance — each ₹100 (or $100) of insurance</li>
+        <li>Auto liability — each car-month insured</li>
+      </ul>
+      <div class="callout callout--example"><span class="callout-label">Worked example</span><p>Rate = ₹100 per car-month. One car is insured for 12 months, so there are 12 car-months of exposure.</p></div>
+      <div class="formula-box">₹100 <span class="op">×</span> 12 car-months <span class="op">=</span> <span class="res">₹1,200 premium</span></div>
+    </div>
+
+    <div class="unit reveal" id="u12">
+      <span class="unit-num">12 — Underwriting at the Front Line</span>
+      <h2 class="unit-title">Front-line underwriters</h2>
+      <p>Some agents carry underwriting authority of their own. Jai may accept certain risks, bind coverage, and operate within a defined authority — but he can't necessarily approve every risk that comes through his desk.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Jai reviews the application</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Within his authority?</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Yes</strong> → bind coverage directly &nbsp;·&nbsp; <strong>No</strong> → escalate to Ramesh</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u13">
+      <span class="unit-num">13 — The Rulebook</span>
+      <h2 class="unit-title">Underwriting guidelines</h2>
+      <p>Underwriting guidelines are the insurer's rulebook, translating company strategy into consistent, repeatable decisions.</p>
+      <div class="flow">
+        <div class="flow-step">Company strategy</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Underwriting guidelines</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Underwriters</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Consistent decisions</div>
+      </div>
+      <p>Sivaprakasam, in underwriting management, may oversee:</p>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Underwriting objectives</li>
+        <li><span class="pill-num">2</span>Underwriting guidelines</li>
+        <li><span class="pill-num">3</span>Underwriting authority</li>
+        <li><span class="pill-num">4</span>Reinsurance</li>
+        <li><span class="pill-num">5</span>Monitoring</li>
+        <li><span class="pill-num">6</span>Training</li>
+      </ol>
+    </div>
+
+    <div class="unit reveal" id="u14">
+      <span class="unit-num">14 — Putting It Together</span>
+      <h2 class="unit-title">Chapter 5 master memory</h2>
+      <div class="summary-card">
+        <h4>UNDERWRITE = SELECT + PRICE + TERMS + MONITOR</h4>
+        <div class="flow-vertical">
+          <div class="flow-step">Applicant</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Information</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Hazards</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Adverse selection</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Capacity</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Accept / Reject / Modify</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Price + terms</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Monitor</div>
+        </div>
+        <p style="margin-top:20px; color:var(--grey-300); font-size:14px;">Every unit in this chapter sits somewhere on this chain — from Mari's application landing on Ramesh's desk, through the hazards and adverse selection he has to screen for, to the price and conditions he sets, and the monitoring that never really stops.</p>
+      </div>
+    </div>
+
+    <!-- Exam traps -->
+    <div class="unit reveal" id="traps">
+      <span class="unit-num">Exam Traps</span>
+      <h2 class="unit-title">The most important Chapter 5 traps</h2>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 1</span><p class="wrong">✗ Adverse selection = fraud.</p><p class="right">✓ Not necessarily — it's about high-risk individuals being more motivated to seek insurance.</p></div>
+        <div class="trap-item"><span class="tag">Trap 2</span><p class="wrong">✗ Treaty = individual negotiation.</p><p class="right">✓ Treaty generally covers a defined class of eligible business automatically.</p></div>
+        <div class="trap-item"><span class="tag">Trap 3</span><p class="wrong">✗ Facultative = automatic.</p><p class="right">✓ Facultative is individually considered.</p></div>
+        <div class="trap-item"><span class="tag">Trap 4</span><p class="wrong">✗ Physical hazard = intentional behavior.</p><p class="right">✓ Physical hazard is a tangible condition, not intent.</p></div>
+      </div>
+    </div>
+
+    <!-- Self test -->
+    <div class="unit reveal" id="selftest">
+      <span class="unit-num">Self-Test</span>
+      <h2 class="unit-title">12 rapid-fire questions, then the answer key</h2>
+      <ol class="qa-list">
+        <li>What four activities make up underwriting?</li>
+        <li>What is underwriting, in one sentence?</li>
+        <li>What is adverse selection?</li>
+        <li>What is capacity?</li>
+        <li>What is the difference between treaty and facultative reinsurance?</li>
+        <li>Name three sources of underwriting information.</li>
+        <li>What is the difference between loss prevention and loss reduction?</li>
+        <li>What are the four types of hazard?</li>
+        <li>What are the three broad underwriting decisions?</li>
+        <li>What is the formula for premium?</li>
+        <li>Can a front-line agent like Jai bind every risk without restriction?</li>
+        <li>What is the purpose of underwriting guidelines?</li>
+      </ol>
+
+      <details class="answers">
+        <summary>Show the answer key</summary>
+        <ol class="qa-list">
+          <li>Selecting insureds, pricing coverage, determining terms and conditions, and monitoring underwriting decisions.</li>
+          <li>The process of selecting which risks to insure, pricing them, setting terms and conditions, and monitoring how the decision performs over time.</li>
+          <li>When people more likely to experience losses are more motivated to obtain insurance.</li>
+          <li>The amount of business an insurer is able to write, based on its financial resources, surplus, reinsurance, and expertise.</li>
+          <li>Treaty is an automatic group arrangement covering a defined class of business; facultative is an individually negotiated, case-by-case arrangement.</li>
+          <li>Any three of: producer information, consumer investigation reports, government records, financial rating services, inspection reports, field marketing information, claim files, production records, premium audits, applicant/insured records.</li>
+          <li>Loss prevention reduces the frequency of loss; loss reduction reduces the severity of loss once it occurs.</li>
+          <li>Moral, attitudinal, physical, and legal.</li>
+          <li>Accept, reject, and accept with modification.</li>
+          <li>Premium = Rate × Exposure Units.</li>
+          <li>No — only within the authority granted to them; risks outside that authority must be escalated.</li>
+          <li>To translate company strategy into consistent, repeatable underwriting decisions.</li>
+        </ol>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+<div class="chapter-pager">
+  <a class="pager-link" href="ains-21-ch4.html">
+    <span class="pager-dir">← Previous chapter</span>
+    <span class="pager-title">Marketing</span>
+  </a>
+  <a class="pager-link next" href="ains-21-ch6.html">
+    <span class="pager-dir">Next chapter</span>
+    <span class="pager-title">Claims →</span>
+  </a>
+</div>
+<p style="text-align:center; margin: -10px 0 8px;"><a href="ains-21-ch5-tests.html" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; background:var(--orange); color:#fff; text-decoration:none; font-family:'DM Mono',monospace; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;">Test yourself — Chapter 5 practice tests →</a></p>
+<p style="text-align:center; margin: 0 0 30px;"><a class="pager-link back-link" href="ains-21.html" style="display:inline;">← All 10 chapters</a></p>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

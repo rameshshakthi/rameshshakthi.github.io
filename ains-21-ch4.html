@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AINS-21 Chapter 4 — Marketing | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="AINS-21 Chapter 4 study notes: agency relationships and authority, independent/exclusive/direct-writing marketing systems, producer compensation and regulation — plus combined case studies and exam traps for Chapters 3 and 4."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/ains-21-ch4.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 26px 0; row-gap: 10px; }
+  .flow-step {
+    padding: 13px 18px; border: 1px solid var(--line); background: #fff;
+    font-size: 13.5px; text-align: center; color: var(--grey-700); line-height: 1.4;
+  }
+  .flow-step strong { display: block; color: var(--black); font-size: 14px; margin-bottom: 2px; }
+  .flow-arrow { padding: 0 12px; color: var(--orange-deep); font-size: 17px; flex-shrink: 0; }
+  .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 26px 0; max-width: 460px; }
+  .flow-vertical .flow-step { text-align: left; }
+  .flow-vertical .flow-arrow { text-align: center; padding: 0; }
+
+  .branch-group { margin: 30px 0; }
+  .branch-root {
+    display: inline-block; padding: 12px 22px; border: 1px solid var(--black);
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; color: var(--black);
+    margin-bottom: 0;
+  }
+  .branch-root-wrap { text-align: center; }
+  .branch-row {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding-top: 18px; margin-top: 18px; border-top: 1px solid var(--line); position: relative;
+  }
+  .branch-row .flow-step { flex: 1 1 150px; max-width: 220px; }
+  .branch-row.wide .flow-step { max-width: 170px; }
+  .branch-row.tier2 { border-top: none; padding-top: 8px; margin-top: 8px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  .pill-list { list-style: none; display: grid; gap: 10px; margin: 22px 0 !important; }
+  .pill-list li {
+    display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px;
+    border: 1px solid var(--line); background: #fff; font-size: 15px; color: var(--grey-700); margin: 0 !important;
+  }
+  .pill-num {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--black); color: var(--white);
+    font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+
+  .formula-box {
+    font-family: 'DM Mono', monospace; background: var(--grey-100); border: 1px solid var(--line);
+    padding: 18px 22px; margin: 20px 0; font-size: 13.5px; line-height: 2; color: var(--black);
+  }
+  .formula-box .res { color: var(--orange-deep); font-weight: 500; }
+  .formula-box .op { color: var(--grey-500); }
+
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-card .flow-step { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .flow-step strong { color: var(--white); }
+  .summary-card .flow-arrow { color: var(--orange-light); }
+  .summary-card .branch-root { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .summary-card .formula-box { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: var(--grey-300); }
+  .summary-card .formula-box .res { color: var(--orange-light); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  .story-chain { display: flex; flex-direction: column; gap: 0; margin: 26px 0; }
+  .story-step { display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .story-step:last-child { border-bottom: none; }
+  .story-badge {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--orange);
+    color: #fff; font-family: 'DM Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+  .story-step p { margin: 0; font-size: 15px; color: var(--grey-700); }
+  .story-step strong { color: var(--black); }
+
+  .case-card { border: 1px solid var(--line); padding: 22px 26px; margin: 22px 0; background: #fff; }
+  .case-card h4 { margin-top: 0; }
+  .case-card p:last-child { margin-bottom: 0; }
+
+  .trap-grid { display: grid; gap: 14px; margin: 24px 0; }
+  .trap-item { border: 1px solid var(--line); border-left: 3px solid #b02a02; padding: 16px 20px; background: #fff; }
+  .trap-item .wrong { color: #b02a02; font-size: 14.5px; }
+  .trap-item .right { color: var(--grey-700); font-size: 14.5px; margin-top: 6px; }
+  .trap-item .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-500); margin-bottom: 6px; display:block; }
+  .trap-subhead {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-deep); margin: 26px 0 4px;
+  }
+
+  .qa-list { list-style: none; counter-reset: qa; margin: 20px 0 !important; }
+  .qa-list li { counter-increment: qa; padding: 12px 0 12px 34px; position: relative; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--grey-700); margin:0 !important; }
+  .qa-list li::before {
+    content: counter(qa); position: absolute; left: 0; top: 12px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--grey-100); color: var(--orange-deep); font-family: 'DM Mono', monospace; font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  details.answers { margin-top: 18px; border: 1px solid var(--line); }
+  details.answers summary {
+    cursor: pointer; padding: 14px 20px; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-deep); background: var(--grey-100);
+  }
+  details.answers .qa-list { padding: 6px 20px 6px; }
+  details.answers .qa-list li::before { background: #fff; }
+
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500); }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <a href="ains-21.html">AINS-21</a> <span class="sep">/</span>
+    <span class="current">Chapter 4</span>
+  </p>
+  <span class="chapter-tag">Chapter 04</span>
+  <h1 class="page-title">Marketing</h1>
+  <p class="page-lede">Marketing is not just advertising — it's identifying customer needs, then creating, promoting, selling, delivering, and continuing to service the product. This chapter covers the agency relationship, the three types of agent authority, the major marketing systems, producer compensation, and the rules that keep selling insurance honest.</p>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">41</span><a href="#u41">What is insurance marketing?</a></li>
+      <li><span class="toc-n">42</span><a href="#u42">Why marketing matters</a></li>
+      <li><span class="toc-n">43</span><a href="#u43">Who is a producer?</a></li>
+      <li><span class="toc-n">44</span><a href="#u44">The agency relationship</a></li>
+      <li><span class="toc-n">45</span><a href="#u45">The agency contract</a></li>
+      <li><span class="toc-n">46</span><a href="#u46">Five duties to the principal</a></li>
+      <li><span class="toc-n">47</span><a href="#u47">Principal's duties to agent</a></li>
+      <li><span class="toc-n">48</span><a href="#u48">E&amp;O — errors and omissions</a></li>
+      <li><span class="toc-n">49</span><a href="#u49">Three types of authority</a></li>
+      <li><span class="toc-n">50</span><a href="#u50">Express authority, binding & binders</a></li>
+      <li><span class="toc-n">51</span><a href="#u51">Implied authority</a></li>
+      <li><span class="toc-n">52</span><a href="#u52">Apparent authority</a></li>
+      <li><span class="toc-n">53</span><a href="#u53">Three authorities, one table</a></li>
+      <li><span class="toc-n">54</span><a href="#u54">Marketing systems, overview</a></li>
+      <li><span class="toc-n">55</span><a href="#u55">Independent agency system</a></li>
+      <li><span class="toc-n">56</span><a href="#u56">The expiration list</a></li>
+      <li><span class="toc-n">57</span><a href="#u57">Independent agent vs. broker</a></li>
+      <li><span class="toc-n">58</span><a href="#u58">Managing general agency (MGA)</a></li>
+      <li><span class="toc-n">59</span><a href="#u59">Exclusive agency system</a></li>
+      <li><span class="toc-n">60</span><a href="#u60">Independent vs. exclusive</a></li>
+      <li><span class="toc-n">61</span><a href="#u61">Direct writing system</a></li>
+      <li><span class="toc-n">62</span><a href="#u62">Alternative distribution channels</a></li>
+      <li><span class="toc-n">63</span><a href="#u63">Mixed marketing systems</a></li>
+      <li><span class="toc-n">64</span><a href="#u64">Producer compensation</a></li>
+      <li><span class="toc-n">65</span><a href="#u65">Advertising by channel</a></li>
+      <li><span class="toc-n">66</span><a href="#u66">Producer supervision</a></li>
+      <li><span class="toc-n">67</span><a href="#u67">Producer motivation</a></li>
+      <li><span class="toc-n">68</span><a href="#u68">Product management & development</a></li>
+      <li><span class="toc-n">69</span><a href="#u69">Producer regulation & licensing</a></li>
+      <li><span class="toc-n">70</span><a href="#u70">Unfair trade practices</a></li>
+      <li><span class="toc-n">71-74</span><a href="#u71">Master diagrams & comparisons</a></li>
+      <li><span class="toc-n">—</span><a href="#connection">Chapters 3 + 4 connected</a></li>
+      <li><span class="toc-n">—</span><a href="#cases">Four case studies</a></li>
+      <li><span class="toc-n">—</span><a href="#traps">16 exam traps (Ch. 3 & 4)</a></li>
+      <li><span class="toc-n">—</span><a href="#selftest">25-question self-test</a></li>
+      <li><span class="toc-n">—</span><a href="#bigpicture">The big picture, Ch. 1–5</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u41">
+      <span class="unit-num">41 — More Than Advertising</span>
+      <h2 class="unit-title">What is insurance marketing?</h2>
+      <p>Marketing helps an insurer determine which products meet customer needs, then creates, promotes, sells, and delivers them — and it continues after the sale through customer service.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Identify customer needs</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Create products</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Promote → Sell → Deliver</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Continue serving the customer</div>
+      </div>
+    </div>
+
+    <div class="unit" id="u42">
+      <span class="unit-num">42 — Distribution Matters Too</span>
+      <h2 class="unit-title">Why marketing matters</h2>
+      <p>Mari's insurer could have a product that's properly priced, well designed, useful, and financially sound — but if nobody knows it exists, that means few sales. A good insurance product still needs an effective distribution and marketing system.</p>
+    </div>
+
+    <div class="unit" id="u43">
+      <span class="unit-num">43 — Terminology</span>
+      <h2 class="unit-title">Who is a producer?</h2>
+      <p>The chapter uses agent, broker, producer, solicitor, and sales representative. The book generally uses <strong>producer</strong> and <strong>agent</strong> interchangeably for someone who sells insurance for one or more insurers — but there are important legal distinctions between them, covered below.</p>
+    </div>
+
+    <div class="unit reveal" id="u44">
+      <span class="unit-num">44 — The Core Relationship</span>
+      <h2 class="unit-title">The agency relationship</h2>
+      <p>An agency relationship exists when one party, the <strong>agent</strong>, represents or acts on behalf of another party, the <strong>principal</strong>.</p>
+      <div class="flow">
+        <div class="flow-step"><strong>Insurer</strong>Principal</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Agent</strong>represents insurer</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Customer</strong></div>
+      </div>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Jai works as an agent for XYZ Insurer. XYZ is the principal; Jai is the agent, performing authorized activities on XYZ's behalf.</p></div>
+    </div>
+
+    <div class="unit" id="u45">
+      <span class="unit-num">45 — Formalizing It</span>
+      <h2 class="unit-title">The agency contract</h2>
+      <p>The relationship is normally formalized through a written agency contract, which can specify:</p>
+      <ul>
+        <li>Scope of authority and products the agent may sell</li>
+        <li>Binding authority</li>
+        <li>Compensation and handling of funds</li>
+        <li>Termination provisions</li>
+      </ul>
+    </div>
+
+    <div class="unit reveal" id="u46">
+      <span class="unit-num">46 — L-O-R-A-R</span>
+      <h2 class="unit-title">Five duties to the principal</h2>
+      <table class="data-table">
+        <thead><tr><th>Duty</th><th>Meaning</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Loyalty</td><td>Act for the principal's benefit within the legal/contractual framework</td><td>Ramesh should not help a customer hide facts from XYZ to get a policy issued</td></tr>
+          <tr><td>Obedience</td><td>Follow the principal's lawful instructions</td><td>Sabari cannot bind homeowners coverage beyond his authorized limit</td></tr>
+          <tr><td>Reasonable care</td><td>Act as a reasonably prudent person would</td><td>An agent shouldn't carelessly give obviously incorrect coverage advice — risk of E&amp;O exposure</td></tr>
+          <tr><td>Accounting</td><td>Properly account for the principal's money and property</td><td>An agent can't treat a customer's ₹50,000 premium as personal spending money</td></tr>
+          <tr><td>Relaying information</td><td>Keep the principal informed of relevant facts</td><td>Jai's agent learns an insured building is now vacant and must relay that to the insurer</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Memory — L-O-R-A-R</span><p>Loyalty, Obedience, Reasonable care, Accounting, Relaying information. Because the agent represents the insurer, information the agent knows can be legally attributed to the insurer in appropriate circumstances.</p></div>
+    </div>
+
+    <div class="unit" id="u47">
+      <span class="unit-num">47 — It Goes Both Ways</span>
+      <h2 class="unit-title">Principal's duties to agent</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Pay compensation — commission, salary, or other agreed pay</li>
+        <li><span class="pill-num">2</span>Indemnify the agent, in appropriate circumstances, if the agent suffers loss or liability without fault while acting within authorized duties</li>
+      </ol>
+    </div>
+
+    <div class="unit reveal" id="u48">
+      <span class="unit-num">48 — Professional Risk</span>
+      <h2 class="unit-title">E&amp;O — errors and omissions</h2>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Mari asks Sabari, an agent, "do I have coverage for this business exposure?" Sabari incorrectly says yes. A loss later occurs and the policy doesn't cover it — Mari suffers financial harm and may bring an E&amp;O claim against Sabari.</p></div>
+      <div class="callout"><span class="callout-label">Memory</span><p>E&amp;O = a professional mistake that can cause customer harm.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u49">
+      <span class="unit-num">49 — A Major Exam Area</span>
+      <h2 class="unit-title">Three types of agent authority</h2>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">AGENT AUTHORITY</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Express</strong>contract says it</div>
+          <div class="flow-step"><strong>Implied</strong>job requires it</div>
+          <div class="flow-step"><strong>Apparent</strong>customer thinks it</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="unit" id="u50">
+      <span class="unit-num">50 — Spelled Out & Bridging the Gap</span>
+      <h2 class="unit-title">Express authority, binding authority & binders</h2>
+      <p><strong>Express authority</strong> is specifically granted by the agency contract — e.g. "Jai may bind homeowners coverage up to ₹50 lakh."</p>
+      <p><strong>Binding authority</strong> is the power to make coverage effective on behalf of the insurer. When Ramesh calls his agent needing immediate coverage, the agent's binding authority lets him properly bind it right away.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Application / agreement</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>Binder</strong> — temporary coverage</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Formal policy issued</div>
+      </div>
+      <p style="font-size:14px; color:var(--grey-500);">A binder can be written or oral, and bridges the gap until formal policy documentation is issued — as when Mari's agent says "coverage is bound" the moment she buys a new car.</p>
+    </div>
+
+    <div class="unit" id="u51">
+      <span class="unit-num">51 — Reasonably Necessary</span>
+      <h2 class="unit-title">Implied authority</h2>
+      <p>Authority reasonably necessary to accomplish the agent's authorized purpose — even if not specifically stated.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>XYZ expressly authorizes Ramesh to sell policies but never explicitly says he may collect premiums. Since collecting premiums is reasonably necessary to complete the authorized sale, that can be implied authority.</p></div>
+      <div class="callout"><span class="callout-label">Memory</span><p>Express = specifically stated. Implied = reasonably necessary.</p></div>
+    </div>
+
+    <div class="unit" id="u52">
+      <span class="unit-num">52 — What It Looks Like to Others</span>
+      <h2 class="unit-title">Apparent authority</h2>
+      <p>Exists when the principal's actions make it reasonable for a third party to believe the agent has authority.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>XYZ gives Jai branded forms and binding authority for routine policies. XYZ later terminates Jai but doesn't retrieve the materials or notify customers. Mari sees Jai using XYZ materials and reasonably believes he still has authority — if she relies on that appearance, XYZ may be bound under apparent authority principles.</p></div>
+      <div class="callout"><span class="callout-label">Memory</span><p>Apparent = authority as it appears to the third party.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u53">
+      <span class="unit-num">53 — All Three Together</span>
+      <h2 class="unit-title">Three authorities, one table</h2>
+      <table class="data-table">
+        <thead><tr><th>Type</th><th>Easy meaning</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Express</td><td>Specifically granted</td><td>Contract says the agent may bind coverage</td></tr>
+          <tr><td>Implied</td><td>Necessary to perform the job</td><td>Collecting premiums to complete a sale</td></tr>
+          <tr><td>Apparent</td><td>Reasonably appears to a third party</td><td>The principal's own actions make the agent look authorized</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Super-memory</span><p>EXPRESS = contract says it. IMPLIED = job requires it. APPARENT = customer thinks it.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u54">
+      <span class="unit-num">54 — Four Categories</span>
+      <h2 class="unit-title">Marketing systems, overview</h2>
+      <ol class="pill-list">
+        <li><span class="pill-num">1</span>Independent agency system</li>
+        <li><span class="pill-num">2</span>Exclusive agency system</li>
+        <li><span class="pill-num">3</span>Direct writing system</li>
+        <li><span class="pill-num">4</span>Alternative distribution channels</li>
+      </ol>
+      <p style="font-size:14px; color:var(--grey-500);">Many insurers blend several of these into a <strong>mixed marketing system</strong> — see unit 63.</p>
+    </div>
+
+    <div class="unit" id="u55">
+      <span class="unit-num">55 — Choice Among Insurers</span>
+      <h2 class="unit-title">Independent agency system</h2>
+      <p>An independent agency generally represents several unrelated insurers. It's its own business, and its producers are generally employed by the agency rather than by the insurers.</p>
+      <div class="flow">
+        <div class="flow-step">Insurer A</div>
+        <div class="flow-step">Insurer B</div>
+        <div class="flow-step">Insurer C</div>
+      </div>
+      <p style="font-size:14px; color:var(--grey-500); text-align:center; margin-top:-14px;">↓ all reachable through the independent agency ↓</p>
+      <p style="text-align:center;"><strong>Customer</strong></p>
+      <div class="callout"><span class="callout-label">Key feature</span><p>The agency typically owns its <strong>expiration list</strong>.</p></div>
+    </div>
+
+    <div class="unit" id="u56">
+      <span class="unit-num">56 — Who's Up for Renewal</span>
+      <h2 class="unit-title">The expiration list</h2>
+      <p>Contains current policyholders and their policy expiration dates — telling the agency whose policy is coming up for renewal, and when.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Insurer A becomes uncompetitive</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Agent checks Insurer B</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Offers alternative, subject to the customer's approval</div>
+      </div>
+      <p style="font-size:14px; color:var(--grey-500);">Ownership of the expiration list is a major distinguishing feature of the independent agency system.</p>
+    </div>
+
+    <div class="unit reveal" id="u57">
+      <span class="unit-num">57 — A Common Confusion</span>
+      <h2 class="unit-title">Independent agent vs. broker</h2>
+      <table class="data-table">
+        <thead><tr><th>Independent agent</th><th>Broker</th></tr></thead>
+        <tbody>
+          <tr><td>Generally represents <strong>insurers</strong></td><td>Represents the <strong>insurance buyer / customer</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:14px; color:var(--grey-500);">Ramesh wants business insurance; a broker shops among insurers to find suitable coverage and value for him. Brokers are not legal representatives of insurers and generally don't have the same binding authority as agents.</p>
+    </div>
+
+    <div class="unit" id="u58">
+      <span class="unit-num">58 — The Wholesaler Layer</span>
+      <h2 class="unit-title">Managing general agency (MGA)</h2>
+      <p>An MGA is an independent business that appoints and supervises independent agents for insurers using the independent agency system — functioning somewhat like a wholesaler.</p>
+      <div class="flow">
+        <div class="flow-step">Insurer</div><div class="flow-arrow">→</div>
+        <div class="flow-step">MGA</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Agents</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Customers</div>
+      </div>
+      <p style="font-size:14px; color:var(--grey-500);">Its exact authority depends on its contracts with insurers, and MGAs typically receive a managerial commission — often called an <strong>override</strong> — based on premium or profitability.</p>
+    </div>
+
+    <div class="unit" id="u59">
+      <span class="unit-num">59 — One Insurer Only</span>
+      <h2 class="unit-title">Exclusive agency system</h2>
+      <p>An exclusive agent sells insurance for one insurer or a group of related insurers, and can't normally shop freely among unrelated insurers. The agent is generally self-employed rather than an employee, though arrangements vary.</p>
+    </div>
+
+    <div class="unit reveal" id="u60">
+      <span class="unit-num">60 — Head to Head</span>
+      <h2 class="unit-title">Independent vs. exclusive</h2>
+      <table class="data-table">
+        <thead><tr><th>Feature</th><th>Independent</th><th>Exclusive</th></tr></thead>
+        <tbody>
+          <tr><td>Insurers represented</td><td>Usually several unrelated insurers</td><td>One insurer / group of related insurers</td></tr>
+          <tr><td>Flexibility</td><td>Higher</td><td>Lower</td></tr>
+          <tr><td>Expiration list</td><td>Usually agency-owned</td><td>Depends on contract</td></tr>
+          <tr><td>Customer options</td><td>More insurers available</td><td>Primarily the represented insurer</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Memory</span><p>Independent = independent choice among insurers. Exclusive = exclusive relationship with one insurer/group.</p></div>
+    </div>
+
+    <div class="unit" id="u61">
+      <span class="unit-num">61 — Insurer as Employer</span>
+      <h2 class="unit-title">Direct writing system</h2>
+      <p>Sales representatives are <strong>employees of the insurer</strong> — unlike the independent or exclusive agency setup, where the producer runs their own business. Direct-writing representatives may be called agents, but they're employees, and the insurer generally owns the expiration list.</p>
+    </div>
+
+    <div class="unit reveal" id="u62">
+      <span class="unit-num">62 — Beyond the Agent</span>
+      <h2 class="unit-title">Alternative distribution channels</h2>
+      <h4>Direct response</h4>
+      <p>No agent is involved — sales happen through mail, phone, or internet. Sabari clicks an online ad → gets a quote → applies → pays → receives a policy, with no traditional agent necessary.</p>
+      <h4>Internet</h4>
+      <p>The web touches multiple points — online quotes, billing, policy issuance, customer service — and web-based distributors can act as portals/aggregators delivering leads to insurers.</p>
+      <h4>Call centers</h4>
+      <p>Handle sales, general inquiries, claims-related processing, billing questions, and endorsements — like Ramesh calling in to change his address.</p>
+      <h4>Group marketing</h4>
+      <p>Sells to members of a common organization — affinity, mass, or worksite marketing. When Mari's employer offers group insurance, premiums may be deducted through payroll.</p>
+      <h4>Financial institutions</h4>
+      <p>Banks and other institutions distribute insurance too, often through an insurance representative or a strategic arrangement with an insurer.</p>
+    </div>
+
+    <div class="unit" id="u63">
+      <span class="unit-num">63 — Blending Channels</span>
+      <h2 class="unit-title">Mixed marketing systems</h2>
+      <p>Many insurers don't rely on just one channel — combining independent agents, internet, call centers, and direct response into a <strong>mixed marketing system</strong> is increasingly common.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Sabari can buy through an agent, get a quote online, call the insurer, or renew digitally — the same insurer supports all of these channels.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u64">
+      <span class="unit-num">64 — Getting Paid</span>
+      <h2 class="unit-title">Producer compensation</h2>
+      <table class="data-table">
+        <thead><tr><th>Method</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Sales commission</td><td>A percentage of premium for business produced — e.g. ₹1,00,000 premium × 10% = ₹10,000</td></tr>
+          <tr><td>Contingent commission</td><td>Depends on premium volume and profitability of the agency's business with the insurer</td></tr>
+          <tr><td>Salary / bonuses</td><td>Fixed or performance-based pay, used alongside or instead of commission</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:14px; color:var(--grey-500);">Commissions can apply to both new policies and renewals, subject to the applicable arrangement.</p>
+    </div>
+
+    <div class="unit" id="u65">
+      <span class="unit-num">65 — What Gets Emphasized</span>
+      <h2 class="unit-title">Advertising by channel</h2>
+      <table class="data-table">
+        <thead><tr><th>Channel</th><th>Advertising emphasis</th></tr></thead>
+        <tbody>
+          <tr><td>Independent agency</td><td>Agency, service, reputation, local presence (insurer may separately promote its national brand)</td></tr>
+          <tr><td>Exclusive agency</td><td>Insurer, agent, local service</td></tr>
+          <tr><td>Direct writing</td><td>Company, products, brand</td></tr>
+          <tr><td>Direct response</td><td>Especially important, since there may be no traditional producer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="unit" id="u66">
+      <span class="unit-num">66 — Keeping Producers on Track</span>
+      <h2 class="unit-title">Producer supervision</h2>
+      <p>Insurers can't just appoint producers and forget them — marketing representatives, agency managers, district managers, and field/regional offices supervise and support them to maintain relationships and motivate profitable volume.</p>
+    </div>
+
+    <div class="unit" id="u67">
+      <span class="unit-num">67 — Selling the Right Business</span>
+      <h2 class="unit-title">Producer motivation</h2>
+      <p>Insurers want producers selling <strong>the right products + profitable business</strong> — through encouragement, bonuses, commissions, sales contests, and recognition. Motivation is part of marketing management, not "sell anything at any price."</p>
+    </div>
+
+    <div class="unit" id="u68">
+      <span class="unit-num">68 — Listening to the Field</span>
+      <h2 class="unit-title">Product management & development</h2>
+      <p>Marketing gathers information from producers, customers, competitors, and claims experience, then works with other departments on coverage, pricing, services, and modifications.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Customer need</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Producer feedback → Marketing</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Product development → new/modified coverage</div>
+      </div>
+      <p style="font-size:14px; color:var(--grey-500);">When Sivaprakasam notices customers asking about a new technology-related exposure, he can pass that demand up through marketing — people in sales are often the first to spot changing customer needs and competitive developments.</p>
+    </div>
+
+    <div class="unit reveal" id="u69">
+      <span class="unit-num">69 — Selling Legally</span>
+      <h2 class="unit-title">Producer regulation & licensing</h2>
+      <p>State insurance departments regulate both insurers and producers — mainly through licensing and unfair trade practice laws. Requirements vary by state, but generally include examination, qualifications, pre-licensing education, insurer appointment, and continuing education.</p>
+      <div class="flow-vertical">
+        <div class="flow-step">Education → licensing exam → license</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Insurer appointment → sell insurance</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Continuing education → renewal</div>
+      </div>
+      <div class="callout callout--trap"><span class="callout-label">Important distinction</span><p>Passing the licensing exam isn't necessarily enough — a producer may also need an insurer appointment before selling for that insurer, depending on the state's requirements.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u70">
+      <span class="unit-num">70 — Keeping Sales Honest</span>
+      <h2 class="unit-title">Unfair trade practices</h2>
+      <table class="data-table">
+        <thead><tr><th>Practice</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Misrepresentation / false advertising</td><td>Sabari tells a customer "this policy covers every possible business loss" when it clearly has exclusions</td></tr>
+          <tr><td>Tie-in sales</td><td>A dealership says "you can only get the car loan if you buy insurance from my insurer" — insurance improperly required as a condition of another transaction</td></tr>
+          <tr><td>Rebating</td><td>Ramesh offers to secretly return part of his commission to a customer to induce a sale, where prohibited by law</td></tr>
+          <tr><td>Other deceptive practices</td><td>False statements about a competitor, false information on an application, or omitting a fact that would get an application rejected, to earn a commission</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><span class="callout-label">Memory</span><p>Never sell the policy that exists only in your imagination. Insurance transactions rely on honesty and utmost good faith — state rules on rebating differ, so always follow the applicable legal context.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u71">
+      <span class="unit-num">71-74 — Putting It Together</span>
+      <h2 class="unit-title">Master diagrams & comparisons</h2>
+
+      <h4>Distribution, top to bottom</h4>
+      <div class="branch-group">
+        <div class="branch-root-wrap"><div class="branch-root">INSURER → MARKETING STRATEGY</div></div>
+        <div class="branch-row">
+          <div class="flow-step"><strong>Producers</strong>Independent · Exclusive · Direct writing</div>
+          <div class="flow-step"><strong>Direct channels</strong>Direct response · Internet · Call centers</div>
+          <div class="flow-step"><strong>Group / other</strong>Group marketing · Financial institutions</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:14px; color:var(--grey-500);">All paths ultimately reach the <strong>customer</strong>.</p>
+
+      <h4>Agent vs. broker vs. direct-writing representative</h4>
+      <table class="data-table">
+        <thead><tr><th>Role</th><th>Represents</th></tr></thead>
+        <tbody>
+          <tr><td>Agent</td><td>Insurer</td></tr>
+          <tr><td>Broker</td><td>Customer</td></tr>
+          <tr><td>Direct writing sales representative</td><td>Employee of the insurer</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:14px; color:var(--grey-500);"><em>Exam scenario:</em> "Who generally represents the insurance purchaser rather than the insurer?" → <strong>Broker.</strong></p>
+
+      <h4>Marketing systems, side by side</h4>
+      <table class="data-table">
+        <thead><tr><th>System</th><th>Producer represents</th><th>Producer status</th></tr></thead>
+        <tbody>
+          <tr><td>Independent agency</td><td>Usually several insurers</td><td>Agency employee/owner</td></tr>
+          <tr><td>Exclusive agency</td><td>One insurer/group</td><td>Generally self-employed</td></tr>
+          <tr><td>Direct writing</td><td>Employer insurer</td><td>Employee</td></tr>
+          <tr><td>Direct response</td><td>Insurer</td><td>No traditional agent</td></tr>
+          <tr><td>Internet</td><td>Can involve insurer/producer/customer</td><td>Depends</td></tr>
+          <tr><td>Call center</td><td>Insurer/service organization</td><td>Employees</td></tr>
+          <tr><td>Group marketing</td><td>Group members</td><td>Varies</td></tr>
+          <tr><td>Financial institution</td><td>Insurer/producer via institution</td><td>Varies</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- SHARED WRAP-UP (Chapters 3 + 4) -->
+<section class="chapter-body" style="padding-top:0;">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="connection">
+      <span class="unit-num">Chapters 3 + 4 — Connected</span>
+      <h2 class="unit-title">Marketing brings the business in; financials tell you if it worked</h2>
+      <div class="flow-vertical">
+        <div class="flow-step"><strong>Marketing</strong> → customers → policies → premiums</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Underwriting → claims</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">Financial results → profitability + solvency</div>
+      </div>
+      <div class="callout callout--trap"><span class="callout-label">Example</span><p>Ramesh's insurer runs an aggressive campaign and sells 100,000 new policies. Fantastic? Not necessarily — if the risks were poorly selected or mispriced: more policies → more exposure → more claims → higher loss ratio → higher combined ratio → potential financial stress. Marketing and financial performance are directly connected.</p></div>
+    </div>
+
+    <div class="unit reveal" id="cases">
+      <span class="unit-num">Four Case Studies</span>
+      <h2 class="unit-title">Real-world scenarios worth remembering</h2>
+
+      <div class="case-card">
+        <h4 style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--orange-deep); margin-bottom:14px;">Ramesh's Insurance Company — reading the ratios together</h4>
+        <p>Written premiums ₹11 crore, earned premiums ₹10 crore, incurred losses + LAE ₹7.5 crore, underwriting expenses ₹3.3 crore, net investment income ₹1 crore, surplus ₹5 crore.</p>
+        <table class="data-table">
+          <thead><tr><th>Step</th><th>Calculation</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>Loss ratio</td><td>₹7.5cr ÷ ₹10cr</td><td>75%</td></tr>
+            <tr><td>Expense ratio</td><td>₹3.3cr ÷ ₹11cr</td><td>30%</td></tr>
+            <tr><td>Combined ratio</td><td>75% + 30%</td><td>105% — underwriting is losing money</td></tr>
+            <tr><td>Investment income ratio</td><td>₹1cr ÷ ₹10cr</td><td>10%</td></tr>
+            <tr><td>Overall operating ratio</td><td>105% − 10%</td><td>95% — favorable overall</td></tr>
+            <tr><td>Capacity ratio</td><td>₹11cr ÷ ₹5cr</td><td>2.2 : 1 — monitor, don't judge alone</td></tr>
+          </tbody>
+        </table>
+        <p>Conclusion: underwriting is weak, investment income is helpful, the overall operation is positive — exactly the integrated thinking Chapter 3 wants you to build.</p>
+      </div>
+
+      <div class="case-card">
+        <h4 style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--orange-deep); margin-bottom:14px;">Mari's Marketing Journey — a policy's life through distribution</h4>
+        <p>Mari contacts an independent agent, who compares Insurer A, B, and C, gathers information, and submits the application. The insurer evaluates the business (that's underwriting — Chapter 5), the policy is issued, and the agency services it. At renewal, the agency reviews her needs again — marketing continuing well beyond the initial sale.</p>
+      </div>
+
+      <div class="case-card">
+        <h4 style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--orange-deep); margin-bottom:14px;">Sabari and Apparent Authority</h4>
+        <p>XYZ terminates Sabari's agency but never retrieves his branded materials. Sabari accepts Mari's application on XYZ documents and tells her coverage is bound; Mari reasonably believes he still has authority. If a loss occurs, apparent authority principles may bind XYZ depending on the facts — the principal can create legal consequences through what it makes <em>appear</em> authorized, not just what it explicitly grants.</p>
+      </div>
+
+      <div class="case-card">
+        <h4 style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--orange-deep); margin-bottom:14px;">Jai and E&amp;O</h4>
+        <p>Ramesh asks agent Jai what coverage his software business needs. Jai carelessly says "your basic policy covers all professional errors." Ramesh later faces a professional liability claim the policy doesn't cover — incorrect advice → customer reliance → coverage gap → financial harm → potential E&amp;O claim. A producer's professional responsibility matters.</p>
+      </div>
+    </div>
+
+    <!-- Combined exam traps -->
+    <div class="unit reveal" id="traps">
+      <span class="unit-num">16 Exam Traps</span>
+      <h2 class="unit-title">The most important Chapter 3 & 4 traps</h2>
+
+      <div class="trap-subhead">Chapter 3</div>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 1</span><p class="wrong">✗ Written premium = earned premium.</p><p class="right">✓ Written is recorded when the policy is written; earned occurs as coverage is provided.</p></div>
+        <div class="trap-item"><span class="tag">Trap 2</span><p class="wrong">✗ Paid losses = incurred losses.</p><p class="right">✓ Incurred = paid + change in reserves.</p></div>
+        <div class="trap-item"><span class="tag">Trap 3</span><p class="wrong">✗ Loss ratio uses written premiums.</p><p class="right">✓ Loss ratio uses earned premiums.</p></div>
+        <div class="trap-item"><span class="tag">Trap 4</span><p class="wrong">✗ Expense ratio uses earned premiums.</p><p class="right">✓ Expense ratio uses written premiums.</p></div>
+        <div class="trap-item"><span class="tag">Trap 5</span><p class="wrong">✗ Combined ratio includes investment income.</p><p class="right">✓ Investment income is considered separately.</p></div>
+        <div class="trap-item"><span class="tag">Trap 6</span><p class="wrong">✗ A combined ratio below 100% means overall profit.</p><p class="right">✓ It generally indicates only an underwriting gain — overall performance also depends on investment results.</p></div>
+        <div class="trap-item"><span class="tag">Trap 7</span><p class="wrong">✗ Assets minus all liabilities = surplus.</p><p class="right">✓ It's specifically <strong>admitted</strong> assets minus liabilities.</p></div>
+        <div class="trap-item"><span class="tag">Trap 8</span><p class="wrong">✗ The balance sheet shows annual profitability.</p><p class="right">✓ Balance sheet = position at a point in time; income statement = performance over a period.</p></div>
+      </div>
+
+      <div class="trap-subhead">Chapter 4</div>
+      <div class="trap-grid">
+        <div class="trap-item"><span class="tag">Trap 9</span><p class="wrong">✗ An agent represents the customer.</p><p class="right">✓ Agent → insurer. Broker → customer.</p></div>
+        <div class="trap-item"><span class="tag">Trap 10</span><p class="wrong">✗ An independent agent represents one insurer.</p><p class="right">✓ Independent agents generally represent several unrelated insurers.</p></div>
+        <div class="trap-item"><span class="tag">Trap 11</span><p class="wrong">✗ An exclusive agent is necessarily an insurer employee.</p><p class="right">✓ Exclusive agents are generally self-employed, though arrangements vary.</p></div>
+        <div class="trap-item"><span class="tag">Trap 12</span><p class="wrong">✗ A direct writing rep owns the expiration list.</p><p class="right">✓ The insurer generally owns it.</p></div>
+        <div class="trap-item"><span class="tag">Trap 13</span><p class="wrong">✗ Express and apparent authority are the same.</p><p class="right">✓ Express = actually granted. Apparent = appears granted to a third party.</p></div>
+        <div class="trap-item"><span class="tag">Trap 14</span><p class="wrong">✗ Implied authority is written in the contract.</p><p class="right">✓ It arises from what's reasonably necessary to accomplish the authorized purpose.</p></div>
+        <div class="trap-item"><span class="tag">Trap 15</span><p class="wrong">✗ Marketing ends after the policy sale.</p><p class="right">✓ Marketing includes continuing customer relationships and post-sale service.</p></div>
+        <div class="trap-item"><span class="tag">Trap 16</span><p class="wrong">✗ An MGA is just another name for an insurance company.</p><p class="right">✓ An MGA is an intermediary that appoints/supervises independent agents, subject to its contracts with insurers.</p></div>
+      </div>
+    </div>
+
+    <!-- Self test -->
+    <div class="unit reveal" id="selftest">
+      <span class="unit-num">Self-Test</span>
+      <h2 class="unit-title">25 rapid-fire questions, then the answer key</h2>
+      <h4>Chapter 3</h4>
+      <ol class="qa-list">
+        <li>What are the two major sources of insurer income?</li>
+        <li>What is underwriting income?</li>
+        <li>What is investment income?</li>
+        <li>What is written premium?</li>
+        <li>What is earned premium?</li>
+        <li>What is unearned premium?</li>
+        <li>What is a paid loss?</li>
+        <li>What is a loss reserve?</li>
+        <li>What does IBNR mean?</li>
+        <li>What is the formula for incurred losses?</li>
+        <li>What is the formula for loss ratio?</li>
+        <li>What premium measure is used in the loss ratio?</li>
+        <li>What premium measure is used in the expense ratio?</li>
+        <li>What is the combined ratio?</li>
+        <li>What does a combined ratio above 100% generally indicate?</li>
+        <li>Does the combined ratio include investment income?</li>
+        <li>What is the investment income ratio?</li>
+        <li>What is the overall operating ratio?</li>
+        <li>What is policyholders' surplus?</li>
+        <li>What is the capacity ratio?</li>
+      </ol>
+      <h4>Chapter 4</h4>
+      <ol class="qa-list" start="21">
+        <li>Who is the principal in an insurance agency relationship?</li>
+        <li>Who does a broker represent?</li>
+        <li>What are the three types of agent authority?</li>
+        <li>What is the difference between independent and exclusive agency systems?</li>
+        <li>What are the major unfair trade practices discussed in the chapter?</li>
+      </ol>
+
+      <details class="answers">
+        <summary>Show the answer key</summary>
+        <ol class="qa-list">
+          <li>Underwriting income and investment income.</li>
+          <li>Gain or loss from underwriting after losses and underwriting expenses are considered.</li>
+          <li>Gain or loss from investments.</li>
+          <li>Premiums on policies written during a specified period.</li>
+          <li>Premium relating to coverage already provided.</li>
+          <li>Premium relating to coverage not yet provided.</li>
+          <li>A claim payment already made.</li>
+          <li>Amount estimated/set aside for claims from losses already incurred but not settled.</li>
+          <li>Incurred But Not Reported.</li>
+          <li>Paid losses + change in loss reserves.</li>
+          <li>Incurred losses including LAE ÷ earned premiums.</li>
+          <li>Earned premiums.</li>
+          <li>Written premiums.</li>
+          <li>Loss ratio + expense ratio.</li>
+          <li>An underwriting loss.</li>
+          <li>No.</li>
+          <li>Net investment income ÷ earned premiums.</li>
+          <li>Combined ratio − investment income ratio.</li>
+          <li>Admitted assets − liabilities.</li>
+          <li>Written premiums ÷ policyholders' surplus.</li>
+          <li>The insurer.</li>
+          <li>The insurance purchaser/customer.</li>
+          <li>Express, implied, apparent.</li>
+          <li>Independent generally represents several unrelated insurers; exclusive generally represents one insurer/group.</li>
+          <li>Misrepresentation/false advertising, tie-in sales, rebating, and other deceptive practices.</li>
+        </ol>
+      </details>
+    </div>
+
+    <!-- Big picture -->
+    <div class="unit reveal" id="bigpicture">
+      <span class="unit-num">One Building, Five Floors</span>
+      <h2 class="unit-title">The big picture: Chapters 1 through 5</h2>
+      <div class="summary-card">
+        <div class="story-chain">
+          <div class="story-step"><span class="story-badge">1</span><p><strong>What is insurance?</strong> Risk management + Transfer + Business + Contract.</p></div>
+          <div class="story-step"><span class="story-badge">2</span><p><strong>Who provides it, and who regulates it?</strong> Insurers + Government + Regulation.</p></div>
+          <div class="story-step"><span class="story-badge">3</span><p><strong>Is the insurer financially healthy?</strong> Profitability + Solvency + Ratios.</p></div>
+          <div class="story-step"><span class="story-badge">4</span><p><strong>How does it reach customers?</strong> Marketing + Agents + Brokers + Distribution.</p></div>
+          <div class="story-step"><span class="story-badge">5</span><p><strong>How does it decide which risks to accept?</strong> Underwriting — next chapter.</p></div>
+        </div>
+        <p style="margin-top:20px; color:var(--grey-300); font-size:14px;">Once this chain is clear, AINS-21 stops feeling like hundreds of disconnected definitions and starts behaving like one insurance company doing one giant job — marketing brings the business in, underwriting decides what to accept, claims pays when something goes wrong, and finance keeps score.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+<div class="chapter-pager">
+  <a class="pager-link" href="ains-21-ch3.html">
+    <span class="pager-dir">← Previous chapter</span>
+    <span class="pager-title">Measuring the Financial Performance of Insurers</span>
+  </a>
+  <a class="pager-link next" href="ains-21-ch5.html">
+    <span class="pager-dir">Next chapter</span>
+    <span class="pager-title">Underwriting →</span>
+  </a>
+</div>
+<p style="text-align:center; margin: -10px 0 30px;"><a class="pager-link back-link" href="ains-21.html" style="display:inline;">← All 10 chapters</a></p>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>
