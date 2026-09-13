@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Resources | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="Study notes, chapter outlines and reference material from Ramesh Senthil Kumar (Ramesh Shakthi) — Business Analyst, Product Owner &amp; P&amp;C Insurance Specialist."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/resources.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* Nav (shared with main site) */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: padding 0.4s ease;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo-accent { color: var(--orange); }
+
+  .nav-logo-img {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1.5px solid var(--orange);
+    padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey-300);
+    text-decoration: none;
+    padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 100%;
+    bottom: 0;
+    height: 1px;
+    background: var(--orange);
+    transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 32px; height: 32px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  /* Page header */
+  .page-hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 180px 60px 100px;
+  }
+
+  .page-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--grey-300);
+    margin-bottom: 24px;
+  }
+
+  .page-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .page-eyebrow a {
+    color: var(--grey-300);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .page-eyebrow a:hover { color: var(--white); }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 92px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .page-title em {
+    font-style: italic;
+    font-weight: 500;
+    background: linear-gradient(120deg, var(--orange-light), var(--orange-deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .page-lede {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--grey-300);
+    max-width: 640px;
+  }
+
+  /* Resources grid */
+  #resources-list { background: var(--white); padding: 100px 60px 140px; }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .resource-card {
+    background: var(--white);
+    padding: 44px 36px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: background 0.4s, transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s;
+  }
+
+  a.resource-card:hover {
+    background: var(--black);
+    border-color: var(--black);
+    transform: translateY(-8px);
+    box-shadow: 0 28px 48px rgba(0,0,0,0.16);
+  }
+
+  .resource-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s ease;
+  }
+
+  a.resource-card:hover::after { transform: scaleX(1); }
+
+  .resource-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange-deep);
+    border: 1px solid var(--orange-light);
+    padding: 5px 12px;
+    margin-bottom: 24px;
+    transition: color 0.4s, border-color 0.4s;
+  }
+
+  a.resource-card:hover .resource-tag { color: var(--orange-light); border-color: var(--orange-light); }
+
+  .resource-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    transition: color 0.4s;
+  }
+
+  a.resource-card:hover .resource-title { color: var(--white); }
+
+  .resource-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--grey-500);
+    margin-bottom: 18px;
+    transition: color 0.4s;
+  }
+
+  a.resource-card:hover .resource-meta { color: var(--grey-300); }
+
+  .resource-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    transition: color 0.4s;
+  }
+
+  a.resource-card:hover .resource-desc { color: var(--grey-100); }
+
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    transition: color 0.4s, gap 0.3s ease;
+  }
+
+  a.resource-card:hover .resource-link { color: var(--orange-light); gap: 10px; }
+
+  .resource-card.is-placeholder {
+    cursor: default;
+    opacity: 0.55;
+  }
+
+  .resource-card.is-placeholder .resource-tag {
+    color: var(--grey-500);
+    border-color: var(--grey-300);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+
+  footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.13em;
+    color: var(--grey-700);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(9, 23, 42, 0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a {
+      width: 100%;
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 130px 24px 64px; }
+    #resources-list { padding: 64px 24px 100px; }
+    .resources-grid { grid-template-columns: 1fr; }
+    a.resource-card:hover { transform: none; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resources.html" class="active" aria-current="page">Resources</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow"><a href="index.html">Ramesh Shakthi</a> / Resources</p>
+  <h1 class="page-title">Study Notes &amp; <em>Reference</em> Material</h1>
+  <p class="page-lede">A growing shelf of chapter outlines, exam notes and reference material from certifications and courses I'm working through — starting with the P&amp;C insurance domain. New resources get added here as I work through them.</p>
+</section>
+
+<!-- RESOURCES GRID -->
+<section id="resources-list">
+  <div class="resources-grid">
+    <a href="ains-21.html" class="resource-card reveal">
+      <span class="resource-tag">Insurance Certification</span>
+      <h2 class="resource-title">AINS-21</h2>
+      <p class="resource-meta">10 Chapters · Property &amp; Casualty Insurance Principles</p>
+      <p class="resource-desc">Chapter-by-chapter study notes covering the core principles of P&amp;C insurance — from risk fundamentals to underwriting, claims and regulation.</p>
+      <span class="resource-link">View Chapters <span class="arrow">→</span></span>
+    </a>
+
+    <div class="resource-card is-placeholder reveal">
+      <span class="resource-tag">Coming Soon</span>
+      <h2 class="resource-title">More Insurance Resources</h2>
+      <p class="resource-meta">TBA</p>
+      <p class="resource-desc">Additional P&amp;C insurance study material and reference notes will be added here over time.</p>
+    </div>
+
+    <div class="resource-card is-placeholder reveal">
+      <span class="resource-tag">Coming Soon</span>
+      <h2 class="resource-title">Business Analysis Toolkit</h2>
+      <p class="resource-meta">TBA</p>
+      <p class="resource-desc">Templates, frameworks and notes from BA and Agile delivery work — planned for a future update.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">·</span>
+  <span>Business Analyst & Project Manager</span>
+  <span class="footer-dot">·</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>
