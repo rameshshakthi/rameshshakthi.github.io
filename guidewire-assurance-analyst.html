@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Guidewire for an Assurance Analyst | Resources | Ramesh Shakthi (RSK)</title>
+<meta name="description" content="Practical Guidewire study notes for a Business/Assurance Analyst by Ramesh Senthil Kumar (Ramesh Shakthi) — PolicyCenter, BillingCenter, ClaimCenter, forms, APIs, testing and defect investigation, with plain-English examples."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rameshshakthi.github.io/guidewire-assurance-analyst.html"/>
+<meta name="theme-color" content="#09172A"/>
+
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="shortcut icon" href="assets/favicon.ico"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #09172A;
+    --white: #f5f4f0;
+    --grey-100: #e8e6e1;
+    --grey-300: #b0aca4;
+    --grey-500: #706c65;
+    --grey-700: #3a3834;
+    --line: rgba(0,0,0,0.1);
+    --orange: #FC6604;
+    --orange-light: #FF9142;
+    --orange-deep: #C94F04;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* Nav (shared with main site) */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 60px;
+    background: rgba(9, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 700; font-style: italic;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo-accent { color: var(--orange); }
+  .nav-logo-img {
+    width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--orange); padding: 2px;
+  }
+
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--grey-300); text-decoration: none; padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--orange-light); }
+  .nav-links a.active::after { right: 0; background: var(--orange-light); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px; background: var(--grey-300);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--white); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--white); }
+
+  /* Page header */
+  .page-hero { background: var(--black); color: var(--white); padding: 170px 60px 80px; }
+
+  .page-eyebrow {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--grey-300); margin-bottom: 22px;
+  }
+  .page-eyebrow a { color: var(--grey-300); text-decoration: none; transition: color 0.3s; }
+  .page-eyebrow a:hover { color: var(--white); }
+  .page-eyebrow .sep { color: var(--grey-500); }
+  .page-eyebrow .current { color: var(--orange-light); }
+
+  .chapter-tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-light);
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 18px; max-width: 820px;
+  }
+
+  .page-lede { font-size: 16.5px; line-height: 1.8; color: var(--grey-300); max-width: 680px; }
+
+  /* TOC */
+  .toc-wrap { background: var(--white); padding: 64px 60px 0; }
+  .toc-box {
+    max-width: 900px; margin: 0 auto; border: 1px solid var(--line);
+    background: #fff; padding: 30px 36px;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 18px;
+  }
+  .toc-list { list-style: none; columns: 2; column-gap: 40px; }
+  .toc-list li { margin-bottom: 9px; break-inside: avoid; font-size: 14px; }
+  .toc-list a { color: var(--grey-700); text-decoration: none; transition: color .2s; }
+  .toc-list a:hover { color: var(--orange-deep); }
+  .toc-list .toc-n { font-family: 'DM Mono', monospace; color: var(--grey-500); margin-right: 8px; font-size: 12px; }
+
+  /* Body */
+  .chapter-body { background: var(--white); padding: 60px 60px 40px; }
+  .chapter-inner { max-width: 780px; margin: 0 auto; }
+
+  .unit { margin-bottom: 60px; scroll-margin-top: 100px; }
+  .unit-num {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--orange-deep); letter-spacing: 0.15em; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+    margin-bottom: 18px; line-height: 1.25; color: var(--black);
+  }
+  .unit p { font-size: 16px; line-height: 1.85; color: var(--grey-700); margin-bottom: 16px; }
+  .unit ul, .unit ol { margin: 0 0 16px 22px; color: var(--grey-700); font-size: 16px; line-height: 1.85; }
+  .unit li { margin-bottom: 6px; }
+  .unit strong { color: var(--black); font-weight: 500; }
+  .unit h4 {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--grey-500); margin: 26px 0 10px;
+  }
+
+  /* Callouts */
+  .callout { border-left: 3px solid var(--orange); background: var(--grey-100); padding: 18px 24px; margin: 22px 0; }
+  .callout-label {
+    display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange-deep); margin-bottom: 8px;
+  }
+  .callout p { margin: 0; color: var(--grey-700); font-size: 15.5px; line-height: 1.75; }
+  .callout--example { border-left-color: var(--black); }
+  .callout--example .callout-label { color: var(--grey-500); }
+  .callout--trap { border-left-color: #b02a02; background: rgba(176,42,2,0.06); }
+  .callout--trap .callout-label { color: #b02a02; }
+
+  /* ASCII / plain-text diagrams straight from the study notes */
+  .diagram {
+    font-family: 'DM Mono', monospace; font-size: 13.5px; line-height: 1.6;
+    white-space: pre; overflow-x: auto; background: var(--grey-100);
+    border: 1px solid var(--line); border-radius: 6px; padding: 18px 22px;
+    margin: 22px 0; color: var(--grey-700);
+  }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14.5px; }
+  .data-table th {
+    text-align: left; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange-deep); padding: 10px 14px; border-bottom: 2px solid var(--black);
+  }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--grey-700); vertical-align: top; }
+  .data-table tr:hover td { background: var(--grey-100); }
+
+  /* Revision summary card */
+  .summary-card {
+    border: 1px solid var(--black); background: var(--black); color: var(--white);
+    padding: 36px 40px; margin: 30px 0;
+  }
+  .summary-card h4 { color: var(--orange-light); margin-top: 0; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; margin-top: 20px; }
+  .summary-grid h5 {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-light); margin-bottom: 10px;
+  }
+  .summary-grid ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: var(--grey-300); }
+
+  /* Chapter footer nav */
+  .chapter-pager {
+    max-width: 780px; margin: 20px auto 0; display: flex; justify-content: space-between;
+    gap: 20px; padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .pager-link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; max-width: 46%; }
+  .pager-link.next { text-align: right; margin-left: auto; }
+  .pager-dir {
+    font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-500);
+  }
+  .pager-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--black); transition: color .2s; }
+  .pager-link:hover .pager-title { color: var(--orange-deep); }
+  .pager-link.back-link { color: var(--grey-500); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; }
+  .pager-link.back-link:hover { color: var(--orange-deep); }
+
+  /* Footer */
+  footer {
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 9px 60px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+  }
+  footer span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.13em; color: var(--grey-700); text-transform: uppercase; line-height: 1; }
+  footer .footer-dot { color: var(--grey-700); opacity: 0.5; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: rgba(9, 23, 42, 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    nav.nav-open .nav-links { max-height: 480px; }
+    .nav-links a { width: 100%; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links a::after { display: none; }
+    .page-hero { padding: 120px 24px 50px; }
+    .toc-wrap { padding: 40px 24px 0; }
+    .toc-box { padding: 24px 22px; }
+    .toc-list { columns: 1; }
+    .chapter-body { padding: 44px 24px 20px; }
+    .unit-title { font-size: 25px; }
+    .summary-card { padding: 26px 22px; }
+    .chapter-pager { flex-direction: column; }
+    .pager-link.next { text-align: left; margin-left: 0; }
+    .pager-link { max-width: 100%; }
+    footer { padding: 10px 28px; }
+  }
+</style>
+<link rel="stylesheet" href="assets/ains-chapter-assessment.css">
+<link rel="stylesheet" href="assets/ains-page-navigation.css">
+<link rel="stylesheet" href="assets/site-nav-highlight.css">
+<link rel="stylesheet" href="assets/ains-chapter-reading.css">
+<script defer src="assets/ains-chapter-reading.js"></script>
+</head>
+<body id="chapter-page-top">
+
+<!-- NAV -->
+<nav class="scrolled">
+  <a href="index.html" class="nav-logo"><img src="assets/Profile Pic.jpg" alt="Ramesh Senthil Kumar" class="nav-logo-img">R<span class="nav-logo-accent">SK</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="index.html#personal-details">Personal Details</a>
+    <a href="index.html#hobbies">Hobbies</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="resources.html" class="nav-resources active" aria-current="page">Resources</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <p class="page-eyebrow">
+    <a href="index.html">Ramesh Shakthi</a> <span class="sep">/</span>
+    <a href="resources.html">Resources</a> <span class="sep">/</span>
+    <span class="current">Guidewire</span>
+  </p>
+  <span class="chapter-tag">Assurance Analyst Study Notes</span>
+  <h1 class="page-title">Guidewire for an Assurance Analyst</h1>
+  <p class="page-lede">Practical notes for working effectively on a Guidewire InsuranceSuite project without becoming a Gosu developer — how PolicyCenter, BillingCenter and ClaimCenter fit together, what a job/submission/quote/bind actually mean, how forms and integrations work, and how to trace a defect from a requirement all the way to root cause. This is not a certification guide — it's the working vocabulary an Assurance Analyst needs to hold their own in project discussions.</p>
+
+<aside class="chapter-assessment" aria-label="Guidewire assessments">
+  <div><h2>18 practice modules</h2><p>180 multiple-choice questions across 18 topics, from P&amp;C fundamentals to real project scenarios. Submitted answers are locked. Get your score and download a short summary at the end of each module.</p></div>
+  <a href="guidewire-tests.html">Take a module assessment &#8599;</a>
+</aside>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box reveal">
+    <div class="toc-title">On this page &middot; 59 sections</div>
+    <ul class="toc-list">
+      <li><span class="toc-n">01</span><a href="#u1">What Is Guidewire?</a></li>
+      <li><span class="toc-n">02</span><a href="#u2">P&amp;C Insurance Foundation</a></li>
+      <li><span class="toc-n">03</span><a href="#u3">Insurance Policy Basics</a></li>
+      <li><span class="toc-n">04</span><a href="#u4">PolicyCenter</a></li>
+      <li><span class="toc-n">05</span><a href="#u5">Account, Contact, Policy, and Policy Period</a></li>
+      <li><span class="toc-n">06</span><a href="#u6">What Is a Job in PolicyCenter?</a></li>
+      <li><span class="toc-n">07</span><a href="#u7">Submission</a></li>
+      <li><span class="toc-n">08</span><a href="#u8">Quote</a></li>
+      <li><span class="toc-n">09</span><a href="#u9">Rating vs Underwriting vs Bind vs Issue</a></li>
+      <li><span class="toc-n">10</span><a href="#u10">Issue</a></li>
+      <li><span class="toc-n">11</span><a href="#u11">Policy Change / Endorsement</a></li>
+      <li><span class="toc-n">12</span><a href="#u12">Effective Date vs Transaction Date</a></li>
+      <li><span class="toc-n">13</span><a href="#u13">Business Rules</a></li>
+      <li><span class="toc-n">14</span><a href="#u14">Validation vs Business Rule</a></li>
+      <li><span class="toc-n">15</span><a href="#u15">Rating</a></li>
+      <li><span class="toc-n">16</span><a href="#u16">Underwriting Referral</a></li>
+      <li><span class="toc-n">17</span><a href="#u17">Workflow</a></li>
+      <li><span class="toc-n">18</span><a href="#u18">BillingCenter</a></li>
+      <li><span class="toc-n">19</span><a href="#u19">ClaimCenter</a></li>
+      <li><span class="toc-n">20</span><a href="#u20">Account vs Policy vs Claim</a></li>
+      <li><span class="toc-n">21</span><a href="#u21">Product vs Policy</a></li>
+      <li><span class="toc-n">22</span><a href="#u22">Guidewire Configuration</a></li>
+      <li><span class="toc-n">23</span><a href="#u23">What Does a Guidewire Developer/Configurator Actually Work On?</a></li>
+      <li><span class="toc-n">24</span><a href="#u24">UI vs Business Logic vs Data</a></li>
+      <li><span class="toc-n">25</span><a href="#u25">API Basics</a></li>
+      <li><span class="toc-n">26</span><a href="#u26">API Troubleshooting Example</a></li>
+      <li><span class="toc-n">27</span><a href="#u27">Data Model</a></li>
+      <li><span class="toc-n">28</span><a href="#u28">Forms in Guidewire</a></li>
+      <li><span class="toc-n">29</span><a href="#u29">Form Pattern</a></li>
+      <li><span class="toc-n">30</span><a href="#u30">Why Forms Matter</a></li>
+      <li><span class="toc-n">31</span><a href="#u31">Variable Form Concept</a></li>
+      <li><span class="toc-n">32</span><a href="#u32">Form Defect Example</a></li>
+      <li><span class="toc-n">33</span><a href="#u33">Form Edition</a></li>
+      <li><span class="toc-n">34</span><a href="#u34">Form Inference</a></li>
+      <li><span class="toc-n">35</span><a href="#u35">Forms Testing Checklist</a></li>
+      <li><span class="toc-n">36</span><a href="#u36">Documents vs Forms</a></li>
+      <li><span class="toc-n">37</span><a href="#u37">Testing Types</a></li>
+      <li><span class="toc-n">38</span><a href="#u38">Expected vs Actual</a></li>
+      <li><span class="toc-n">39</span><a href="#u39">Defect Investigation Mindset</a></li>
+      <li><span class="toc-n">40</span><a href="#u40">A Practical Defect Example</a></li>
+      <li><span class="toc-n">41</span><a href="#u41">Severity vs Root Cause</a></li>
+      <li><span class="toc-n">42</span><a href="#u42">Requirement to Release</a></li>
+      <li><span class="toc-n">43</span><a href="#u43">What You Should Put in Acceptance Criteria</a></li>
+      <li><span class="toc-n">44</span><a href="#u44">Your Assurance Analyst Role</a></li>
+      <li><span class="toc-n">45</span><a href="#u45">How AI Can Help You</a></li>
+      <li><span class="toc-n">46</span><a href="#u46">Example AI-Assisted Investigation</a></li>
+      <li><span class="toc-n">47</span><a href="#u47">What You Need to Know About Gosu</a></li>
+      <li><span class="toc-n">48</span><a href="#u48">Guidewire Data + Gosu Example</a></li>
+      <li><span class="toc-n">49</span><a href="#u49">Integration Concepts to Learn</a></li>
+      <li><span class="toc-n">50</span><a href="#u50">Common Integration Failure Patterns</a></li>
+      <li><span class="toc-n">51</span><a href="#u51">End-to-End Auto Insurance Example</a></li>
+      <li><span class="toc-n">52</span><a href="#u52">Your Mental Architecture</a></li>
+      <li><span class="toc-n">53</span><a href="#u53">What to Learn First in Your Job</a></li>
+      <li><span class="toc-n">54</span><a href="#u54">A 7-Day Study Plan</a></li>
+      <li><span class="toc-n">55</span><a href="#u55">20 Questions You Should Eventually Be Able to Answer</a></li>
+      <li><span class="toc-n">56</span><a href="#u56">The Most Important Analyst Skill</a></li>
+      <li><span class="toc-n">57</span><a href="#u57">Your Current Position</a></li>
+      <li><span class="toc-n">58</span><a href="#u58">Final Cheat Sheet</a></li>
+      <li><span class="toc-n">59</span><a href="#u59">The One Diagram to Remember</a></li>
+      <li><span class="toc-n">&mdash;</span><a href="#closing">A closing note on scope</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="chapter-body">
+  <div class="chapter-inner">
+
+    <div class="unit reveal" id="u1">
+      <span class="unit-num">Section 01</span>
+      <h2 class="unit-title">What Is Guidewire?</h2>
+      <p>Guidewire is a software platform used by Property &amp; Casualty (P&amp;C) insurers to manage insurance operations.</p>
+      <p>Its InsuranceSuite includes major applications such as:</p>
+      <ul><li><strong>PolicyCenter</strong>: policy administration</li><li><strong>BillingCenter</strong>: billing and payments</li><li><strong>ClaimCenter</strong>: claims management</li><li><strong>PricingCenter</strong>: pricing/rating capabilities</li><li><strong>UnderwritingCenter</strong>: underwriting workflows and risk assessment</li></ul>
+      <p>Guidewire describes InsuranceSuite as a connected core for the insurance lifecycle.</p>
+      <h4>The simplest mental model</h4>
+      <p>Think:</p>
+      <pre class="diagram">Customer
+   |
+   v
+PolicyCenter -----&gt; BillingCenter
+   |
+   v
+ClaimCenter</pre>
+      <p>PolicyCenter manages the policy lifecycle.</p>
+      <p>BillingCenter manages the money side.</p>
+      <p>ClaimCenter manages what happens after a loss.</p>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>A customer buys auto insurance:</p></div>
+      <ol><li>Agent creates an account.</li><li>Agent starts a submission.</li><li>PolicyCenter collects risk information.</li><li>Rating calculates premium.</li><li>Underwriting rules evaluate the risk.</li><li>Customer accepts the quote.</li><li>Policy is bound.</li><li>Policy is issued.</li><li>BillingCenter handles invoices and payments.</li><li>Customer has an accident.</li><li>ClaimCenter manages the claim.</li></ol>
+      <p>This entire chain is the foundation of your Guidewire understanding.</p>
+    </div>
+
+    <div class="unit reveal" id="u2">
+      <span class="unit-num">Section 02</span>
+      <h2 class="unit-title">P&amp;C Insurance Foundation</h2>
+      <h4>Property</h4>
+      <p>Property insurance protects against losses involving property.</p>
+      <p>Examples:</p>
+      <ul><li>Home</li><li>Building</li><li>Equipment</li><li>Commercial property</li><li>Personal belongings</li></ul>
+      <h4>Casualty</h4>
+      <p>Casualty insurance generally covers liability and other non-property exposures.</p>
+      <p>Examples:</p>
+      <ul><li>Auto liability</li><li>General liability</li><li>Workers' compensation</li><li>Professional liability</li></ul>
+      <h4>Line of Business (LOB)</h4>
+      <p>A Line of Business is a category of insurance.</p>
+      <p>Examples:</p>
+      <ul><li>Personal Auto</li><li>Homeowners</li><li>Commercial Property</li><li>Commercial Auto</li><li>General Liability</li><li>Workers' Compensation</li></ul>
+      <h4>Why LOB matters in Guidewire</h4>
+      <p>Different LOBs have different:</p>
+      <ul><li>Products</li><li>Coverages</li><li>Rating factors</li><li>Underwriting rules</li><li>Forms</li><li>Workflows</li><li>Data requirements</li><li>Integrations</li></ul>
+      <p>For example, a Personal Auto product needs vehicle and driver data. A Homeowners product needs property-related information.</p>
+    </div>
+
+    <div class="unit reveal" id="u3">
+      <span class="unit-num">Section 03</span>
+      <h2 class="unit-title">Insurance Policy Basics</h2>
+      <p>A policy is the insurance contract between the insurer and insured.</p>
+      <p>A policy commonly contains:</p>
+      <ul><li>Named insured</li><li>Effective dates</li><li>Coverages</li><li>Limits</li><li>Deductibles</li><li>Premium</li><li>Exclusions</li><li>Conditions</li><li>Forms/endorsements</li></ul>
+      <h4>Premium</h4>
+      <p>The premium is the amount charged for the insurance.</p>
+      <p>Example:</p>
+      <pre class="diagram">Annual premium = ₹30,000</pre>
+      <h4>Coverage</h4>
+      <p>Coverage describes what is protected.</p>
+      <p>Example:</p>
+      <pre class="diagram">Collision coverage = Yes
+Comprehensive coverage = Yes
+Liability coverage = Yes</pre>
+      <h4>Limit</h4>
+      <p>The limit is the maximum amount payable under a coverage, subject to policy terms.</p>
+      <p>Example:</p>
+      <pre class="diagram">Coverage limit = ₹5,00,000</pre>
+      <h4>Deductible</h4>
+      <p>The deductible is the amount the insured pays before the insurer pays the covered portion, subject to policy terms.</p>
+      <p>Example:</p>
+      <pre class="diagram">Covered loss = ₹1,00,000
+Deductible = ₹20,000
+Potential insurer payment = ₹80,000</pre>
+    </div>
+
+    <div class="unit reveal" id="u4">
+      <span class="unit-num">Section 04</span>
+      <h2 class="unit-title">PolicyCenter</h2>
+      <p>PolicyCenter is Guidewire's policy administration system.</p>
+      <p>Its job is to manage the policy lifecycle.</p>
+      <p>A simplified lifecycle:</p>
+      <pre class="diagram">Submission
+   |
+   v
+Quote
+   |
+   v
+Underwriting
+   |
+   v
+Bind
+   |
+   v
+Issue
+   |
+   v
+Active Policy
+   |
+   +--&gt; Policy Change
+   |
+   +--&gt; Renewal
+   |
+   +--&gt; Cancellation
+   |
+   +--&gt; Reinstatement</pre>
+      <p>The exact workflow can vary by insurer configuration.</p>
+    </div>
+
+    <div class="unit reveal" id="u5">
+      <span class="unit-num">Section 05</span>
+      <h2 class="unit-title">Account, Contact, Policy, and Policy Period</h2>
+      <p>These are easy to confuse.</p>
+      <h4>Account</h4>
+      <p>Represents the customer's relationship with the insurer.</p>
+      <p>Example:</p>
+      <pre class="diagram">Account: Ramesh Shakthi</pre>
+      <p>One account can have multiple policies.</p>
+      <pre class="diagram">Account
+ |
+ +-- Auto Policy
+ |
+ +-- Home Policy
+ |
+ +-- Commercial Policy</pre>
+      <h4>Contact</h4>
+      <p>Represents person/entity information.</p>
+      <p>Examples:</p>
+      <ul><li>Customer</li><li>Driver</li><li>Producer</li><li>Organization</li><li>Vendor</li></ul>
+      <h4>Policy</h4>
+      <p>The insurance contract.</p>
+      <p>Example:</p>
+      <pre class="diagram">Policy Number: PA-100123
+Product: Personal Auto</pre>
+      <h4>Policy Period</h4>
+      <p>The specific term during which the policy applies.</p>
+      <p>Example:</p>
+      <pre class="diagram">01-Jan-2026 through 31-Dec-2026</pre>
+      <p>A policy can have multiple policy periods over time.</p>
+    </div>
+
+    <div class="unit reveal" id="u6">
+      <span class="unit-num">Section 06</span>
+      <h2 class="unit-title">What Is a Job in PolicyCenter?</h2>
+      <p>A <strong>job</strong> is a policy transaction being processed.</p>
+      <p>This is one of the most important terms for project discussions.</p>
+      <p>Common job types include:</p>
+      <ul><li>Submission</li><li>Renewal</li><li>Policy Change</li><li>Cancellation</li><li>Reinstatement</li></ul>
+      <div class="callout callout--example"><span class="callout-label">Example</span><p>Existing policy:</p></div>
+      <pre class="diagram">Honda
+₹25,000 premium</pre>
+      <p>Customer changes vehicle:</p>
+      <pre class="diagram">Honda -&gt; Toyota</pre>
+      <p>This is generally handled through a:</p>
+      <div class="callout "><p><strong>Policy Change job</strong></p></div>
+      <p>If a developer says:</p>
+      <div class="callout "><p>"The defect occurs only on Renewal jobs."</p></div>
+      <p>They mean the problem happens during the renewal transaction, not necessarily during new submissions or policy changes.</p>
+    </div>
+
+    <div class="unit reveal" id="u7">
+      <span class="unit-num">Section 07</span>
+      <h2 class="unit-title">Submission</h2>
+      <p>A submission represents a request/application for insurance.</p>
+      <p>Example:</p>
+      <p>A customer wants a new auto policy.</p>
+      <p>The agent enters:</p>
+      <ul><li>Driver information</li><li>Vehicle information</li><li>Location</li><li>Coverage selections</li><li>Prior insurance</li><li>Loss history</li></ul>
+      <p>This creates the information needed to evaluate and quote the risk.</p>
+    </div>
+
+    <div class="unit reveal" id="u8">
+      <span class="unit-num">Section 08</span>
+      <h2 class="unit-title">Quote</h2>
+      <p>A quote represents the price and terms offered for the risk.</p>
+      <p>Example:</p>
+      <pre class="diagram">Vehicle: Honda City
+Driver age: 35
+Coverage: Comprehensive
+Premium: ₹28,000</pre>
+      <p>Quote is not the same thing as bind.</p>
+    </div>
+
+    <div class="unit reveal" id="u9">
+      <span class="unit-num">Section 09</span>
+      <h2 class="unit-title">Rating vs Underwriting vs Bind vs Issue</h2>
+      <p>This distinction is critical.</p>
+      <h4>Rating</h4>
+      <p>Question:</p>
+      <div class="callout "><p>How much should the policy cost?</p></div>
+      <p>Example:</p>
+      <pre class="diagram">Driver age
++
+Vehicle
++
+Location
++
+Coverage
++
+Other rating factors
+       |
+       v
+Premium = ₹32,000</pre>
+      <h4>Underwriting</h4>
+      <p>Question:</p>
+      <div class="callout "><p>Should the insurer accept this risk, and under what terms?</p></div>
+      <p>Example:</p>
+      <pre class="diagram">Driver age &lt; 21
+       |
+       v
+Underwriting referral</pre>
+      <p>Underwriting can include risk selection, review, referral, acceptance, rejection, or other actions depending on the insurer's rules.</p>
+      <h4>Bind</h4>
+      <p>Bind is the action that makes the quoted insurance contract legally binding.</p>
+      <h4>Bound</h4>
+      <p><strong>Bound</strong> is the resulting state/status.</p>
+      <p>A useful mental model:</p>
+      <pre class="diagram">Submission
+   |
+Quote
+   |
+Underwriting / requirements
+   |
+Bind
+   |
+Bound
+   |
+Issue</pre>
+      <p>The exact workflow and timing of underwriting checks can vary by implementation.</p>
+      <h4>Important</h4>
+      <p>Do not memorize:</p>
+      <div class="callout "><p>Bind = Underwriting</p></div>
+      <p>Instead:</p>
+      <div class="callout "><p><strong>Underwriting evaluates the risk. Bind commits the coverage. Bound is the resulting status.</strong></p></div>
+    </div>
+
+    <div class="unit reveal" id="u10">
+      <span class="unit-num">Section 10</span>
+      <h2 class="unit-title">Issue</h2>
+      <p>Issuing is the process of finalizing the policy after binding according to the insurer's configured workflow.</p>
+      <p>It can involve:</p>
+      <ul><li>Final policy record</li><li>Policy documents</li><li>Forms</li><li>Endorsements</li><li>Downstream integrations</li><li>Billing information</li></ul>
+      <p>Some Guidewire workflows can bind and issue together, while others can separate them.</p>
+    </div>
+
+    <div class="unit reveal" id="u11">
+      <span class="unit-num">Section 11</span>
+      <h2 class="unit-title">Policy Change / Endorsement</h2>
+      <p>A policy change modifies an existing policy during its term.</p>
+      <p>Examples:</p>
+      <ul><li>Add vehicle</li><li>Remove vehicle</li><li>Change address</li><li>Change driver</li><li>Add coverage</li><li>Remove coverage</li><li>Change limits</li><li>Change deductible</li></ul>
+      <p>Example:</p>
+      <pre class="diagram">Existing vehicle value = ₹10L
+New vehicle value = ₹15L
+
+Policy Change effective = 01-Jul-2026</pre>
+      <p>The system may need to:</p>
+      <ol><li>Update vehicle data.</li><li>Recalculate rating.</li><li>Re-evaluate underwriting.</li><li>Update premium.</li><li>Update billing.</li><li>Generate forms/documents.</li><li>Send integrations.</li></ol>
+      <p>This is why a small requirement can affect many components.</p>
+    </div>
+
+    <div class="unit reveal" id="u12">
+      <span class="unit-num">Section 12</span>
+      <h2 class="unit-title">Effective Date vs Transaction Date</h2>
+      <p>This is a frequent source of defects.</p>
+      <h4>Transaction date</h4>
+      <p>When the transaction is processed.</p>
+      <h4>Effective date</h4>
+      <p>When the change actually takes effect.</p>
+      <p>Example:</p>
+      <pre class="diagram">Today: 15-Jun-2026
+Customer requests vehicle change effective: 01-Jul-2026</pre>
+      <p>The transaction happens on June 15.</p>
+      <p>The policy change becomes effective July 1.</p>
+      <p>Do not automatically treat these dates as the same.</p>
+      <h4>Testing example</h4>
+      <p>If a renewal is processed on:</p>
+      <pre class="diagram">15-Dec-2026</pre>
+      <p>but the current policy ends:</p>
+      <pre class="diagram">31-Dec-2026</pre>
+      <p>the next policy period may begin:</p>
+      <pre class="diagram">01-Jan-2027</pre>
+      <p>If the system incorrectly starts the renewal on December 15, that is a date/transaction defect worth investigating.</p>
+    </div>
+
+    <div class="unit reveal" id="u13">
+      <span class="unit-num">Section 13</span>
+      <h2 class="unit-title">Business Rules</h2>
+      <p>Business rules define behavior based on business conditions.</p>
+      <p>Example:</p>
+      <pre class="diagram">IF driver age &lt; 21
+THEN create underwriting referral</pre>
+      <p>Another:</p>
+      <pre class="diagram">IF comprehensive coverage is selected
+AND vehicle age exceeds configured threshold
+THEN require underwriting review</pre>
+      <p>A business rule is not simply a field validation.</p>
+    </div>
+
+    <div class="unit reveal" id="u14">
+      <span class="unit-num">Section 14</span>
+      <h2 class="unit-title">Validation vs Business Rule</h2>
+      <h4>Validation</h4>
+      <p>Checks whether data is valid/acceptable.</p>
+      <p>Examples:</p>
+      <ul><li>Required field cannot be blank.</li><li>Vehicle value must be greater than zero.</li><li>Date cannot be earlier than policy start date.</li></ul>
+      <h4>Business rule</h4>
+      <p>Determines what business action should occur.</p>
+      <p>Example:</p>
+      <pre class="diagram">IF driver age &lt; 21
+THEN refer to underwriter</pre>
+      <h4>Memory trick</h4>
+      <div class="callout "><p><strong>Validation = Is the data acceptable?</strong></p></div>
+      <div class="callout "><p><strong>Business rule = What should the business do?</strong></p></div>
+    </div>
+
+    <div class="unit reveal" id="u15">
+      <span class="unit-num">Section 15</span>
+      <h2 class="unit-title">Rating</h2>
+      <p>Rating is the calculation of premium.</p>
+      <p>A simplified example:</p>
+      <pre class="diagram">Vehicle value = ₹15L
+Driver age = 35
+Location = Chennai
+Coverage = Comprehensive
+Claims history = Clean
+
+              |
+              v
+            Rating
+              |
+              v
+Premium = ₹32,000</pre>
+      <p>Real rating can be much more complex.</p>
+      <p>As an Assurance Analyst, you should ask:</p>
+      <ul><li>Which factors affect the premium?</li><li>What are the expected values?</li><li>What happens at boundary values?</li><li>Does a policy change trigger re-rating?</li><li>Does the effective date affect rating?</li><li>Does the API return the same premium?</li><li>Does BillingCenter receive the same premium?</li></ul>
+    </div>
+
+    <div class="unit reveal" id="u16">
+      <span class="unit-num">Section 16</span>
+      <h2 class="unit-title">Underwriting Referral</h2>
+      <p>A referral occurs when the system determines that human review is required.</p>
+      <p>Example:</p>
+      <pre class="diagram">Driver age = 19
+        |
+        v
+Underwriting rule
+        |
+        v
+Referral Required
+        |
+        v
+Underwriter reviews</pre>
+      <p>A good test is not merely:</p>
+      <div class="callout "><p>"Did the referral message appear?"</p></div>
+      <p>You also test:</p>
+      <div class="callout "><p>"Can the agent bind before the referral is resolved?"</p></div>
+      <p>If binding is prohibited by the requirement and the system allows it, that is a functional/business-rule defect.</p>
+    </div>
+
+    <div class="unit reveal" id="u17">
+      <span class="unit-num">Section 17</span>
+      <h2 class="unit-title">Workflow</h2>
+      <p>A workflow is a sequence of business steps.</p>
+      <p>Example:</p>
+      <pre class="diagram">FNOL
+  |
+Claim Created
+  |
+Assign Adjuster
+  |
+Investigate
+  |
+Coverage Check
+  |
+Evaluate
+  |
+Payment
+  |
+Close</pre>
+      <p>Policy transactions can also involve workflow.</p>
+      <p>As an analyst, understand:</p>
+      <ul><li>Trigger</li><li>Steps</li><li>Conditions</li><li>Assignment</li><li>Approval</li><li>Completion</li><li>Exception paths</li></ul>
+    </div>
+
+    <div class="unit reveal" id="u18">
+      <span class="unit-num">Section 18</span>
+      <h2 class="unit-title">BillingCenter</h2>
+      <p>BillingCenter manages the billing side of insurance.</p>
+      <p>Important concepts:</p>
+      <ul><li>Premium</li><li>Invoice</li><li>Payment</li><li>Payment plan</li><li>Outstanding balance</li><li>Account</li><li>Producer/broker-related billing</li></ul>
+      <p>Example:</p>
+      <p>PolicyCenter:</p>
+      <pre class="diagram">Premium = ₹40,000</pre>
+      <p>BillingCenter may create:</p>
+      <pre class="diagram">Invoice = ₹40,000</pre>
+      <p>Customer then pays according to the configured payment plan.</p>
+      <h4>Common defect</h4>
+      <p>PolicyCenter:</p>
+      <pre class="diagram">₹40,000</pre>
+      <p>API payload:</p>
+      <pre class="diagram">₹40,000</pre>
+      <p>BillingCenter:</p>
+      <pre class="diagram">₹0</pre>
+      <p>First investigate the integration payload/message and mapping.</p>
+    </div>
+
+    <div class="unit reveal" id="u19">
+      <span class="unit-num">Section 19</span>
+      <h2 class="unit-title">ClaimCenter</h2>
+      <p>ClaimCenter manages the claim lifecycle.</p>
+      <p>A simplified flow:</p>
+      <pre class="diagram">FNOL
+ |
+Claim Created
+ |
+Assignment
+ |
+Investigation
+ |
+Coverage Verification
+ |
+Evaluation
+ |
+Reserve
+ |
+Payment/Settlement
+ |
+Close</pre>
+      <h4>FNOL</h4>
+      <p>First Notice of Loss.</p>
+      <p>Example:</p>
+      <div class="callout "><p>Customer reports an accident.</p></div>
+      <h4>Reserve</h4>
+      <p>An estimate of the amount the insurer may ultimately need to pay for the claim.</p>
+      <h4>Payment</h4>
+      <p>Actual money paid, according to the claim settlement and policy terms.</p>
+      <p>Do not confuse:</p>
+      <pre class="diagram">Premium = customer pays insurer
+Reserve = insurer estimates future claim cost
+Payment = insurer actually pays</pre>
+    </div>
+
+    <div class="unit reveal" id="u20">
+      <span class="unit-num">Section 20</span>
+      <h2 class="unit-title">Account vs Policy vs Claim</h2>
+      <p>One policy can potentially have multiple claims during its life, subject to coverage and circumstances.</p>
+      <p>Example:</p>
+      <pre class="diagram">Account
+  |
+  +-- Auto Policy
+       |
+       +-- Claim 001
+       |
+       +-- Claim 002</pre>
+      <p>A claim is not the policy.</p>
+      <p>The claim is associated with the insured policy/risk and represents a loss event.</p>
+    </div>
+
+    <div class="unit reveal" id="u21">
+      <span class="unit-num">Section 21</span>
+      <h2 class="unit-title">Product vs Policy</h2>
+      <h4>Product</h4>
+      <p>What the insurer offers.</p>
+      <p>Example:</p>
+      <div class="callout "><p>Personal Auto Gold</p></div>
+      <h4>Policy</h4>
+      <p>What the customer actually purchased, with its specific terms, coverages, limits, dates, and other details.</p>
+      <p>Think:</p>
+      <pre class="diagram">Product
+   |
+   v
+Possible configuration
+   |
+   v
+Customer selection
+   |
+   v
+Policy</pre>
+    </div>
+
+    <div class="unit reveal" id="u22">
+      <span class="unit-num">Section 22</span>
+      <h2 class="unit-title">Guidewire Configuration</h2>
+      <p>Guidewire is highly configurable.</p>
+      <p>Guidewire documentation describes configuration capabilities across areas such as:</p>
+      <ul><li>Data model</li><li>UI</li><li>Validation</li><li>Business rules</li><li>Workflows</li><li>Security</li><li>Integrations</li><li>Application behavior</li></ul>
+      <p>This is extremely important because not every requirement means:</p>
+      <div class="callout "><p>"Write new code."</p></div>
+      <p>It may be:</p>
+      <div class="callout "><p>"Configure existing Guidewire capability."</p></div>
+    </div>
+
+    <div class="unit reveal" id="u23">
+      <span class="unit-num">Section 23</span>
+      <h2 class="unit-title">What Does a Guidewire Developer/Configurator Actually Work On?</h2>
+      <p>Depending on the project, technical team members may work with:</p>
+      <h4>Data model</h4>
+      <p>Add/change entities and fields.</p>
+      <p>Example:</p>
+      <pre class="diagram">Vehicle
+  |
+  +-- Make
+  +-- Model
+  +-- Year
+  +-- VehicleValue
+  +-- NewCustomField</pre>
+      <h4>UI</h4>
+      <p>Modify screens, fields, buttons, visibility, validations, etc.</p>
+      <h4>Business rules</h4>
+      <p>Implement business behavior.</p>
+      <h4>Rating</h4>
+      <p>Configure pricing logic.</p>
+      <h4>Underwriting</h4>
+      <p>Configure referrals and risk behavior.</p>
+      <h4>Workflow</h4>
+      <p>Configure business process steps.</p>
+      <h4>Integrations</h4>
+      <p>Connect Guidewire to external systems.</p>
+      <h4>Documents/forms</h4>
+      <p>Configure which policy forms are applicable and when they are inferred.</p>
+      <h4>Testing</h4>
+      <p>Automated and manual tests validate the behavior.</p>
+    </div>
+
+    <div class="unit reveal" id="u24">
+      <span class="unit-num">Section 24</span>
+      <h2 class="unit-title">UI vs Business Logic vs Data</h2>
+      <p>Suppose the UI shows:</p>
+      <pre class="diagram">Premium = ₹0</pre>
+      <p>But the API response says:</p>
+      <pre class="diagram">Premium = ₹30,000</pre>
+      <p>Possible problem:</p>
+      <ul><li>UI mapping</li><li>UI transformation</li><li>Display logic</li><li>Incorrect field binding</li></ul>
+      <p>Now suppose the API response itself says:</p>
+      <pre class="diagram">Premium = ₹0</pre>
+      <p>while PolicyCenter's underlying expected calculation is ₹30,000.</p>
+      <p>Then investigate deeper:</p>
+      <ul><li>Rating</li><li>Input data</li><li>Product configuration</li><li>Business rules</li><li>Backend processing</li></ul>
+      <p>The key is:</p>
+      <div class="callout "><p><strong>Trace the value through the system.</strong></p></div>
+    </div>
+
+    <div class="unit reveal" id="u25">
+      <span class="unit-num">Section 25</span>
+      <h2 class="unit-title">API Basics</h2>
+      <p>An API allows systems to communicate.</p>
+      <p>Example:</p>
+      <pre class="diagram">Customer Portal
+      |
+      | Request
+      v
+PolicyCenter
+      |
+      | Response
+      v
+Customer Portal</pre>
+      <h4>Request</h4>
+      <p>Information sent to a system.</p>
+      <p>Example:</p>
+      <pre class="diagram">{
+  "vehicleValue": 1500000,
+  "vehicleType": "SUV"
+}</pre>
+      <h4>Response</h4>
+      <p>Information returned.</p>
+      <p>Example:</p>
+      <pre class="diagram">{
+  "premium": 32000
+}</pre>
+      <p>As an Assurance Analyst, you should compare:</p>
+      <pre class="diagram">UI input
+   ↓
+API request
+   ↓
+Guidewire processing
+   ↓
+API response
+   ↓
+UI display</pre>
+    </div>
+
+    <div class="unit reveal" id="u26">
+      <span class="unit-num">Section 26</span>
+      <h2 class="unit-title">API Troubleshooting Example</h2>
+      <p>Problem:</p>
+      <div class="callout "><p>Portal displays premium ₹0.</p></div>
+      <p>Check:</p>
+      <h4>Step 1</h4>
+      <p>UI input correct?</p>
+      <h4>Step 2</h4>
+      <p>Request correct?</p>
+      <pre class="diagram">vehicleValue = 15L</pre>
+      <h4>Step 3</h4>
+      <p>Response correct?</p>
+      <pre class="diagram">premium = ₹32,000</pre>
+      <h4>Step 4</h4>
+      <p>UI displays:</p>
+      <pre class="diagram">₹0</pre>
+      <p>Then the issue is probably downstream of the API response, such as UI mapping/display.</p>
+    </div>
+
+    <div class="unit reveal" id="u27">
+      <span class="unit-num">Section 27</span>
+      <h2 class="unit-title">Data Model</h2>
+      <p>A data model describes how business information is structured and related.</p>
+      <p>Simplified:</p>
+      <pre class="diagram">Account
+ |
+ +-- Contact
+ |
+ +-- Policy
+      |
+      +-- Policy Period
+            |
+            +-- Vehicle
+            |
+            +-- Coverage
+            |
+            +-- Premium
+            |
+            +-- Transactions</pre>
+      <p>Claims may connect to policy information:</p>
+      <pre class="diagram">Policy
+  |
+  +-- Claim
+       |
+       +-- Loss
+       +-- Coverage
+       +-- Reserve
+       +-- Payment</pre>
+      <p>You do not need to memorize every Guidewire entity.</p>
+      <p>You need to understand:</p>
+      <div class="callout "><p>What data exists, where it belongs, and how it relates to other data.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u28">
+      <span class="unit-num">Section 28</span>
+      <h2 class="unit-title">Forms in Guidewire</h2>
+      <p>This is particularly relevant because you heard your teammate discussing a Variable Form.</p>
+      <h4>First distinction: UI form vs insurance form</h4>
+      <p>A UI form is a screen/data-entry structure.</p>
+      <p>An insurance policy form is part of the policy's contractual/document package.</p>
+      <p>Guidewire PolicyCenter documentation states that the physical representation of an insurance policy is a collection of policy forms. Forms define aspects such as coverages, exposures, exclusions, and regulatory requirements.</p>
+      <p>Important:</p>
+      <div class="callout "><p>PolicyCenter stores information identifying forms through <strong>form patterns</strong>. The actual physical forms are generally maintained in an external documentation/form management system.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u29">
+      <span class="unit-num">Section 29</span>
+      <h2 class="unit-title">Form Pattern</h2>
+      <p>A <strong>form pattern</strong> is the configuration/identification information PolicyCenter uses to determine a particular form.</p>
+      <p>A form pattern can include information such as:</p>
+      <ul><li>Code</li><li>Form number</li><li>Edition</li><li>Name</li><li>Product applicability</li><li>Job types</li><li>Inference time</li><li>Jurisdiction availability</li><li>Replacement information</li><li>Endorsement numbering behavior</li></ul>
+      <p>Guidewire documentation states that forms can be automatically applied at a configured stage such as quote or bind.</p>
+    </div>
+
+    <div class="unit reveal" id="u30">
+      <span class="unit-num">Section 30</span>
+      <h2 class="unit-title">Why Forms Matter</h2>
+      <p>Suppose an insurer has:</p>
+      <pre class="diagram">Personal Auto Product</pre>
+      <p>A policy might require different forms based on:</p>
+      <ul><li>State/jurisdiction</li><li>Coverage</li><li>Product</li><li>Transaction type</li><li>Effective date</li><li>Endorsements</li><li>Other policy characteristics</li></ul>
+      <p>Therefore, the system needs to determine:</p>
+      <div class="callout "><p>Which forms apply to this policy?</p></div>
+    </div>
+
+    <div class="unit reveal" id="u31">
+      <span class="unit-num">Section 31</span>
+      <h2 class="unit-title">Variable Form Concept</h2>
+      <p>The term <strong>Variable Form</strong> can be project-specific, so do not assume every Guidewire project uses the exact same implementation.</p>
+      <p>Conceptually, think of a variable/dynamic form as a document template whose values depend on policy data.</p>
+      <p>Example:</p>
+      <pre class="diagram">Template:
+
+Named Insured: {CustomerName}
+Policy Number: {PolicyNumber}
+Vehicle: {Vehicle}
+Premium: {Premium}</pre>
+      <p>For one customer:</p>
+      <pre class="diagram">Named Insured: Ramesh
+Policy Number: PA10001
+Vehicle: Honda City
+Premium: ₹25,000</pre>
+      <p>For another:</p>
+      <pre class="diagram">Named Insured: Kumar
+Policy Number: PA10002
+Vehicle: Toyota
+Premium: ₹32,000</pre>
+      <p>The template can be similar while the populated values change.</p>
+    </div>
+
+    <div class="unit reveal" id="u32">
+      <span class="unit-num">Section 32</span>
+      <h2 class="unit-title">Form Defect Example</h2>
+      <p>Customer changes vehicle:</p>
+      <pre class="diagram">Old vehicle = Honda
+New vehicle = Toyota</pre>
+      <p>PolicyCenter:</p>
+      <pre class="diagram">Vehicle = Toyota
+Premium = ₹32,000</pre>
+      <p>BillingCenter:</p>
+      <pre class="diagram">₹32,000</pre>
+      <p>Generated policy form:</p>
+      <pre class="diagram">Vehicle = Honda
+Premium = ₹25,000</pre>
+      <p>This could indicate a document/form data problem.</p>
+      <p>An Assurance Analyst should investigate:</p>
+      <pre class="diagram">Policy data
+   ↓
+Correct form selected?
+   ↓
+Correct form edition?
+   ↓
+Correct policy data passed?
+   ↓
+Correct variable fields populated?
+   ↓
+Generated document</pre>
+    </div>
+
+    <div class="unit reveal" id="u33">
+      <span class="unit-num">Section 33</span>
+      <h2 class="unit-title">Form Edition</h2>
+      <p>A form may have different editions.</p>
+      <p>Example:</p>
+      <pre class="diagram">Form ABC
+Edition 2025
+Edition 2026</pre>
+      <p>A new edition may be required because:</p>
+      <ul><li>Regulatory wording changed</li><li>State requirement changed</li><li>Product wording changed</li><li>Insurer updated language</li></ul>
+      <p>Testing must consider effective dates and availability.</p>
+      <p>A common defect pattern is:</p>
+      <div class="callout "><p>Correct form number, wrong edition.</p></div>
+    </div>
+
+    <div class="unit reveal" id="u34">
+      <span class="unit-num">Section 34</span>
+      <h2 class="unit-title">Form Inference</h2>
+      <p>Form inference is the mechanism by which Guidewire determines whether a form should be applied.</p>
+      <p>Examples of generic inference concepts in current PolicyCenter documentation include forms that are:</p>
+      <ul><li>Always added</li><li>Added based on coverage/clauses</li><li>Added based on additional insured/interests</li><li>Added or removed based on policy changes</li><li>Selected based on coverable types</li></ul>
+      <p>You do not need to memorize the technical class names.</p>
+      <p>Understand:</p>
+      <div class="callout "><p><strong>Inference = deciding whether/how a form applies to the policy.</strong></p></div>
+    </div>
+
+    <div class="unit reveal" id="u35">
+      <span class="unit-num">Section 35</span>
+      <h2 class="unit-title">Forms Testing Checklist</h2>
+      <p>When testing forms, ask:</p>
+      <h4>Selection</h4>
+      <ul><li>Is the correct form selected?</li><li>Is it applicable to the product?</li><li>Is it applicable to the jurisdiction?</li><li>Is it applicable to the transaction?</li></ul>
+      <h4>Timing</h4>
+      <ul><li>Is it applied at quote?</li><li>Bind?</li><li>Issue?</li><li>Policy change?</li></ul>
+      <h4>Version</h4>
+      <ul><li>Correct form number?</li><li>Correct edition?</li><li>Correct effective dates?</li></ul>
+      <h4>Content</h4>
+      <ul><li>Correct customer name?</li><li>Correct policy number?</li><li>Correct vehicle?</li><li>Correct coverage?</li><li>Correct limits?</li><li>Correct premium?</li><li>Correct effective date?</li></ul>
+      <h4>Transaction</h4>
+      <p>If a policy change occurs:</p>
+      <ul><li>Is a new form generated?</li><li>Is an endorsement form generated?</li><li>Is an old form removed/replaced if required?</li></ul>
+    </div>
+
+    <div class="unit reveal" id="u36">
+      <span class="unit-num">Section 36</span>
+      <h2 class="unit-title">Documents vs Forms</h2>
+      <p>These are not necessarily the same thing.</p>
+      <p>Guidewire documentation distinguishes them.</p>
+      <h4>Policy form</h4>
+      <p>Represents contractual parts of the insurance policy.</p>
+      <h4>Document</h4>
+      <p>An electronic file associated with an account, job, policy, claim, etc.</p>
+      <p>Examples of PolicyCenter documents can include:</p>
+      <ul><li>Uploaded photographs</li><li>Inspection reports</li><li>Correspondence</li></ul>
+      <p>A document may exist alongside the policy forms.</p>
+    </div>
+
+    <div class="unit reveal" id="u37">
+      <span class="unit-num">Section 37</span>
+      <h2 class="unit-title">Testing Types</h2>
+      <h4>Functional testing</h4>
+      <p>Does the feature work according to the requirement?</p>
+      <p>Example:</p>
+      <div class="callout "><p>Adding a vehicle should update the policy.</p></div>
+      <h4>Integration testing</h4>
+      <p>Do systems exchange the correct information?</p>
+      <p>Example:</p>
+      <div class="callout "><p>PolicyCenter sends ₹32,000 to BillingCenter.</p></div>
+      <h4>UI testing</h4>
+      <p>Does the UI behave/display correctly?</p>
+      <h4>Regression testing</h4>
+      <p>Did a new change break something that already worked?</p>
+      <h4>Negative testing</h4>
+      <p>Does the system correctly handle invalid input?</p>
+      <p>Example:</p>
+      <pre class="diagram">Vehicle value = ₹0</pre>
+      <p>If requirement says value must be greater than zero, the system should reject/prevent the transaction.</p>
+      <h4>Boundary testing</h4>
+      <p>Test values around a business threshold.</p>
+      <p>Example:</p>
+      <pre class="diagram">Under 21 -&gt; Referral
+21 -&gt; ?
+22 -&gt; Normal</pre>
+      <p>Always verify the exact requirement for the boundary.</p>
+    </div>
+
+    <div class="unit reveal" id="u38">
+      <span class="unit-num">Section 38</span>
+      <h2 class="unit-title">Expected vs Actual</h2>
+      <p>Every serious test should distinguish:</p>
+      <h4>Expected</h4>
+      <p>What should happen.</p>
+      <h4>Actual</h4>
+      <p>What happened.</p>
+      <p>Example:</p>
+      <pre class="diagram">Expected:
+Vehicle change triggers rating.
+
+Actual:
+Vehicle changed but premium remained unchanged.</pre>
+      <p>Result:</p>
+      <pre class="diagram">FAIL</pre>
+      <p>This is the foundation of defect reporting.</p>
+    </div>
+
+    <div class="unit reveal" id="u39">
+      <span class="unit-num">Section 39</span>
+      <h2 class="unit-title">Defect Investigation Mindset</h2>
+      <p>Never immediately blame the UI.</p>
+      <p>Trace the flow.</p>
+      <p>Example:</p>
+      <pre class="diagram">Requirement
+    ↓
+UI
+    ↓
+API Request
+    ↓
+PolicyCenter
+    ↓
+Rules / Rating
+    ↓
+Database/Data
+    ↓
+API Response
+    ↓
+External System
+    ↓
+UI</pre>
+      <p>Find where the expected behavior diverges from the actual behavior.</p>
+    </div>
+
+    <div class="unit reveal" id="u40">
+      <span class="unit-num">Section 40</span>
+      <h2 class="unit-title">A Practical Defect Example</h2>
+      <p>Requirement:</p>
+      <div class="callout "><p>When vehicle value changes from ₹10L to ₹15L, premium must be recalculated.</p></div>
+      <p>Observed:</p>
+      <pre class="diagram">UI vehicle = ₹15L          ✓
+PolicyCenter vehicle = ₹15L ✓
+Rating = ₹32K              ✓
+API response = ₹32K        ✓
+BillingCenter = ₹25K       ✗</pre>
+      <p>Likely investigation area:</p>
+      <div class="callout "><p>PolicyCenter → BillingCenter integration.</p></div>
+      <p>Do not waste the first hour debugging the rating calculation when rating is already correct.</p>
+    </div>
+
+    <div class="unit reveal" id="u41">
+      <span class="unit-num">Section 41</span>
+      <h2 class="unit-title">Severity vs Root Cause</h2>
+      <p>These are different.</p>
+      <h4>Root cause</h4>
+      <p>Where/why the defect occurred.</p>
+      <h4>Severity</h4>
+      <p>How seriously it affects the business/system.</p>
+      <p>Example:</p>
+      <p>A premium mismatch in BillingCenter may be high impact because it can affect billing accuracy.</p>
+      <p>But severity should be determined according to the project's defect-management process.</p>
+      <p>As an analyst, do not automatically assign severity based only on technical difficulty.</p>
+    </div>
+
+    <div class="unit reveal" id="u42">
+      <span class="unit-num">Section 42</span>
+      <h2 class="unit-title">Requirement to Release</h2>
+      <p>A real project can look like:</p>
+      <pre class="diagram">Business Requirement
+       ↓
+Analysis
+       ↓
+Acceptance Criteria
+       ↓
+Development / Configuration
+       ↓
+Unit Testing
+       ↓
+Integration Testing
+       ↓
+System Testing
+       ↓
+UAT
+       ↓
+Defect Fix
+       ↓
+Regression
+       ↓
+Release</pre>
+      <p>Your role may touch almost every stage.</p>
+    </div>
+
+    <div class="unit reveal" id="u43">
+      <span class="unit-num">Section 43</span>
+      <h2 class="unit-title">What You Should Put in Acceptance Criteria</h2>
+      <p>Bad requirement:</p>
+      <div class="callout "><p>"Add vehicle capability."</p></div>
+      <p>Better:</p>
+      <pre class="diagram">Given an active auto policy
+When the agent starts a Policy Change
+And adds a new vehicle
+Then the vehicle should be saved
+And applicable rating should be recalculated
+And applicable underwriting rules should execute
+And the premium should reflect the effective date
+And applicable forms should be generated
+And BillingCenter should receive the updated premium</pre>
+      <p>This is much easier to test.</p>
+    </div>
+
+    <div class="unit reveal" id="u44">
+      <span class="unit-num">Section 44</span>
+      <h2 class="unit-title">Your Assurance Analyst Role</h2>
+      <p>Your core job can be thought of as:</p>
+      <pre class="diagram">UNDERSTAND
+    ↓
+DEFINE
+    ↓
+VERIFY
+    ↓
+INVESTIGATE
+    ↓
+COMMUNICATE</pre>
+      <h4>Understand</h4>
+      <p>What does the business want?</p>
+      <h4>Define</h4>
+      <p>What exactly should happen?</p>
+      <h4>Verify</h4>
+      <p>Does Guidewire behave correctly?</p>
+      <h4>Investigate</h4>
+      <p>Where does the failure occur?</p>
+      <h4>Communicate</h4>
+      <p>Explain the problem clearly to developers, product owners, testers, and business users.</p>
+    </div>
+
+    <div class="unit reveal" id="u45">
+      <span class="unit-num">Section 45</span>
+      <h2 class="unit-title">How AI Can Help You</h2>
+      <p>Since you do not want to code, use AI as your technical assistant.</p>
+      <p>You can give AI:</p>
+      <ul><li>Requirement</li><li>Error message</li><li>API request</li><li>API response</li><li>Logs</li><li>Screenshots</li><li>Test data</li><li>Defect description</li><li>Configuration snippets</li><li>Developer comments</li></ul>
+      <p>Ask it to:</p>
+      <ul><li>Explain code</li><li>Generate test cases</li><li>Generate API payloads</li><li>Compare expected vs actual</li><li>Identify likely root causes</li><li>Create SQL queries when permitted</li><li>Explain Gosu</li><li>Explain configuration</li><li>Draft defect tickets</li><li>Analyze logs</li><li>Create regression scenarios</li></ul>
+      <p>But you must validate the result against the requirement and business behavior.</p>
+    </div>
+
+    <div class="unit reveal" id="u46">
+      <span class="unit-num">Section 46</span>
+      <h2 class="unit-title">Example AI-Assisted Investigation</h2>
+      <p>You receive:</p>
+      <pre class="diagram">Expected premium = ₹32,000
+
+PolicyCenter = ₹32,000
+BillingCenter = ₹25,000</pre>
+      <p>Ask AI:</p>
+      <div class="callout "><p>"Trace the likely data path and list the first five things I should verify."</p></div>
+      <p>AI may suggest:</p>
+      <ol><li>Outbound payload.</li><li>Field mapping.</li><li>Transformation.</li><li>Message processing.</li><li>BillingCenter field mapping.</li></ol>
+      <p>Then you verify those suggestions against the actual project architecture.</p>
+      <p>AI becomes your technical co-pilot, not your decision-maker.</p>
+    </div>
+
+    <div class="unit reveal" id="u47">
+      <span class="unit-num">Section 47</span>
+      <h2 class="unit-title">What You Need to Know About Gosu</h2>
+      <p>You do NOT need to become a Gosu developer immediately.</p>
+      <p>You should recognize that Gosu is a programming language used in Guidewire development/configuration.</p>
+      <p>At your level, learn to recognize:</p>
+      <ul><li>Variables</li><li>Conditions</li><li>Loops</li><li>Functions/methods</li><li>Classes</li><li>Entities</li><li>Queries</li><li>Rules</li></ul>
+      <p>Example concept:</p>
+      <pre class="diagram">if driver.Age &lt; 21 {
+    createReferral()
+}</pre>
+      <p>You don't need to memorize syntax.</p>
+      <p>You need to understand what the code is doing.</p>
+    </div>
+
+    <div class="unit reveal" id="u48">
+      <span class="unit-num">Section 48</span>
+      <h2 class="unit-title">Guidewire Data + Gosu Example</h2>
+      <p>Imagine a developer shows:</p>
+      <pre class="diagram">policy.PolicyPeriod.PrimaryDriver.Age</pre>
+      <p>You should be able to interpret the concept:</p>
+      <pre class="diagram">Policy
+  ↓
+Policy Period
+  ↓
+Primary Driver
+  ↓
+Age</pre>
+      <p>That is enough to participate intelligently in many discussions.</p>
+    </div>
+
+    <div class="unit reveal" id="u49">
+      <span class="unit-num">Section 49</span>
+      <h2 class="unit-title">Integration Concepts to Learn</h2>
+      <p>You should understand:</p>
+      <ul><li>REST API</li><li>SOAP, if used by the project</li><li>JSON</li><li>XML</li><li>Request</li><li>Response</li><li>HTTP methods</li><li>Authentication</li><li>Mapping</li><li>Transformation</li><li>Error handling</li><li>Retry</li><li>Timeout</li><li>Messaging</li><li>Event-driven integration</li></ul>
+      <p>You don't need to build all of these.</p>
+      <p>You need to troubleshoot their behavior.</p>
+    </div>
+
+    <div class="unit reveal" id="u50">
+      <span class="unit-num">Section 50</span>
+      <h2 class="unit-title">Common Integration Failure Patterns</h2>
+      <h4>Mapping problem</h4>
+      <p>PolicyCenter field:</p>
+      <pre class="diagram">vehicleValue</pre>
+      <p>External system expects:</p>
+      <pre class="diagram">vehicle_value</pre>
+      <p>Incorrect mapping can produce missing/zero data.</p>
+      <h4>Transformation problem</h4>
+      <pre class="diagram">₹32,000</pre>
+      <p>gets transformed incorrectly.</p>
+      <h4>Missing field</h4>
+      <p>A required field is not included.</p>
+      <h4>Wrong environment</h4>
+      <p>Test system points to the wrong endpoint.</p>
+      <h4>Authentication</h4>
+      <p>Token/credentials fail.</p>
+      <h4>Timeout</h4>
+      <p>External system does not respond within expected time.</p>
+      <h4>Duplicate message</h4>
+      <p>Same transaction is processed twice.</p>
+    </div>
+
+    <div class="unit reveal" id="u51">
+      <span class="unit-num">Section 51</span>
+      <h2 class="unit-title">End-to-End Auto Insurance Example</h2>
+      <p>Let's put everything together.</p>
+      <p>Customer:</p>
+      <div class="callout "><p>Ramesh</p></div>
+      <p>Vehicle:</p>
+      <div class="callout "><p>Honda City</p></div>
+      <p>Policy:</p>
+      <div class="callout "><p>Personal Auto</p></div>
+      <h4>Step 1: Account</h4>
+      <p>Account created for Ramesh.</p>
+      <h4>Step 2: Submission</h4>
+      <p>Agent enters:</p>
+      <ul><li>Driver</li><li>Vehicle</li><li>Location</li><li>Coverage</li></ul>
+      <h4>Step 3: Rating</h4>
+      <p>System calculates:</p>
+      <pre class="diagram">Premium = ₹28,000</pre>
+      <h4>Step 4: Underwriting</h4>
+      <p>Rules evaluate the risk.</p>
+      <p>No referral required.</p>
+      <h4>Step 5: Quote</h4>
+      <p>Customer receives:</p>
+      <pre class="diagram">₹28,000</pre>
+      <h4>Step 6: Bind</h4>
+      <p>Customer accepts.</p>
+      <p>Policy becomes bound.</p>
+      <h4>Step 7: Issue</h4>
+      <p>Policy is issued.</p>
+      <h4>Step 8: Billing</h4>
+      <p>BillingCenter receives the premium.</p>
+      <h4>Step 9: Policy Change</h4>
+      <p>Customer replaces the vehicle.</p>
+      <pre class="diagram">Honda -&gt; Toyota</pre>
+      <p>New premium:</p>
+      <pre class="diagram">₹32,000</pre>
+      <h4>Step 10: Forms</h4>
+      <p>Applicable forms/endorsements are inferred.</p>
+      <h4>Step 11: Claim</h4>
+      <p>Customer has an accident.</p>
+      <p>FNOL is created.</p>
+      <p>ClaimCenter handles:</p>
+      <pre class="diagram">Investigation
+Coverage
+Reserve
+Settlement
+Payment
+Closure</pre>
+    </div>
+
+    <div class="unit reveal" id="u52">
+      <span class="unit-num">Section 52</span>
+      <h2 class="unit-title">Your Mental Architecture</h2>
+      <p>Keep this picture:</p>
+      <pre class="diagram">                    CUSTOMER / AGENT
+                           |
+                           v
+                         UI
+                           |
+                           v
+                         API
+                           |
+                           v
+                    POLICY CENTER
+                     /    |     \
+                    /     |      \
+                 Rating   UW    Workflow
+                    |      |       |
+                    \      |      /
+                     \     |     /
+                       Policy
+                          |
+              +-----------+-----------+
+              |                       |
+              v                       v
+        BillingCenter            ClaimCenter
+              |                       |
+           Billing                  Claims
+              |
+              v
+        External Systems</pre>
+      <p>Forms/documents can sit across the policy lifecycle and may involve external document/form management systems.</p>
+    </div>
+
+    <div class="unit reveal" id="u53">
+      <span class="unit-num">Section 53</span>
+      <h2 class="unit-title">What to Learn First in Your Job</h2>
+      <p>Prioritize:</p>
+      <h4>Tier 1: Must know</h4>
+      <ul><li>P&amp;C basics</li><li>LOB</li><li>Policy</li><li>Account</li><li>Policy Period</li><li>Jobs</li><li>Submission</li><li>Quote</li><li>Rating</li><li>Underwriting</li><li>Bind/Bound</li><li>Issue</li><li>Policy Change</li><li>Renewal</li><li>Cancellation</li><li>Billing</li><li>Claim</li><li>FNOL</li><li>Reserve</li><li>API</li><li>Request/Response</li><li>Expected/Actual</li><li>Defect</li><li>Regression</li></ul>
+      <h4>Tier 2: Should know</h4>
+      <ul><li>Data model</li><li>Configuration</li><li>Business rules</li><li>Workflows</li><li>Forms</li><li>Form patterns</li><li>Form inference</li><li>Documents</li><li>Integrations</li><li>Mapping</li><li>Effective dates</li><li>Product model</li><li>Test strategy</li></ul>
+      <h4>Tier 3: Learn gradually</h4>
+      <ul><li>Gosu</li><li>PCF/UI configuration details</li><li>Typelists</li><li>Plugins</li><li>Entity extensions</li><li>Database/query details</li><li>Advanced Cloud APIs</li><li>Deployment architecture</li><li>Automated testing frameworks</li></ul>
+    </div>
+
+    <div class="unit reveal" id="u54">
+      <span class="unit-num">Section 54</span>
+      <h2 class="unit-title">A 7-Day Study Plan</h2>
+      <h4>Day 1</h4>
+      <h4>Insurance + PolicyCenter</h4>
+      <p>Learn:</p>
+      <ul><li>P&amp;C</li><li>LOB</li><li>Account</li><li>Policy</li><li>Policy Period</li><li>Jobs</li><li>Submission</li><li>Quote</li><li>Rating</li><li>Underwriting</li><li>Bind</li><li>Issue</li></ul>
+      <p>Practice:</p>
+      <div class="callout "><p>Explain the complete new-policy lifecycle.</p></div>
+      <h4>Day 2</h4>
+      <h4>PolicyCenter transactions</h4>
+      <p>Learn:</p>
+      <ul><li>Policy Change</li><li>Renewal</li><li>Cancellation</li><li>Reinstatement</li><li>Effective dates</li><li>Job lifecycle</li><li>Product/coverage</li></ul>
+      <p>Practice:</p>
+      <div class="callout "><p>Analyze a vehicle-change requirement.</p></div>
+      <h4>Day 3</h4>
+      <h4>Guidewire configuration</h4>
+      <p>Learn:</p>
+      <ul><li>Data model</li><li>UI</li><li>Rules</li><li>Rating</li><li>Underwriting</li><li>Workflow</li><li>Configuration</li><li>Forms</li></ul>
+      <p>Practice:</p>
+      <div class="callout "><p>Convert a business requirement into acceptance criteria.</p></div>
+      <h4>Day 4</h4>
+      <h4>BillingCenter + ClaimCenter</h4>
+      <p>Learn:</p>
+      <ul><li>Invoice</li><li>Payment</li><li>Payment plan</li><li>Outstanding balance</li><li>FNOL</li><li>Claim</li><li>Reserve</li><li>Settlement</li><li>Closure</li></ul>
+      <p>Practice:</p>
+      <div class="callout "><p>Trace a claim and billing issue.</p></div>
+      <h4>Day 5</h4>
+      <h4>APIs + integrations</h4>
+      <p>Learn:</p>
+      <ul><li>REST</li><li>JSON</li><li>Request</li><li>Response</li><li>Mapping</li><li>Transformation</li><li>Errors</li><li>Messaging</li></ul>
+      <p>Practice:</p>
+      <div class="callout "><p>Diagnose a PolicyCenter/BillingCenter mismatch.</p></div>
+      <h4>Day 6</h4>
+      <h4>Assurance/testing</h4>
+      <p>Learn:</p>
+      <ul><li>Functional</li><li>Integration</li><li>UI</li><li>Negative</li><li>Boundary</li><li>Regression</li><li>UAT</li><li>Defect lifecycle</li><li>Severity/prioritization according to project process</li></ul>
+      <p>Practice:</p>
+      <div class="callout "><p>Create test cases from requirements.</p></div>
+      <h4>Day 7</h4>
+      <h4>End-to-end project</h4>
+      <p>Take one realistic insurance product and trace:</p>
+      <pre class="diagram">Requirement
+→ Configuration
+→ PolicyCenter
+→ Rating
+→ Underwriting
+→ Bind
+→ Issue
+→ Billing
+→ Claim
+→ Forms
+→ APIs
+→ Testing
+→ Defect
+→ Release</pre>
+    </div>
+
+    <div class="unit reveal" id="u55">
+      <span class="unit-num">Section 55</span>
+      <h2 class="unit-title">20 Questions You Should Eventually Be Able to Answer</h2>
+      <ol><li>What is Guidewire?</li><li>What is InsuranceSuite?</li><li>What is PolicyCenter?</li><li>What is a job?</li><li>What is a policy period?</li><li>What is a submission?</li><li>Difference between quote and bind?</li><li>Difference between rating and underwriting?</li><li>What does Bound mean?</li><li>What is a policy change?</li><li>What is an effective date?</li><li>What does BillingCenter do?</li><li>What does ClaimCenter do?</li><li>What is FNOL?</li><li>What is a claim reserve?</li><li>What is a business rule?</li><li>What is a form pattern?</li><li>What is an API request/response?</li><li>How do you investigate a UI/API mismatch?</li><li>How do you convert a business requirement into testable acceptance criteria?</li></ol>
+      <p>If you can answer these confidently, you have a practical foundation.</p>
+    </div>
+
+    <div class="unit reveal" id="u56">
+      <span class="unit-num">Section 56</span>
+      <h2 class="unit-title">The Most Important Analyst Skill</h2>
+      <p>Do not memorize Guidewire as a dictionary.</p>
+      <p>Learn to <strong>trace behavior</strong>.</p>
+      <p>Whenever someone describes a requirement or defect, ask:</p>
+      <pre class="diagram">WHAT
+ ↓
+WHERE
+ ↓
+WHEN
+ ↓
+WHY
+ ↓
+EXPECTED
+ ↓
+ACTUAL
+ ↓
+IMPACT
+ ↓
+ROOT CAUSE</pre>
+      <p>Example:</p>
+      <div class="callout "><p>"Premium is wrong."</p></div>
+      <p>Do not immediately ask:</p>
+      <div class="callout "><p>"Which code is broken?"</p></div>
+      <p>Ask:</p>
+      <pre class="diagram">What premium was expected?
+What premium was calculated?
+What inputs were used?
+Which transaction?
+What effective date?
+Did rating run?
+What did the API return?
+What did BillingCenter receive?
+What did the UI display?</pre>
+      <p>That is how you move from "Guidewire learner" to "project-ready analyst."</p>
+    </div>
+
+    <div class="unit reveal" id="u57">
+      <span class="unit-num">Section 57</span>
+      <h2 class="unit-title">Your Current Position</h2>
+      <p>Based on what you have already learned, you have a solid foundation in:</p>
+      <ul><li>P&amp;C insurance</li><li>Policy lifecycle</li><li>PolicyCenter concepts</li><li>BillingCenter basics</li><li>ClaimCenter basics</li><li>Rating</li><li>Underwriting</li><li>Jobs</li><li>Effective dates</li><li>APIs</li><li>Request/response</li><li>Business rules</li><li>Validation</li><li>Data model</li><li>UI vs backend</li><li>Testing</li><li>Defect investigation</li><li>Forms</li></ul>
+      <p>Your next growth area should be <strong>depth</strong>, especially:</p>
+      <ol><li>PolicyCenter transaction behavior</li><li>Configuration</li><li>Forms/form patterns</li><li>APIs/integration</li><li>Data model</li><li>Real project requirements</li><li>Assurance/testing</li></ol>
+    </div>
+
+    <div class="unit reveal" id="u58">
+      <span class="unit-num">Section 58</span>
+      <h2 class="unit-title">Final Cheat Sheet</h2>
+      <pre class="diagram">GUIDEWIRE
+= P&amp;C insurance software platform
+
+POLICYCENTER
+= Policy lifecycle
+
+BILLINGCENTER
+= Billing and payments
+
+CLAIMCENTER
+= Claims
+
+ACCOUNT
+= Customer relationship
+
+POLICY
+= Insurance contract
+
+POLICY PERIOD
+= Specific coverage term
+
+JOB
+= Policy transaction
+
+SUBMISSION
+= Application/request for insurance
+
+QUOTE
+= Offered price/terms
+
+RATING
+= Calculates premium
+
+UNDERWRITING
+= Evaluates/selects risk
+
+BIND
+= Makes coverage legally binding
+
+BOUND
+= Resulting bound state
+
+ISSUE
+= Finalize policy according to workflow
+
+POLICY CHANGE
+= Modify existing policy
+
+RENEWAL
+= Continue policy into next term
+
+CANCELLATION
+= End policy
+
+REINSTATEMENT
+= Restore cancelled policy
+
+FNOL
+= First Notice of Loss
+
+RESERVE
+= Estimated future claim cost
+
+API REQUEST
+= Data sent
+
+API RESPONSE
+= Data returned
+
+BUSINESS RULE
+= Business behavior
+
+VALIDATION
+= Data acceptability check
+
+FORM
+= Contractual policy form
+
+FORM PATTERN
+= PolicyCenter configuration identifying/applying a form
+
+DOCUMENT
+= Electronic file associated with an account/job/policy/claim/etc.
+
+REGRESSION
+= Check that existing behavior still works
+
+DEFECT
+= Expected behavior differs from actual behavior</pre>
+    </div>
+
+    <div class="unit reveal" id="u59">
+      <span class="unit-num">Section 59</span>
+      <h2 class="unit-title">The One Diagram to Remember</h2>
+      <pre class="diagram">                    P&amp;C INSURANCE
+                          |
+                          v
+                     GUIDEWIRE
+                          |
+        +-----------------+-----------------+
+        |                 |                 |
+        v                 v                 v
+  POLICYCENTER       BILLINGCENTER      CLAIMCENTER
+        |                 |                 |
+        |                 |                 |
+  Submission          Invoice             FNOL
+  Quote               Payment             Claim
+  Rating              Balance             Investigation
+  Underwriting        Payment Plan        Reserve
+  Bind                Billing             Settlement
+  Issue                                    Close
+  Policy Change
+  Renewal
+        |
+        v
+     FORMS / DOCUMENTS
+        |
+        v
+  EXTERNAL SYSTEMS / APIS
+        |
+        v
+     TESTING / ASSURANCE</pre>
+      <p><strong>Your job is to understand the arrows.</strong></p>
+      <p>You do not need to personally build every box.</p>
+    </div>
+
+    <div class="unit reveal" id="closing">
+      <span class="unit-num">Before You Rely on This</span>
+      <h2 class="unit-title">A closing note on scope</h2>
+      <div class="callout callout--trap">
+        <span class="callout-label">Important</span>
+        <p>Guidewire implementations vary by insurer, product, version, configuration and project architecture. Treat your project's requirements, configured environment and official Guidewire documentation as the source of truth — these notes are a practical starting map, not a substitute for it.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER PAGER -->
+
+<aside class="chapter-assessment chapter-assessment--end" aria-label="Guidewire assessments">
+  <div><h2>Ready to test what you learned?</h2><p>18 practice modules, 10 questions each. Submitted answers are locked. Get your score and download a short summary at the end of each module.</p></div>
+  <a href="guidewire-tests.html">Take a module assessment &#8599;</a>
+</aside>
+<div class="chapter-pager">
+  <a class="pager-link back-link" href="resources.html">&larr; All resources</a>
+</div>
+
+<footer>
+  <span>&copy; 2026 Ramesh Senthil Kumar</span>
+  <span class="footer-dot">&middot;</span>
+  <span>Business Analyst &amp; Project Manager</span>
+  <span class="footer-dot">&middot;</span>
+  <span>Madurai, Bengaluru, Coimbatore, Chennai</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+<span id="chapter-page-bottom" aria-hidden="true"></span>
+<aside class="page-jump" aria-label="Page navigation">
+  <a href="#chapter-page-top" aria-label="Go to top of chapter" title="Go to top">&#8593;</a>
+  <a href="#chapter-page-bottom" aria-label="Go to bottom of chapter" title="Go to bottom">&#8595;</a>
+</aside>
+</body>
+</html>
