@@ -49,5 +49,5 @@ function boot(){
       else{assert.equal(saved.active,null);assert.equal(saved.results.length,1);assert.equal(saved.results[0].score,5);assert(html.includes('Learn from your answers'));nodes.download.onclick();assert.equal(lastDownload,`AINS21-Ch${chapter.id}-Module${mod.id}-Summary.txt`);assert((await blob.text()).includes('Score: 5/10 (50%)'));}
     }
   }
-  console.log('PASS: 200 questions; all 20 module flows; mixed-answer scoring; duplicate-submit protection; explicit resume after refresh; locked progress; exit cancellation; browser back/forward confirmation; unload warning; summary downloads.');
+  console.log('PASS: 300 questions; all 30 module flows; mixed-answer scoring; duplicate-submit protection; explicit resume after refresh; locked progress; exit cancellation; browser back/forward confirmation; unload warning; summary downloads.');
 })();
