@@ -2444,7 +2444,7 @@
 <!-- FLOATING ACTIONS -->
 <div class="fab-dock">
   <!-- CHATBOT -->
-  <button type="button" class="chatbot-fab" id="chatbotFab" aria-label="Chat with Ramesh's assistant">
+  <button type="button" class="chatbot-fab" id="chatbotFab" aria-label="Chat with Ramesh's virtual memory">
     <span class="chatbot-fab-avatar"><img src="assets/Ramesh chat bot.png" alt="Ramesh chatbot" loading="lazy"></span>
   </button>
 
@@ -2460,12 +2460,12 @@
   </a>
 </div>
 
-<div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Chat with Ramesh's assistant">
+<div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Chat with Ramesh's virtual memory">
   <div class="chatbot-header">
     <span class="chatbot-header-avatar"><img src="assets/Ramesh chat bot.png" alt="Ramesh chatbot" loading="lazy"></span>
     <div class="chatbot-header-info">
-      <div class="chatbot-header-name">Ramesh's Assistant</div>
-      <div class="chatbot-header-status">Runs locally · Knows the resume</div>
+      <div class="chatbot-header-name">Ramesh's Virtual Memory</div>
+      <div class="chatbot-header-status">AI-powered · Analyzes this portfolio</div>
     </div>
     <button type="button" class="chatbot-close" id="chatbotClose" aria-label="Close chat">✕</button>
   </div>
@@ -2484,7 +2484,7 @@
 
 <div class="chatbot-nudge" id="chatbotNudge">
   <button type="button" class="chatbot-nudge-close" id="chatbotNudgeClose" aria-label="Dismiss">✕</button>
-  <p>I'm Ramesh's assistant — got any doubt you wanna know? Use me! 😊</p>
+  <p>I'm Ramesh's virtual memory — ask me about his resume, AINS, or Guidewire! 😊</p>
 </div>
 
 <!-- PROFILE MODAL -->
@@ -2933,6 +2933,10 @@
   });
 </script>
 
+<!--
+  LOCAL CHATBOT FALLBACK (COMMENTED OUT, KEPT FOR FUTURE USE)
+  This is the original keyword-based responder. Do not delete it; it can be
+  restored if the Ollama-powered chat is unavailable.
 <script>
   // ---- Ramesh's local chatbot (rule-based, no external calls) ----
   (function () {
@@ -3439,6 +3443,135 @@
       if (!greeted) nudgeEl.classList.add('show');
     }, 5000);
     setTimeout(hideNudge, 16000);
+  })();
+</script>
+-->
+
+<script>
+  // ---- Ollama-powered portfolio assistant ----
+  (function () {
+    const fab = document.getElementById('chatbotFab');
+    const panel = document.getElementById('chatbotPanel');
+    const closeBtn = document.getElementById('chatbotClose');
+    const messagesEl = document.getElementById('chatbotMessages');
+    const suggestionsEl = document.getElementById('chatbotSuggestions');
+    const inputEl = document.getElementById('chatbotInput');
+    const sendBtn = document.getElementById('chatbotSend');
+    const nudgeEl = document.getElementById('chatbotNudge');
+    const nudgeCloseBtn = document.getElementById('chatbotNudgeClose');
+    const conversation = [];
+
+    const QUICK_PROMPTS = [
+      'Summarize Ramesh’s profile',
+      'What are his strongest skills?',
+      'Tell me about his experience',
+      'Which projects stand out?',
+      'How can I contact him?',
+      'Is his background a fit for a BA role?'
+    ];
+
+    function appendMessage(sender, text) {
+      const div = document.createElement('div');
+      div.className = 'chat-msg ' + sender;
+      div.textContent = text;
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function setBusy(busy) {
+      inputEl.disabled = busy;
+      sendBtn.disabled = busy;
+      const existing = document.getElementById('chatTyping');
+      if (existing) existing.remove();
+      if (busy) {
+        const typing = document.createElement('div');
+        typing.className = 'chat-typing';
+        typing.id = 'chatTyping';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        messagesEl.appendChild(typing);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+    }
+
+    function renderSuggestions() {
+      suggestionsEl.innerHTML = '';
+      QUICK_PROMPTS.slice(0, 3).forEach(prompt => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chat-chip';
+        chip.textContent = prompt;
+        chip.addEventListener('click', () => sendMessage(prompt));
+        suggestionsEl.appendChild(chip);
+      });
+    }
+
+    function portfolioContext() {
+      const clone = document.body.cloneNode(true);
+      clone.querySelectorAll('.chatbot-panel, .chatbot-nudge, script, style, noscript').forEach(el => el.remove());
+      return (clone.innerText || clone.textContent || '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .slice(0, 30000);
+    }
+
+    async function sendMessage(raw) {
+      const text = (raw !== undefined ? raw : inputEl.value).trim();
+      if (!text || inputEl.disabled) return;
+      appendMessage('user', text);
+      inputEl.value = '';
+      suggestionsEl.innerHTML = '';
+      setBusy(true);
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: text,
+            history: conversation.slice(-10),
+            pageContext: portfolioContext()
+          })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'The assistant is unavailable.');
+        conversation.push({ role: 'user', content: text });
+        conversation.push({ role: 'assistant', content: data.reply });
+        appendMessage('bot', data.reply);
+      } catch (error) {
+        appendMessage('bot', 'I couldn’t reach the AI service right now. Please try again in a moment.');
+        console.error('Portfolio chat error:', error);
+      } finally {
+        setBusy(false);
+        renderSuggestions();
+        inputEl.focus();
+      }
+    }
+
+    let greeted = false;
+    function openChat() {
+      panel.classList.add('open');
+      nudgeEl.classList.remove('show');
+      if (!greeted) {
+        greeted = true;
+        appendMessage('bot', 'Hi! I’m Ramesh’s virtual memory, inspired by the idea in Upload. I use the information preserved across this website to answer questions about Ramesh’s resume and portfolio, AINS, and Guidewire. What would you like to remember or explore?');
+        renderSuggestions();
+      }
+      inputEl.focus();
+    }
+
+    function closeChat() { panel.classList.remove('open'); }
+    fab.addEventListener('click', () => panel.classList.contains('open') ? closeChat() : openChat());
+    closeBtn.addEventListener('click', closeChat);
+    sendBtn.addEventListener('click', () => sendMessage());
+    inputEl.addEventListener('keydown', event => { if (event.key === 'Enter') sendMessage(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeChat(); });
+    nudgeEl.addEventListener('click', openChat);
+    nudgeCloseBtn.addEventListener('click', event => {
+      event.stopPropagation();
+      nudgeEl.classList.remove('show');
+    });
+    setTimeout(() => { if (!greeted) nudgeEl.classList.add('show'); }, 5000);
+    setTimeout(() => nudgeEl.classList.remove('show'), 16000);
   })();
 </script>
 </body>
