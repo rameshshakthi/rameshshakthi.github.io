@@ -2465,7 +2465,7 @@
     <span class="chatbot-header-avatar"><img src="assets/Ramesh chat bot.png" alt="Ramesh chatbot" loading="lazy"></span>
     <div class="chatbot-header-info">
       <div class="chatbot-header-name">Ramesh's Virtual Memory</div>
-      <div class="chatbot-header-status">AI-powered · Analyzes this portfolio</div>
+      <div class="chatbot-header-status">Runs locally · Knows this portfolio</div>
     </div>
     <button type="button" class="chatbot-close" id="chatbotClose" aria-label="Close chat">✕</button>
   </div>
@@ -2484,7 +2484,7 @@
 
 <div class="chatbot-nudge" id="chatbotNudge">
   <button type="button" class="chatbot-nudge-close" id="chatbotNudgeClose" aria-label="Dismiss">✕</button>
-  <p>I'm Ramesh's virtual memory — ask me about his resume, AINS, or Guidewire! 😊</p>
+  <p>I'm Ramesh's virtual memory — ask me about his portfolio! 😊</p>
 </div>
 
 <!-- PROFILE MODAL -->
@@ -2933,10 +2933,6 @@
   });
 </script>
 
-<!--
-  LOCAL CHATBOT FALLBACK (COMMENTED OUT, KEPT FOR FUTURE USE)
-  This is the original keyword-based responder. Do not delete it; it can be
-  restored if the Ollama-powered chat is unavailable.
 <script>
   // ---- Ramesh's local chatbot (rule-based, no external calls) ----
   (function () {
@@ -3097,6 +3093,10 @@
     }
 
     function matchSpecial(msg) {
+      if (/\bp\s*&\s*c\b|\bproperty\s+(and|&)\s+casualty\b/.test(msg)) {
+        context = { type: 'company', ref: kb.experience[0] };
+        return `Yes. Ramesh has P&amp;C (Property &amp; Casualty) insurance experience through his current role as <strong>Senior Associate - Assurance Analyst at ValueMomentum</strong>, working in the Assurance/QA function.`;
+      }
       if (/\bhow old\b/.test(msg) || /\b(born|birth year)\b/.test(msg)) {
         return replyBirthYear();
       }
@@ -3262,8 +3262,8 @@
       "That's outside what I know, but in a sunny way — let's stick to Ramesh's work, skills, or how to reach him 🌞"
     ];
     const OFF_TOPIC_2 = [
-      "Bro, ask something relevant 😅 This bot's running locally right here on this page — you're just spending your own time chasing random questions.",
-      "C'mon bro, stay on topic 😄 I'm a tiny local script, not the internet — ask about Ramesh's work instead."
+      "Bro, ask something relevant 😅 This virtual memory runs locally on the page and focuses on Ramesh's portfolio.",
+      "C'mon bro, stay on topic 😄 My memory is limited to Ramesh's work and portfolio."
     ];
     const PROVERB = "You can lead a horse to water, but you can't make it drink 🐴";
 
@@ -3399,7 +3399,7 @@
       panel.classList.add('open');
       if (!greeted) {
         greeted = true;
-        appendMessage('bot', "Hey hey! 👋⚡ I'm Ramesh's local chatbot — pumped to talk about his resume, skills, experience, projects, or how to reach him. Ask me anything, even the specific stuff like \"which year did he join Pyramidion?\" — I'm quick!");
+        appendMessage('bot', "Hey hey! 👋⚡ I'm Ramesh's virtual memory, inspired by the idea in Upload. I remember his resume, skills, experience, projects, and contact details. Ask me anything about his portfolio — even something specific like \"does he have P&C experience?\"");
         renderSuggestions();
       }
       inputEl.focus();
@@ -3445,8 +3445,10 @@
     setTimeout(hideNudge, 16000);
   })();
 </script>
--->
 
+<!--
+  OLLAMA CHATBOT (COMMENTED OUT UNTIL A SECURE BACKEND IS DEPLOYED)
+  Keep this implementation for future use. GitHub Pages cannot run /api/chat.
 <script>
   // ---- Ollama-powered portfolio assistant ----
   (function () {
@@ -3574,5 +3576,6 @@
     setTimeout(() => nudgeEl.classList.remove('show'), 16000);
   })();
 </script>
+-->
 </body>
 </html>
